@@ -240,6 +240,54 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -254,6 +302,22 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -372,6 +436,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "Group",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
@@ -389,6 +461,14 @@
     },
     {
         "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
         "isExtraImport": true,
@@ -482,6 +562,14 @@
         "description": "django.contrib.auth.backends",
         "isExtraImport": true,
         "detail": "django.contrib.auth.backends",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
         "documentation": {}
     },
     {
@@ -631,6 +719,22 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "date",
         "importPath": "datetime",
         "description": "datetime",
@@ -714,6 +818,62 @@
         "documentation": {}
     },
     {
+        "label": "Cart",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "CartItem",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "CartItem",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItem",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
         "label": "views",
         "importPath": "items",
         "description": "items",
@@ -727,6 +887,14 @@
         "description": "home.models",
         "isExtraImport": true,
         "detail": "home.models",
+        "documentation": {}
+    },
+    {
+        "label": "AddToCartForm",
+        "importPath": "items.forms",
+        "description": "items.forms",
+        "isExtraImport": true,
+        "detail": "items.forms",
         "documentation": {}
     },
     {
@@ -760,6 +928,14 @@
         "description": "django.contrib.messages",
         "isExtraImport": true,
         "detail": "django.contrib.messages",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
         "documentation": {}
     },
     {
@@ -921,6 +1097,15 @@
         "description": "home.apps",
         "peekOfCode": "class HomeConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"home\"",
         "detail": "home.apps",
+        "documentation": {}
+    },
+    {
+        "label": "user_info",
+        "kind": 2,
+        "importPath": "home.context_processors",
+        "description": "home.context_processors",
+        "peekOfCode": "def user_info(request):\n    if request.user.is_authenticated:\n        return {'currentUser': request.user.username}\n    return {}",
+        "detail": "home.context_processors",
         "documentation": {}
     },
     {
@@ -1383,6 +1568,33 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "items.migrations.0001_initial",
+        "description": "items.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Category',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('name', models.CharField(max_length=255)),",
+        "detail": "items.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "items.migrations.0002_cart_cartitem_order_orderitem",
+        "description": "items.migrations.0002_cart_cartitem_order_orderitem",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('items', '0001_initial'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Cart',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "items.migrations.0002_cart_cartitem_order_orderitem",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "items.migrations.0003_alter_cartitem_quantity_alter_orderitem_quantity",
+        "description": "items.migrations.0003_alter_cartitem_quantity_alter_orderitem_quantity",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('items', '0002_cart_cartitem_order_orderitem'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='cartitem',\n            name='quantity',\n            field=models.PositiveIntegerField(default=0),\n        ),",
+        "detail": "items.migrations.0003_alter_cartitem_quantity_alter_orderitem_quantity",
+        "documentation": {}
+    },
+    {
         "label": "ItemsConfig",
         "kind": 6,
         "importPath": "items.apps",
@@ -1392,20 +1604,128 @@
         "documentation": {}
     },
     {
+        "label": "AddToCartForm",
+        "kind": 6,
+        "importPath": "items.forms",
+        "description": "items.forms",
+        "peekOfCode": "class AddToCartForm(forms.ModelForm):\n    class Meta:\n        model = CartItem\n        fields = ['quantity', 'item']\n        widgets = {\n            'quantity': forms.NumberInput(attrs={'class': 'form-control col-md-12'}),\n        }\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.fields['quantity'].widget.attrs.update({'min': 1})",
+        "detail": "items.forms",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "kind": 6,
+        "importPath": "items.models",
+        "description": "items.models",
+        "peekOfCode": "class Category(models.Model):\n    name = models.CharField(max_length=255)\n    class Meta:\n        ordering = ('name',)\n        verbose_name_plural = 'Categories'\n    def __str__(self):\n        return self.name\nclass Item(models.Model):\n    category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)\n    name = models.CharField(max_length=255)",
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Item",
+        "kind": 6,
+        "importPath": "items.models",
+        "description": "items.models",
+        "peekOfCode": "class Item(models.Model):\n    category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)\n    name = models.CharField(max_length=255)\n    description = models.TextField(blank=True, null=True)\n    price = models.FloatField()\n    image = models.ImageField(upload_to='item_images', blank=True, null=True)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return self.name\nclass Cart(models.Model):",
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "kind": 6,
+        "importPath": "items.models",
+        "description": "items.models",
+        "peekOfCode": "class Cart(models.Model):\n    user = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"Cart for {self.user.username}\"\nclass CartItem(models.Model):\n    cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)\n    item = models.ForeignKey('Item', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField(default=0)\n    created_at = models.DateTimeField(auto_now_add=True)",
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "CartItem",
+        "kind": 6,
+        "importPath": "items.models",
+        "description": "items.models",
+        "peekOfCode": "class CartItem(models.Model):\n    cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)\n    item = models.ForeignKey('Item', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField(default=0)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.item.name} x{self.quantity} for {self.cart.user.username}\"\n    def get_total_price(self):\n        return self.quantity * self.item.price\nclass Order(models.Model):",
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "kind": 6,
+        "importPath": "items.models",
+        "description": "items.models",
+        "peekOfCode": "class Order(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"Order #{self.id} by {self.user.username}\"\nclass OrderItem(models.Model):\n    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)\n    item = models.ForeignKey('Item', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField(default=0)",
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItem",
+        "kind": 6,
+        "importPath": "items.models",
+        "description": "items.models",
+        "peekOfCode": "class OrderItem(models.Model):\n    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)\n    item = models.ForeignKey('Item', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField(default=0)\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    created_at = models.DateTimeField(auto_now_add=True)\n    def __str__(self):\n        return f\"{self.item.name} x{self.quantity} for {self.order.user.username}\"\n    def get_total_price(self):\n        return self.quantity * self.price",
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "items.urls",
         "description": "items.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"\", views.index, name='index'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin\", admin.site.urls),\n    path(\"add_to_cart\", views.add_to_cart, name='add_to_cart'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n]",
         "detail": "items.urls",
         "documentation": {}
     },
     {
-        "label": "index",
+        "label": "add_to_cart",
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def index(request):\n    items = []\n    return render(request, 'items/index.html', {\n        'user_name': request.user.first_name + \" \" + request.user.last_name,\n        'items': items\n        })",
+        "peekOfCode": "def add_to_cart(request):\n    cart, created = Cart.objects.get_or_create(user=request.user)\n    form = AddToCartForm(request.POST)\n    if request.method == 'POST':\n        if form.is_valid():\n            quantity = form.cleaned_data['quantity']\n            cart_item, created = CartItem.objects.get_or_create(cart=cart, item=form.cleaned_data['item'])\n            cart_item.quantity += quantity\n            cart_item.save()\n            return redirect('cart')",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "cart",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def cart(request):\n    cart, created = Cart.objects.get_or_create(user=request.user)\n    cart_items = cart.items.all()\n    total_price = sum(item.get_total_price() for item in cart_items)\n    return render(request, 'items/cart.html', {\n        'cart_items': cart_items,\n        'total_price': total_price,\n    })\n@login_required\ndef delete_from_cart(request, pk):",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_from_cart",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def delete_from_cart(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    cartItem.delete()\n    return redirect('cart')\n@login_required\ndef update_quantity(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    new_quantity = int(request.POST.get('quantity', 1))\n    cartItem.quantity = new_quantity\n    cartItem.save()",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "update_quantity",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def update_quantity(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    new_quantity = int(request.POST.get('quantity', 1))\n    cartItem.quantity = new_quantity\n    cartItem.save()\n    return redirect('cart')\n@login_required\ndef order(request):\n    cart = get_object_or_404(Cart, user=request.user)\n    cart_items = cart.items.all()",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "order",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def order(request):\n    cart = get_object_or_404(Cart, user=request.user)\n    cart_items = cart.items.all()\n    order = Order.objects.create(user=request.user, price=0)\n    price = 0\n    for item in cart_items:\n        OrderItem.objects.create(\n            order=order,\n            item=item.item,\n            quantity=item.quantity,",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "orders",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})",
         "detail": "items.views",
         "documentation": {}
     },
@@ -1531,7 +1851,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -1540,7 +1860,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -1549,7 +1869,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -1558,7 +1878,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -1567,7 +1887,25 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]\n#LOGIN_REDIRECT_URL = '/doctor_dashboard'\n# LOGIN_URL = '/doctor_login'",
+        "peekOfCode": "STATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]",
+        "detail": "predictHealth.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "predictHealth.settings",
+        "description": "predictHealth.settings",
+        "peekOfCode": "MEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]\n#LOGIN_REDIRECT_URL = '/doctor_dashboard'",
+        "detail": "predictHealth.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "predictHealth.settings",
+        "description": "predictHealth.settings",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]\n#LOGIN_REDIRECT_URL = '/doctor_dashboard'\n# LOGIN_URL = '/doctor_login'",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -1603,7 +1941,7 @@
         "kind": 5,
         "importPath": "predictHealth.urls",
         "description": "predictHealth.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"items/\", include('items.urls')),\n    path(\"\", include('home.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"items/\", include('items.urls')),\n    path(\"\", include('home.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "predictHealth.urls",
         "documentation": {}
     },
