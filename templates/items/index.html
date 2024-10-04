@@ -15,66 +15,50 @@
         </i></p>
     <div class="row my-5">
         {% for item in items %}
-
-
-
-
-
         <div class="col-sm-6 my-3">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><b>
-                            Dr. {{ item.name }}
+                            {{ item.name }}
                         </b>
                     </h5>
-
                     <hr>
-                    <p><b>Price: </b>{{ item.price }}</p>
-
-
-
-                    <button type="button" class="btn btn-info my-2 col-md-5" data-toggle="modal"
-                        data-target="#exampleModalLong{{ item.id }}">
-                        About Doctor
+                    <div>
+                        <img src="{{ item.image.url }}" style="width: 100%; ">
+                    </div>
+                    <p><b>Price: </b>{{ item.price }} DT</p>
+                    <div class="row justify-content-center align-items-center ">
+                        <button type="button" class="mr-1 btn btn-info my-2 col-md-5" data-toggle="modal"
+                        data-target="#showDetailModal{{ item.id }}">
+                        Details
                     </button>
 
-                    <button type="button" class="btn btn-info my-2 col-md-5" data-toggle="modal"
-                        data-target="#addToCart{{ item.id }}">
-                        Make an Appointment
+                    <button type="button" class="ml-1 btn btn-info my-2 col-md-5" data-toggle="modal"
+                        data-target="#addToCartModal{{ item.id }}">
+                        Add to Cart
                     </button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- <div class="modal fade" id="addToCart{{ doctor.id }}" tabindex="-1" role="dialog"
-            aria-labelledby="addToCart{{ doctor.id }}" aria-hidden="true">
+         <div class="modal fade" id="addToCartModal{{ item.id }}" tabindex="-1" role="dialog"
+            aria-labelledby="addToCartTitle{{ item.id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addToCart{{ doctor.id }}"><b>Make an appointment with <span class="text-info">Dr. {{ doctor.first_name }} {{doctor.last_name}}</span></b></h5>
+                        <h5 class="modal-title" id="addToCartTitle{{ item.id }}"><b>Add <span class="text-info">{{ item.name }}</span> to Cart</b></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/fix_appointment" method = "post">
+                        <form action="/items/add_to_cart" method = "post">
                             {% csrf_token %}
-                            <input type="hidden" name="doctor" value="{{ doctor.id }}">
-                            <input type="hidden" name="status" value="Pending">
-                            
-                                <label for="phone"><b>Your Contact Number</b></label><br>
-                                {{ form.phone }}
-
-                                <br><label for="email"><b>Your Email ID</b></label><br>
-                                {{ form.email }}
-                        
-                                <br><label for="appointmentDate"><b>Appointment Date (MM/DD/YYYY)</b></label><br>
-                                {{ form.appointmentDate}}
-                        
-                                <br><label for="message"><b>Your Message for Doctor</b></label><br>
-                                {{ form.message}}
+                            <input type="hidden" name="item" value="{{ item.id }}">
+                                <br><label for="quantity"><b>Quantity: </b></label><br>
+                                {{ form.quantity }}
                                 <br>
-
                             <button type="submit" class="btn btn-info col-md-12">Submit</button>
                         </form>
                     </div>
@@ -84,42 +68,34 @@
                 </div>
             </div>
         </div>
-        
 
-        <div class="modal fade" id="exampleModalLong{{ doctor.id }}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLongTitle{{ doctor.id }}" aria-hidden="true">
+
+        <div class="modal fade" id="showDetailModal{{ item.id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle{{ item.id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle{{ doctor.id }}"><b>Dr. {{ doctor.first_name }} {{doctor.last_name}}</b></h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle{{ item.id }}"><b>{{ item.name }}</b></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <img src="/static/back.png" class="img-fluid" alt="">
-                        <p class="my-3">{{ doctor.about }}</p>
+                        <img src="{{item.image.url}}" class="img-fluid" alt="">
+                        <p class="my-3">{{ item.description }}</p>
                         <br>
                         <table class="table border-white">
                             <tr>
-                                <th>Phone</td>
-                                <td>{{ doctor.phone }}</td>
+                                <th>Name</td>
+                                <td>{{ item.name }}</td>
                             </tr>
                             <tr>
-                                <th>Education</td>
-                                <td>{{ doctor.education }}</td>
+                                <th>Category</td>
+                                <td>{{ item.category }}</td>
                             </tr>
                             <tr>
-                                <th>Expertise</td>
-                                <td>{{ doctor.expertise }}</td>
-                            </tr>
-                            <tr>
-                                <th>Experience</td>
-                                <td>{{ doctor.experience }}</td>
-                            </tr>
-                            <tr>
-                                <th>Languages Known</td>
-                                <td>{{ doctor.languages }}</td>
+                                <th>Price</td>
+                                <td>{{ item.price }} DT</td>
                             </tr>
                         </table>
                     </div>
@@ -128,7 +104,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         {% endfor %}
     </div>
 

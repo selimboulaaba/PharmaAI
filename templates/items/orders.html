@@ -1,0 +1,77 @@
+{% extends "login_base.html" %}
+
+{%block title%}Orders{%endblock title%}
+
+{%block body%}
+
+<div class="container my-4">
+
+    <div class="my-3 p-3 bg-white rounded box-shadow">
+        <h3 class="my-3 pb-2 mb-0">Orders History</h3>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Total Price</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders reversed%}
+                <tr>
+                    <td class="text-capitalize text-dark align-middle">{{ order.user.username }}</td>
+                    <td class="align-middle">{{ order.price }} DT</td>
+                    <td class="align-middle">{{ order.created_at|date:"d/m/Y-H:i" }}</td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-info" data-toggle="modal"
+                            data-target="#showDetailModal{{ order.id }}">
+                            Details
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% for order in orders reversed %}
+<div class="modal fade" id="showDetailModal{{ order.id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle{{ order.id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle{{ order.id }}"><b>Products</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="my-3">Total Price: {{ order.price }}</h5>
+                <br>
+                <table class="table border-white">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    {% for order_item in order.items.all reversed %}
+                    <tr>
+                        <th>{{order_item.item.name}}</th>
+                        <td>{{ order_item.quantity }}</td>
+                        <td>{{ order_item.item.price }} DT</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger col-md-12" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{%endblock body%}
