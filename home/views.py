@@ -8,7 +8,7 @@ from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from .forms import AppointmentForm, MentalDisorderForm, pcosDisorderForm, AppointmentDataForm, obesityDisorderForm
+from .forms import AppointmentForm, MentalDisorderForm, pcosDisorderForm, AppointmentDataForm, obesityDisorderForm,DepressionAnxietyForm
 from .models import Receipt, UserProfile, userHistory, DoctorUser, AppointmentData
 from django.contrib.auth.models import User
 from django import forms
@@ -205,7 +205,7 @@ def doctor_dashboard(request):
 
 @login_required
 def health_prediction(request):
-    return render(request, 'health_test.html', {'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/health_test.html', {'user_name': request.user.first_name + " " + request.user.last_name})
 
 @login_required
 def fix_appointment(request):
@@ -294,10 +294,10 @@ def mental_disorder(request):
             )
             my_instance.save()
 
-            return render(request, 'mental_disorder_prediction.html', {'form': form, 'prediction_result': prediction_result[0][0]})
+            return render(request, 'health_prediction/mental_disorder_prediction.html', {'form': form, 'prediction_result': prediction_result[0][0]})
     else:
         form = MentalDisorderForm()
-    return render(request, 'mental_disorder_prediction.html', {'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/mental_disorder_prediction.html', {'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
 
 
 obesity_encoder = joblib.load('static/encoders/obesity_encoder.pkl')
@@ -332,11 +332,13 @@ def obesity(request):
             )
             my_instance.save()
             
-            return render(request, 'obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'prediction_result': predicted_output, 'user_name': request.user.first_name + " " + request.user.last_name})
+            return render(request, 'health_prediction/obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'prediction_result': predicted_output, 'user_name': request.user.first_name + " " + request.user.last_name})
     else:
         form = obesityDisorderForm()
 
-    return render(request, 'obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+
+
 
 @login_required
 def pcos(request):
@@ -401,10 +403,10 @@ def pcos(request):
             )
             my_instance.save()
 
-            return render(request, 'pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight,  'form': form, 'prediction_result': prediction_result, 'user_name': request.user.first_name + " " + request.user.last_name})
+            return render(request, 'health_prediction/pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight,  'form': form, 'prediction_result': prediction_result, 'user_name': request.user.first_name + " " + request.user.last_name})
     else:
         form = pcosDisorderForm()
-    return render(request, 'pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
 
 
 @login_required
@@ -490,4 +492,66 @@ def user_logout(request):
 
 def index(request):
     return render(request, 'index.html')
+####### ne9esni model :depression_anxiety_model 
 
+@login_required
+def depression_anxiety(request):
+    user_data = UserProfile.objects.get(user=request.user)
+    age = date.today().year - user_data.dob.year - ((date.today().month, date.today().day) < (user_data.dob.month, user_data.dob.day))
+    
+    if request.method == 'POST':
+        form = DepressionAnxietyForm(request.POST)
+        if form.is_valid():
+            # Retrieve user-entered data from the form
+            hopelessness = form.cleaned_data['hopelessness']
+            loss_of_interest = form.cleaned_data['loss_of_interest']
+            excessive_worry = form.cleaned_data['excessive_worry']
+            difficulty_concentrating = form.cleaned_data['difficulty_concentrating']
+            physical_symptoms = form.cleaned_data['physical_symptoms']
+            feelings_of_worthlessness = form.cleaned_data['feelings_of_worthlessness']
+            fatigue = form.cleaned_data['fatigue']
+            irritability = form.cleaned_data['irritability']
+            sleep_disturbances = form.cleaned_data['sleep_disturbances']
+            
+            # Prepare data for prediction
+            new_data = [[age, user_data.weight, user_data.height, hopelessness, loss_of_interest,
+                        excessive_worry, difficulty_concentrating, physical_symptoms,
+                        feelings_of_worthlessness, fatigue, irritability, sleep_disturbances]]
+            
+            # Make prediction
+            prediction_result = depression_anxiety_model.predict(new_data)[0]  # Replace with your actual model
+            
+            # Map the prediction result to a string if needed
+            if prediction_result == 1:
+                prediction_result = 'Depression/Anxiety Positive'
+            else:
+                prediction_result = 'Depression/Anxiety Negative'
+            
+            # Save the user's history
+            symptoms = [hopelessness, loss_of_interest, excessive_worry, difficulty_concentrating,
+                        physical_symptoms, feelings_of_worthlessness, fatigue, irritability, sleep_disturbances]
+            my_instance = userHistory(
+                user=request.user,
+                test_type='Depression/Anxiety Test',
+                symptoms=json.dumps(symptoms),
+                result=prediction_result,
+                date=timezone.now()
+            )
+            my_instance.save()
+
+            return render(request, 'health_prediction/depression_anxiety.html', {
+                'age': age,
+                'user_data': user_data,
+                'form': form,
+                'prediction_result': prediction_result,
+                'user_name': f"{request.user.first_name} {request.user.last_name}"
+            })
+    else:
+        form = DepressionAnxietyForm()
+
+    return render(request, 'health_prediction/depression_anxiety.html', {
+        'age': age,
+        'user_data': user_data,
+        'form': form,
+        'user_name': f"{request.user.first_name} {request.user.last_name}"
+    })

@@ -167,3 +167,27 @@ class AppointmentData(models.Model):
     appointmentDate = models.DateTimeField()
     message = models.CharField(max_length = 1000)
     status = models.CharField(max_length = 50, default = "Pending")
+    
+    #model depression_anxiety
+class DepressionAnxiety(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    anxiety_level = models.CharField(max_length=100, choices=[
+        ('None', 'None'),
+        ('Mild', 'Mild'),
+        ('Moderate', 'Moderate'),
+        ('Severe', 'Severe'),
+    ])
+    depression_level = models.CharField(max_length=100, choices=[
+        ('None', 'None'),
+        ('Mild', 'Mild'),
+        ('Moderate', 'Moderate'),
+        ('Severe', 'Severe'),
+    ])
+    symptoms = models.CharField(max_length=500)
+    date = models.DateField(default=timezone.now)
+
+    def set_symptoms(self, symptoms_list):
+        self.symptoms = json.dumps(symptoms_list)
+
+    def get_symptoms(self):
+        return json.loads(self.symptoms)
