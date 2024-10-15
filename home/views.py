@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from sklearn.ensemble import RandomForestClassifier
+from django.shortcuts import redirect, get_object_or_404
 from django.utils import timezone
 # Import your models and forms
 from .models import (
@@ -502,34 +503,35 @@ def user_logout(request):
 
 def index(request):
     return render(request, 'index.html')
+
 ####### cancer test
 # Use BASE_DIR to construct the full path for the CSV file
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 csv_path = os.path.join(BASE_DIR,'static', 'Breast_train.csv')
 
-# Load the CSV file and fit the model at the top level
+
 try:
     print(f"Looking for CSV at: {csv_path}")
     df = pd.read_csv(csv_path)
     
-    # Verify if DataFrame is loaded correctly
+    
     if df.empty:
         print("DataFrame is empty.")
     else:
         print(f"DataFrame loaded with shape: {df.shape}")
 
     data = df.values 
-    X = data[:, :-1]  # All columns except last (features)
-    Y = data[:, -1]   # Last column (target)
+    X = data[:, :-1]  
+    Y = data[:, -1]   
     
     print(f"Feature set shape: {X.shape}, Target shape: {Y.shape}") 
 
     # Initialize and fit the RandomForestClassifier once
     rf = RandomForestClassifier(n_estimators=16, criterion='entropy', max_depth=5)
-    rf.fit(np.nan_to_num(X), Y)  # Fit the model here
+    rf.fit(np.nan_to_num(X), Y)  
 except FileNotFoundError:
     print(f"File not found: {csv_path}")
-    X, Y, rf = None, None, None  # Handle the case where the CSV file does not exist
+    X, Y, rf = None, None, None  
 except pd.errors.EmptyDataError:
     print("The CSV file is empty.")
     X, Y, rf = None, None, None
@@ -567,14 +569,28 @@ def breast(request):
                     value = 'You have breast cancer.'
                     result_type = 'positive'
                     emoji = '😢'
+                    prediction_result_str = 'Breast Cancer Positive'
                 elif int(predictions[0]) == 0:
                     value = "You don't have breast cancer."
                     result_type = 'negative'
                     emoji = '😄'
+                    prediction_result_str = 'Breast Cancer Negative'
                 else:
                     value = "Unknown prediction"
+                    prediction_result_str = 'Unknown Result'
 
-    return render(request, 'breast.html', {
+                # Save the prediction result to user history
+                symptoms = [radius, texture, perimeter, area, smoothness]  
+                my_instance = userHistory(
+                    user=request.user,
+                    test_type='Breast Cancer Test',
+                    symptoms=json.dumps(symptoms),  
+                    result=prediction_result_str,  
+                    date=timezone.now()  
+                )
+                my_instance.save()  
+
+    return render(request, 'health_prediction/breast.html', {
         'form': form,
         'result': value,
         'result_type': result_type,
@@ -584,3 +600,11 @@ def breast(request):
         'breast': True,
         'form': BreastCancerForm(),
     })
+#delete
+@login_required
+def delete_history_entry(request, entry_id):
+    if request.method == 'POST':
+        entry = get_object_or_404(userHistory, id=entry_id, user=request.user)
+        entry.delete()  
+        return redirect('test_history') 
+    return redirect('test_history') 
