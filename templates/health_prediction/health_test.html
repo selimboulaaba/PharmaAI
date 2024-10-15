@@ -1,8 +1,8 @@
 {% extends "login_base.html" %}
 
-{%block title%}Take Prediction{%endblock title%}
+{% block title %}Take Prediction{% endblock title %}
 
-{%block body%}
+{% block body %}
 
 <div class="container my-5">
     <div class="row mb-2">
@@ -36,19 +36,19 @@
                 </div>
             </div>
         </div>
+
+        <!-- Breast Cancer Prediction Card -->
         <div class="col-md-6">
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start">
-                    <h3><strong class="d-inline-block mb-2 text-dark my-4">Depression and Anxiety Assessment</strong></h3>
-                    <p class="card-text text-muted mb-auto">Depression and Anxiety: These assessments help identify symptoms of depression and anxiety, which can significantly impact daily life and mental well-being.</p>
-                    <a class="btn btn-outline-dark px-4 py-2 my-4" href="/depression_anxiety">Take Depression and Anxiety Assessment</a>
+                    <h3><strong class="d-inline-block mb-2 text-dark my-4">Breast Cancer Prediction</strong></h3>
+                    <p class="card-text text-muted mb-auto">Breast Cancer Problem: Breast cancer is a disease in which malignant cells form in the tissues of the breast. Early detection is crucial for effective treatment.</p>
+                    <a class="btn btn-outline-dark px-4 py-2 my-4" href="/breast">Take Breast Cancer prediction</a>
+                    
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    
-
 </div>
 
-{%endblock body%}
+{% endblock body %}

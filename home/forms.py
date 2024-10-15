@@ -66,69 +66,32 @@ class obesityDisorderForm(forms.ModelForm):
             if isinstance(field.widget, forms.Select):
                 field.empty_label = "Choose one"
 
-#form depression 
+#form cancer
+class BreastCancerForm(forms.Form):
+    radius = forms.FloatField(
+        label='Mean Radius',
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+    )
+    texture = forms.FloatField(
+        label='Mean Texture',
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+    )
+    perimeter = forms.FloatField(
+        label='Mean Perimeter',
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+    )
+    area = forms.FloatField(
+        label='Mean Area',
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+    )
+    smoothness = forms.FloatField(
+        label='Mean Smoothness',
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+    )
 
 
-class DepressionAnxietyForm(forms.Form):
-    hopelessness = forms.IntegerField(
-        label='Hopelessness Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    loss_of_interest = forms.IntegerField(
-        label='Loss of Interest Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    excessive_worry = forms.IntegerField(
-        label='Excessive Worry Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    difficulty_concentrating = forms.IntegerField(
-        label='Difficulty Concentrating Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    physical_symptoms = forms.IntegerField(
-        label='Physical Symptoms Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    feelings_of_worthlessness = forms.IntegerField(
-        label='Feelings of Worthlessness Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    fatigue = forms.IntegerField(
-        label='Fatigue Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    irritability = forms.IntegerField(
-        label='Irritability Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )
-    
-    sleep_disturbances = forms.IntegerField(
-        label='Sleep Disturbances Level (0-10)',
-        min_value=0,
-        max_value=10,
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Rate from 0 to 10'})
-    )

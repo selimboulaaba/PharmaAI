@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from home import views
-
+from .views import breast
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name='home'),
@@ -13,7 +13,7 @@ urlpatterns = [
     path("dashboard", views.user_dashboard, name="dashboard"),
     path("doctor_dashboard", views.doctor_dashboard, name="doctor_dashboard"),
     path("health_prediction/", views.health_prediction, name="health_prediction"),
-    path("depression_anxiety/", views.depression_anxiety,name="depression"),
+    path('breast/', breast, name='breast'),
     path("mental_disorder/", views.mental_disorder, name="mental_disorder"),
     path("pcos/", views.pcos, name="pcos"),
     path("obesity/", views.obesity, name="obesity"),

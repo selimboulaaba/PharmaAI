@@ -1,27 +1,37 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.conf import settings
-from .models import ObesityData
-
-import pandas as pd
-from datetime import date
-
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
-from .forms import AppointmentForm, MentalDisorderForm, pcosDisorderForm, AppointmentDataForm, obesityDisorderForm,DepressionAnxietyForm
-from .models import Receipt, UserProfile, userHistory, DoctorUser, AppointmentData
-from django.contrib.auth.models import User
-from django import forms
-
-
+import os
+import json
+import numpy as np
 import pandas as pd
 import joblib
-import tensorflow as tf
-import numpy as np
-from django.utils import timezone
-import json
-
+from datetime import date
+from django import forms
+from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from sklearn.ensemble import RandomForestClassifier
+from django.utils import timezone
+# Import your models and forms
+from .models import (
+    ObesityData,
+    Receipt,
+    UserProfile,
+    userHistory,
+    DoctorUser,
+    AppointmentData,
+)
+from .forms import (
+    AppointmentForm,
+    MentalDisorderForm,
+    pcosDisorderForm,
+    AppointmentDataForm,
+    obesityDisorderForm,
+    BreastCancerForm,
+)
+
 
 mental_disorder_model = joblib.load('static/models/mental_disorder_prediction.pkl')
 mental_disorder_encoder = joblib.load('static/encoders/mental_disorder_encoder.pkl')
@@ -492,66 +502,85 @@ def user_logout(request):
 
 def index(request):
     return render(request, 'index.html')
-####### ne9esni model :depression_anxiety_model 
+####### cancer test
+# Use BASE_DIR to construct the full path for the CSV file
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(BASE_DIR,'static', 'Breast_train.csv')
 
-@login_required
-def depression_anxiety(request):
-    user_data = UserProfile.objects.get(user=request.user)
-    age = date.today().year - user_data.dob.year - ((date.today().month, date.today().day) < (user_data.dob.month, user_data.dob.day))
+# Load the CSV file and fit the model at the top level
+try:
+    print(f"Looking for CSV at: {csv_path}")
+    df = pd.read_csv(csv_path)
     
-    if request.method == 'POST':
-        form = DepressionAnxietyForm(request.POST)
-        if form.is_valid():
-            # Retrieve user-entered data from the form
-            hopelessness = form.cleaned_data['hopelessness']
-            loss_of_interest = form.cleaned_data['loss_of_interest']
-            excessive_worry = form.cleaned_data['excessive_worry']
-            difficulty_concentrating = form.cleaned_data['difficulty_concentrating']
-            physical_symptoms = form.cleaned_data['physical_symptoms']
-            feelings_of_worthlessness = form.cleaned_data['feelings_of_worthlessness']
-            fatigue = form.cleaned_data['fatigue']
-            irritability = form.cleaned_data['irritability']
-            sleep_disturbances = form.cleaned_data['sleep_disturbances']
-            
-            # Prepare data for prediction
-            new_data = [[age, user_data.weight, user_data.height, hopelessness, loss_of_interest,
-                        excessive_worry, difficulty_concentrating, physical_symptoms,
-                        feelings_of_worthlessness, fatigue, irritability, sleep_disturbances]]
-            
-            # Make prediction
-            prediction_result = depression_anxiety_model.predict(new_data)[0]  # Replace with your actual model
-            
-            # Map the prediction result to a string if needed
-            if prediction_result == 1:
-                prediction_result = 'Depression/Anxiety Positive'
-            else:
-                prediction_result = 'Depression/Anxiety Negative'
-            
-            # Save the user's history
-            symptoms = [hopelessness, loss_of_interest, excessive_worry, difficulty_concentrating,
-                        physical_symptoms, feelings_of_worthlessness, fatigue, irritability, sleep_disturbances]
-            my_instance = userHistory(
-                user=request.user,
-                test_type='Depression/Anxiety Test',
-                symptoms=json.dumps(symptoms),
-                result=prediction_result,
-                date=timezone.now()
-            )
-            my_instance.save()
-
-            return render(request, 'health_prediction/depression_anxiety.html', {
-                'age': age,
-                'user_data': user_data,
-                'form': form,
-                'prediction_result': prediction_result,
-                'user_name': f"{request.user.first_name} {request.user.last_name}"
-            })
+    # Verify if DataFrame is loaded correctly
+    if df.empty:
+        print("DataFrame is empty.")
     else:
-        form = DepressionAnxietyForm()
+        print(f"DataFrame loaded with shape: {df.shape}")
 
-    return render(request, 'health_prediction/depression_anxiety.html', {
-        'age': age,
-        'user_data': user_data,
+    data = df.values 
+    X = data[:, :-1]  # All columns except last (features)
+    Y = data[:, -1]   # Last column (target)
+    
+    print(f"Feature set shape: {X.shape}, Target shape: {Y.shape}") 
+
+    # Initialize and fit the RandomForestClassifier once
+    rf = RandomForestClassifier(n_estimators=16, criterion='entropy', max_depth=5)
+    rf.fit(np.nan_to_num(X), Y)  # Fit the model here
+except FileNotFoundError:
+    print(f"File not found: {csv_path}")
+    X, Y, rf = None, None, None  # Handle the case where the CSV file does not exist
+except pd.errors.EmptyDataError:
+    print("The CSV file is empty.")
+    X, Y, rf = None, None, None
+except pd.errors.ParserError:
+    print("Error parsing the CSV file.")
+    X, Y, rf = None, None, None
+except Exception as e:
+    print(f"An error occurred: {e}")
+    X, Y, rf = None, None, None
+    ##################################
+@login_required
+def breast(request):
+    value = ''
+    result_type = ''
+    emoji = ''
+    form = BreastCancerForm()
+
+    if request.method == 'POST':
+        form = BreastCancerForm(request.POST)
+        if form.is_valid():
+            radius = form.cleaned_data['radius']
+            texture = form.cleaned_data['texture']
+            perimeter = form.cleaned_data['perimeter']
+            area = form.cleaned_data['area']
+            smoothness = form.cleaned_data['smoothness']
+
+            user_data = np.array((radius, texture, perimeter, area, smoothness)).reshape(1, 5)
+
+            if rf is None:
+                value = "Model could not be loaded. Please check the data."
+            else:
+                predictions = rf.predict(user_data)
+
+                if int(predictions[0]) == 1:
+                    value = 'You have breast cancer.'
+                    result_type = 'positive'
+                    emoji = '😢'
+                elif int(predictions[0]) == 0:
+                    value = "You don't have breast cancer."
+                    result_type = 'negative'
+                    emoji = '😄'
+                else:
+                    value = "Unknown prediction"
+
+    return render(request, 'breast.html', {
         'form': form,
-        'user_name': f"{request.user.first_name} {request.user.last_name}"
+        'result': value,
+        'result_type': result_type,
+        'emoji': emoji,
+        'title': 'Breast Cancer Prediction',
+        'active': 'btn btn-success peach-gradient text-white',
+        'breast': True,
+        'form': BreastCancerForm(),
     })
