@@ -1,27 +1,38 @@
-from django.shortcuts import render, HttpResponse, redirect
-from django.conf import settings
-from .models import ObesityData
-
-import pandas as pd
-from datetime import date
-
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
-from .forms import AppointmentForm, MentalDisorderForm, pcosDisorderForm, AppointmentDataForm, obesityDisorderForm
-from .models import Receipt, UserProfile, userHistory, DoctorUser, AppointmentData
-from django.contrib.auth.models import User
-from django import forms
-
-
+import os
+import json
+import numpy as np
 import pandas as pd
 import joblib
-import tensorflow as tf
-import numpy as np
-from django.utils import timezone
-import json
-
+from datetime import date
+from django import forms
+from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from sklearn.ensemble import RandomForestClassifier
+from django.shortcuts import redirect, get_object_or_404
+from django.utils import timezone
+# Import your models and forms
+from .models import (
+    ObesityData,
+    Receipt,
+    UserProfile,
+    userHistory,
+    DoctorUser,
+    AppointmentData,
+)
+from .forms import (
+    AppointmentForm,
+    MentalDisorderForm,
+    pcosDisorderForm,
+    AppointmentDataForm,
+    obesityDisorderForm,
+    BreastCancerForm,
+)
+
 
 mental_disorder_model = joblib.load('static/models/mental_disorder_prediction.pkl')
 mental_disorder_encoder = joblib.load('static/encoders/mental_disorder_encoder.pkl')
@@ -205,7 +216,7 @@ def doctor_dashboard(request):
 
 @login_required
 def health_prediction(request):
-    return render(request, 'health_test.html', {'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/health_test.html', {'user_name': request.user.first_name + " " + request.user.last_name})
 
 @login_required
 def fix_appointment(request):
@@ -294,10 +305,10 @@ def mental_disorder(request):
             )
             my_instance.save()
 
-            return render(request, 'mental_disorder_prediction.html', {'form': form, 'prediction_result': prediction_result[0][0]})
+            return render(request, 'health_prediction/mental_disorder_prediction.html', {'form': form, 'prediction_result': prediction_result[0][0]})
     else:
         form = MentalDisorderForm()
-    return render(request, 'mental_disorder_prediction.html', {'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/mental_disorder_prediction.html', {'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
 
 
 obesity_encoder = joblib.load('static/encoders/obesity_encoder.pkl')
@@ -332,11 +343,13 @@ def obesity(request):
             )
             my_instance.save()
             
-            return render(request, 'obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'prediction_result': predicted_output, 'user_name': request.user.first_name + " " + request.user.last_name})
+            return render(request, 'health_prediction/obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'prediction_result': predicted_output, 'user_name': request.user.first_name + " " + request.user.last_name})
     else:
         form = obesityDisorderForm()
 
-    return render(request, 'obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/obesity.html', {'age': age, 'user_data': user_data, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+
+
 
 @login_required
 def pcos(request):
@@ -401,10 +414,10 @@ def pcos(request):
             )
             my_instance.save()
 
-            return render(request, 'pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight,  'form': form, 'prediction_result': prediction_result, 'user_name': request.user.first_name + " " + request.user.last_name})
+            return render(request, 'health_prediction/pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight,  'form': form, 'prediction_result': prediction_result, 'user_name': request.user.first_name + " " + request.user.last_name})
     else:
         form = pcosDisorderForm()
-    return render(request, 'pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
+    return render(request, 'health_prediction/pcos.html', {'age': age, 'height': user_data.height, 'weight': user_data.weight, 'form': form, 'user_name': request.user.first_name + " " + request.user.last_name})
 
 
 @login_required
@@ -491,3 +504,107 @@ def user_logout(request):
 def index(request):
     return render(request, 'index.html')
 
+####### cancer test
+# Use BASE_DIR to construct the full path for the CSV file
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(BASE_DIR,'static', 'Breast_train.csv')
+
+
+try:
+    print(f"Looking for CSV at: {csv_path}")
+    df = pd.read_csv(csv_path)
+    
+    
+    if df.empty:
+        print("DataFrame is empty.")
+    else:
+        print(f"DataFrame loaded with shape: {df.shape}")
+
+    data = df.values 
+    X = data[:, :-1]  
+    Y = data[:, -1]   
+    
+    print(f"Feature set shape: {X.shape}, Target shape: {Y.shape}") 
+
+    # Initialize and fit the RandomForestClassifier once
+    rf = RandomForestClassifier(n_estimators=16, criterion='entropy', max_depth=5)
+    rf.fit(np.nan_to_num(X), Y)  
+except FileNotFoundError:
+    print(f"File not found: {csv_path}")
+    X, Y, rf = None, None, None  
+except pd.errors.EmptyDataError:
+    print("The CSV file is empty.")
+    X, Y, rf = None, None, None
+except pd.errors.ParserError:
+    print("Error parsing the CSV file.")
+    X, Y, rf = None, None, None
+except Exception as e:
+    print(f"An error occurred: {e}")
+    X, Y, rf = None, None, None
+    ##################################
+@login_required
+def breast(request):
+    value = ''
+    result_type = ''
+    emoji = ''
+    form = BreastCancerForm()
+
+    if request.method == 'POST':
+        form = BreastCancerForm(request.POST)
+        if form.is_valid():
+            radius = form.cleaned_data['radius']
+            texture = form.cleaned_data['texture']
+            perimeter = form.cleaned_data['perimeter']
+            area = form.cleaned_data['area']
+            smoothness = form.cleaned_data['smoothness']
+
+            user_data = np.array((radius, texture, perimeter, area, smoothness)).reshape(1, 5)
+
+            if rf is None:
+                value = "Model could not be loaded. Please check the data."
+            else:
+                predictions = rf.predict(user_data)
+
+                if int(predictions[0]) == 1:
+                    value = 'You have breast cancer.'
+                    result_type = 'positive'
+                    emoji = '😢'
+                    prediction_result_str = 'Breast Cancer Positive'
+                elif int(predictions[0]) == 0:
+                    value = "You don't have breast cancer."
+                    result_type = 'negative'
+                    emoji = '😄'
+                    prediction_result_str = 'Breast Cancer Negative'
+                else:
+                    value = "Unknown prediction"
+                    prediction_result_str = 'Unknown Result'
+
+                # Save the prediction result to user history
+                symptoms = [radius, texture, perimeter, area, smoothness]  
+                my_instance = userHistory(
+                    user=request.user,
+                    test_type='Breast Cancer Test',
+                    symptoms=json.dumps(symptoms),  
+                    result=prediction_result_str,  
+                    date=timezone.now()  
+                )
+                my_instance.save()  
+
+    return render(request, 'health_prediction/breast.html', {
+        'form': form,
+        'result': value,
+        'result_type': result_type,
+        'emoji': emoji,
+        'title': 'Breast Cancer Prediction',
+        'active': 'btn btn-success peach-gradient text-white',
+        'breast': True,
+        'form': BreastCancerForm(),
+    })
+#delete
+@login_required
+def delete_history_entry(request, entry_id):
+    if request.method == 'POST':
+        entry = get_object_or_404(userHistory, id=entry_id, user=request.user)
+        entry.delete()  
+        return redirect('test_history') 
+    return redirect('test_history') 

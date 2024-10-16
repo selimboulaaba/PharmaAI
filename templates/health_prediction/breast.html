@@ -1,0 +1,51 @@
+{% extends "login_base.html" %}
+
+{% block title %}Breast Cancer{% endblock title %}
+
+{% block body %}
+<style>
+    .card-title {
+        font-size: 40px;
+        color: green;
+        margin: 0 auto 20px auto;
+        text-align: center;
+    }
+    .result-positive {
+        color: red;
+        font-size: 24px;
+        text-align: center;
+    }
+    .result-negative {
+        color: green;
+        font-size: 24px;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <h1 class="display-4 my-2 text-center">Breast Cancer Prediction</h1>
+    <hr />
+
+    {% if result %}
+    <div class="h1 my-2 {% if result_type == 'positive' %}result-positive{% else %}result-negative{% endif %}">
+        {{ result }} {{ emoji }}
+    </div>
+    {% endif %}
+
+    <div class="col-md-4 mx-auto">  <!-- Center the form -->
+        <form action="{% url 'breast' %}" method="post">
+
+              {% csrf_token %}
+              
+            <div class="form-group">
+                {{ form }}
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-danger btn-lg btn-block mb-5"> 
+                    Submit 
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
