@@ -14,16 +14,24 @@
                     <th scope="col">Test Taken</th>
                     <th scope="col">Date of Examination</th>
                     <th scope="col">Predicted Result</th>
+                    <th scope="col">Action</th>  <!-- New column for actions -->
                 </tr>
             </thead>
             <tbody>
-                {% for history_entry in user_medical_history reversed%}
-                <tr>
-                    <td>{{ history_entry.test_type }}</th>
-                    <td>{{ history_entry.date }}</td>
-                    <td class="text-success"><b>{{ history_entry.result }}</b></td>
-                </tr>
-                {% endfor %}
+                {% for history_entry in user_medical_history reversed %}
+<tr>
+    <td>{{ history_entry.test_type }}</td>
+    <td>{{ history_entry.date }}</td>
+    <td class="text-success"><b>{{ history_entry.result }}</b></td>
+    <td>
+        <form method="POST" action="{% url 'delete_history_entry' history_entry.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+
             </tbody>
         </table>
     </div>
