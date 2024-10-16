@@ -1775,7 +1775,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})\ndef proc_txt(text):\n    # Add text processing logic here (e.g., cleaning, removing stopwords)\n    return text\n# View to handle image upload and text extraction\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():",
+        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})\ndef proc_txt(text):\n    text = text.split('\\n')\n    return text\n# View to handle image upload and text extraction\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():",
         "detail": "items.views",
         "documentation": {}
     },
@@ -1784,7 +1784,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def proc_txt(text):\n    # Add text processing logic here (e.g., cleaning, removing stopwords)\n    return text\n# View to handle image upload and text extraction\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        # Get the uploaded image from the form\n        image_file = request.FILES['image']\n        # Open the image using PIL",
+        "peekOfCode": "def proc_txt(text):\n    text = text.split('\\n')\n    return text\n# View to handle image upload and text extraction\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        # Get the uploaded image from the form\n        image_file = request.FILES['image']\n        # Open the image using PIL",
         "detail": "items.views",
         "documentation": {}
     },

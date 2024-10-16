@@ -88,7 +88,7 @@ def orders(request):
     return render(request, 'items/orders.html', {'orders': orders})
 
 def proc_txt(text):
-    # Add text processing logic here (e.g., cleaning, removing stopwords)
+    text = text.split('\n')
     return text
 
 # View to handle image upload and text extraction
@@ -106,14 +106,19 @@ def upload_image(request):
 
         # Process the extracted text
         processed_text = proc_txt(extracted_text)
-        
         #/////////////////////////////////////////////////////////
-        # cart, created = Cart.objects.get_or_create(user=request.user)
-        # for processed_item in processed_text:
-        #     quantity = 1
-        #     cart_item, created = CartItem.objects.get_or_create(cart=cart, item=processed_item)
-        #     cart_item.quantity += quantity
-        #     cart_item.save()
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        for item_name in processed_text:
+            try:
+                    
+                item = Item.objects.get(name__iexact=item_name)
+
+                quantity = 1
+                cart_item, created = CartItem.objects.get_or_create(cart=cart, item=item)
+                cart_item.quantity += quantity
+                cart_item.save()
+            except Item.DoesNotExist:
+                print(f"Item with name '{item_name}' not found.")
         #/////////////////////////////////////////////////////////
 
         # Return result to the template

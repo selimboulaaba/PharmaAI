@@ -11,7 +11,8 @@
             <h1 class="text-dark">Store Items</h1>
             <label class="btn btn-info" style="cursor: pointer;">
                 <div class="h5 my-1 mx-2">Upload Prescription</div>
-                <input type="file" name="image" accept="image/*" onchange="this.form.submit()" class="btn btn-info d-none">
+                <input type="file" name="image" accept="image/*" onchange="this.form.submit()"
+                    class="btn btn-info d-none">
             </label>
         </div>
     </form>
@@ -38,36 +39,37 @@
                     <p><b>Price: </b>{{ item.price }} DT</p>
                     <div class="row justify-content-center align-items-center ">
                         <button type="button" class="mr-1 btn btn-info my-2 col-md-5" data-toggle="modal"
-                        data-target="#showDetailModal{{ item.id }}">
-                        Details
-                    </button>
+                            data-target="#showDetailModal{{ item.id }}">
+                            Details
+                        </button>
 
-                    <button type="button" class="ml-1 btn btn-info my-2 col-md-5" data-toggle="modal"
-                        data-target="#addToCartModal{{ item.id }}">
-                        Add to Cart
-                    </button>
+                        <button type="button" class="ml-1 btn btn-info my-2 col-md-5" data-toggle="modal"
+                            data-target="#addToCartModal{{ item.id }}">
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-         <div class="modal fade" id="addToCartModal{{ item.id }}" tabindex="-1" role="dialog"
+        <div class="modal fade" id="addToCartModal{{ item.id }}" tabindex="-1" role="dialog"
             aria-labelledby="addToCartTitle{{ item.id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addToCartTitle{{ item.id }}"><b>Add <span class="text-info">{{ item.name }}</span> to Cart</b></h5>
+                        <h5 class="modal-title" id="addToCartTitle{{ item.id }}"><b>Add <span class="text-info">{{
+                                    item.name }}</span> to Cart</b></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="/items/add_to_cart" method = "post">
+                        <form action="/items/add_to_cart" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="item" value="{{ item.id }}">
-                                <br><label for="quantity"><b>Quantity: </b></label><br>
-                                {{ form.quantity }}
-                                <br>
+                            <br><label for="quantity"><b>Quantity: </b></label><br>
+                            {{ form.quantity }}
+                            <br>
                             <button type="submit" class="btn btn-info col-md-12">Submit</button>
                         </form>
                     </div>
