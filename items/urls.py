@@ -10,4 +10,5 @@ urlpatterns = [
     path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),
     path('order', views.order, name='order'),
     path('orders', views.orders, name='orders'),
+    path('upload', views.upload_image, name='upload_image'),
 ]
