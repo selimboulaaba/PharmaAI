@@ -946,6 +946,14 @@
         "documentation": {}
     },
     {
+        "label": "Category",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
         "label": "Item",
         "importPath": "items.models",
         "description": "items.models",
@@ -1855,16 +1863,16 @@
         "kind": 5,
         "importPath": "items.urls",
         "description": "items.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin\", admin.site.urls),\n    path(\"add_to_cart\", views.add_to_cart, name='add_to_cart'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n    path('upload', views.upload_image, name='upload_image'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin\", admin.site.urls),\n    path(\"store\", views.store, name='store'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n    path('upload', views.upload_image, name='upload_image'),\n]",
         "detail": "items.urls",
         "documentation": {}
     },
     {
-        "label": "add_to_cart",
+        "label": "store",
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def add_to_cart(request):\n    cart, created = Cart.objects.get_or_create(user=request.user)\n    form = AddToCartForm(request.POST)\n    if request.method == 'POST':\n        if form.is_valid():\n            quantity = form.cleaned_data['quantity']\n            cart_item, created = CartItem.objects.get_or_create(cart=cart, item=form.cleaned_data['item'])\n            cart_item.quantity += quantity\n            cart_item.save()\n            return redirect('cart')",
+        "peekOfCode": "def store(request):\n    cart, created = Cart.objects.get_or_create(user=request.user)\n    form = AddToCartForm(request.POST)\n    categories = Category.objects.all()\n    query = request.GET.get('query', '')\n    category_filter = request.GET.get('category', '')\n    sort_option = request.GET.get('sort', '')\n    items = Item.objects.all()\n    if query:\n        items = items.filter(name__icontains=query)",
         "detail": "items.views",
         "documentation": {}
     },
