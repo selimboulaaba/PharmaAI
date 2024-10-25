@@ -248,6 +248,14 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1220,6 +1228,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "home.migrations.0017_remove_doctoruser_about_remove_doctoruser_city_and_more",
+        "description": "home.migrations.0017_remove_doctoruser_about_remove_doctoruser_city_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('home', '0016_depressionanxiety'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='doctoruser',\n            name='about',\n        ),\n        migrations.RemoveField(",
+        "detail": "home.migrations.0017_remove_doctoruser_about_remove_doctoruser_city_and_more",
+        "documentation": {}
+    },
+    {
         "label": "HomeConfig",
         "kind": 6,
         "importPath": "home.apps",
@@ -1386,7 +1403,7 @@
         "kind": 6,
         "importPath": "home.models",
         "description": "home.models",
-        "peekOfCode": "class DoctorUser(AbstractUser):\n    phone = models.CharField(max_length=20)\n    specialization = models.CharField(max_length=100)\n    hospital = models.CharField(max_length=255)\n    city = models.CharField(max_length=100)\n    state = models.CharField(max_length=100)\n    country = models.CharField(max_length=100)\n    about = models.CharField(max_length=1000)\n    education = models.CharField(max_length=1000)\n    experience = models.CharField(max_length=1000)",
+        "peekOfCode": "class DoctorUser(AbstractUser):\n    phone = models.CharField(max_length=20)\n    specialization = models.CharField(max_length=100)\n    hospital = models.CharField(max_length=255)\n    experience = models.CharField(max_length=1000)\n    class Meta:\n        db_table = 'doctor_user'\n    groups = models.ManyToManyField(\n        Group,\n        verbose_name=_('groups'),",
         "detail": "home.models",
         "documentation": {}
     },
@@ -1422,7 +1439,7 @@
         "kind": 5,
         "importPath": "home.urls",
         "description": "home.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"\", views.index, name='home'),\n    path(\"register\", views.register, name=\"register\"),\n    path(\"doctor_register\", views.doctor_register, name=\"doctor_register\"),\n    path(\"login\", views.user_login, name=\"login\"),\n    path(\"doctor_login\", views.doctor_login, name=\"doctor_login\"),\n    path(\"profile\", views.complete_profile, name=\"profile\"),\n    path(\"dashboard\", views.user_dashboard, name=\"dashboard\"),\n    path(\"doctor_dashboard\", views.doctor_dashboard, name=\"doctor_dashboard\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name='home'),\n    path(\"register\", views.register, name=\"register\"),\n    path(\"doctor_register\", views.doctor_register, name=\"doctor_register\"),\n    path(\"login\", views.user_login, name=\"login\"),\n    path(\"doctor_login\", views.doctor_login, name=\"doctor_login\"),\n    path(\"dashboard\", views.user_dashboard, name=\"dashboard\"),\n    path(\"doctor_dashboard\", views.doctor_dashboard, name=\"doctor_dashboard\"),\n    path(\"health_prediction/\", views.health_prediction, name=\"health_prediction\"),\n    path(\"breast/\", views.breast, name=\"breast\"),",
         "detail": "home.urls",
         "documentation": {}
     },
@@ -1440,7 +1457,7 @@
         "kind": 6,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "class DoctorRegistrationForm(UserRegistrationForm):\n    phone = forms.CharField(max_length=20)\n    specialization = forms.CharField(max_length=100)\n    hospital = forms.CharField(max_length=255)\n    city = forms.CharField(max_length = 100)\n    state = forms.CharField(max_length = 100)\n    country = forms.CharField(max_length = 100)\n    about = forms.CharField(max_length = 1000)\n    education = forms.CharField(max_length = 1000)\n    experience = forms.CharField(max_length = 1000)",
+        "peekOfCode": "class DoctorRegistrationForm(UserRegistrationForm):\n    phone = forms.CharField(max_length=20)\n    specialization = forms.CharField(max_length=100)\n    hospital = forms.CharField(max_length=255)\n    experience = forms.CharField(max_length = 1000)\n    class Meta:\n        model = DoctorUser\n        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', \n                'phone', 'specialization', 'hospital', 'experience']\n        db_table = 'doctor_user'",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1458,7 +1475,7 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def doctor_register(request):\n    if request.method == 'POST':\n        form = DoctorRegistrationForm(request.POST)\n        form2 = UserRegistrationForm(request.POST)\n        try:\n            if form.is_valid():\n                form.save()\n                form2.save()\n                return redirect('doctor_login')\n        except:",
+        "peekOfCode": "def doctor_register(request):\n    if request.method == 'POST':\n        form = DoctorRegistrationForm(request.POST)\n        form2 = UserRegistrationForm(request.POST)\n        try:\n            if form.is_valid():\n                form.save()\n                form2.save()\n                return redirect('doctor_login')\n        except Exception as e:",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1467,7 +1484,7 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def user_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect('profile')\n        else:\n            messages.error(request, \"Something went wrong. Try again!\")",
+        "peekOfCode": "def user_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect('dashboard')\n        else:\n            messages.error(request, \"Something went wrong. Try again!\")",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1477,15 +1494,6 @@
         "importPath": "home.views",
         "description": "home.views",
         "peekOfCode": "def doctor_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        phone = request.POST.get('phone')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            try:\n                if DoctorUser.objects.get(username = user.username).phone == phone:\n                    login(request, user)",
-        "detail": "home.views",
-        "documentation": {}
-    },
-    {
-        "label": "complete_profile",
-        "kind": 2,
-        "importPath": "home.views",
-        "description": "home.views",
-        "peekOfCode": "def complete_profile(request):\n    if UserProfile.objects.filter(user=request.user).exists():\n        # If profile exists, redirect to the dashboard profile page\n        return redirect('dashboard')\n    if request.method == 'POST':\n        user_profile = UserProfile.objects.create(\n            user=request.user,\n            dob=request.POST['dob'],\n            gender=request.POST['gender'],\n            height=request.POST['height'],",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1863,7 +1871,7 @@
         "kind": 5,
         "importPath": "items.urls",
         "description": "items.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin\", admin.site.urls),\n    path(\"store\", views.store, name='store'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n    path('upload', views.upload_image, name='upload_image'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"store\", views.store, name='store'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n    path('upload', views.upload_image, name='upload_image'),\n]",
         "detail": "items.urls",
         "documentation": {}
     },

@@ -14,7 +14,7 @@
                 <tr>
                     <th>Appointment Date</th>
                     <th>Appointment With</th>
-                    <th>Doctor's Expertise</th>
+                    <th>Doctor's Hospital</th>
                     <th>Appointment Status</th>
                 </tr>
             </thead>
@@ -23,7 +23,7 @@
                 <tr>
                     <td class="text-capitalize text-dark">Dr. {{ app.doctor.first_name }} {{ app.doctor.last_name }}</td>
                     <td>{{ app.appointmentDate.date }}</td>
-                    <td>{{ app.doctor.expertise }}</td>
+                    <td>{{ app.doctor.hospital }}</td>
                     <td class="{% if app.status == 'Pending' %}text-danger{% else %}text-success{% endif %}">
                         <b>{{ app.status }}</b>
                     </td>                    

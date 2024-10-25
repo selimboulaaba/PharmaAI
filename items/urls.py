@@ -3,7 +3,6 @@ from django.urls import path
 from items import views
 
 urlpatterns = [
-    path("admin", admin.site.urls),
     path("store", views.store, name='store'),
     path("cart", views.cart, name='cart'),
     path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),
