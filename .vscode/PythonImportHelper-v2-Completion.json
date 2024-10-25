@@ -248,14 +248,6 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -297,6 +289,46 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -326,6 +358,14 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -516,6 +556,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "django.contrib.auth.validators",
         "kind": 6,
         "isExtraImport": true,
@@ -581,6 +629,30 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -610,6 +682,31 @@
         "description": "django.contrib.auth.backends",
         "isExtraImport": true,
         "detail": "django.contrib.auth.backends",
+        "documentation": {}
+    },
+    {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
         "documentation": {}
     },
     {
@@ -711,6 +808,14 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -728,6 +833,30 @@
     },
     {
         "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse_lazy",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -890,6 +1019,22 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "RandomForestClassifier",
         "importPath": "sklearn.ensemble",
         "description": "sklearn.ensemble",
@@ -923,6 +1068,14 @@
     },
     {
         "label": "CartItem",
+        "importPath": "items.models",
+        "description": "items.models",
+        "isExtraImport": true,
+        "detail": "items.models",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
         "importPath": "items.models",
         "description": "items.models",
         "isExtraImport": true,
@@ -978,6 +1131,48 @@
         "documentation": {}
     },
     {
+        "label": "pytesseract",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytesseract",
+        "description": "pytesseract",
+        "detail": "pytesseract",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "ImageFilter",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "TextBlob",
+        "importPath": "textblob",
+        "description": "textblob",
+        "isExtraImport": true,
+        "detail": "textblob",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
         "label": "get_asgi_application",
         "importPath": "django.core.asgi",
         "description": "django.core.asgi",
@@ -1015,6 +1210,94 @@
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "inlineformset_factory",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "inlineformset_factory",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseRedirect",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "CreateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "LoginRequiredMixin",
+        "importPath": "django.contrib.auth.mixins",
+        "description": "django.contrib.auth.mixins",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.mixins",
+        "documentation": {}
+    },
+    {
+        "label": "UserPassesTestMixin",
+        "importPath": "django.contrib.auth.mixins",
+        "description": "django.contrib.auth.mixins",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.mixins",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
         "documentation": {}
     },
     {
@@ -1171,6 +1454,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "home.migrations.0017_remove_doctoruser_about_remove_doctoruser_city_and_more",
+        "description": "home.migrations.0017_remove_doctoruser_about_remove_doctoruser_city_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('home', '0016_depressionanxiety'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='doctoruser',\n            name='about',\n        ),\n        migrations.RemoveField(",
+        "detail": "home.migrations.0017_remove_doctoruser_about_remove_doctoruser_city_and_more",
+        "documentation": {}
+    },
+    {
         "label": "HomeConfig",
         "kind": 6,
         "importPath": "home.apps",
@@ -1274,7 +1566,7 @@
         "kind": 6,
         "importPath": "home.models",
         "description": "home.models",
-        "peekOfCode": "class Appointment(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    appointment_date = models.DateTimeField()\nclass Receipt(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    receipt_file = models.FileField(upload_to='receipts/')\nclass UserProfile(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    dob = models.DateField(null=True, blank=True)\n    gender = models.CharField(max_length=10, choices=(('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')))",
+        "peekOfCode": "class Appointment(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    appointment_date = models.DateTimeField()\n    def __str__(self):\n        return \"Appointment by \" + self.user.username\nclass Receipt(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    receipt_file = models.FileField(upload_to='receipts/')\n    def __str__(self):\n        return \"Receipt by \" + self.user.username",
         "detail": "home.models",
         "documentation": {}
     },
@@ -1283,7 +1575,7 @@
         "kind": 6,
         "importPath": "home.models",
         "description": "home.models",
-        "peekOfCode": "class Receipt(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    receipt_file = models.FileField(upload_to='receipts/')\nclass UserProfile(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    dob = models.DateField(null=True, blank=True)\n    gender = models.CharField(max_length=10, choices=(('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')))\n    height = models.FloatField(null=True, blank=True)\n    weight = models.FloatField(null=True, blank=True)\n    profession = models.CharField(max_length=100, null=True, blank=True)",
+        "peekOfCode": "class Receipt(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    receipt_file = models.FileField(upload_to='receipts/')\n    def __str__(self):\n        return \"Receipt by \" + self.user.username\nclass UserProfile(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    dob = models.DateField(null=True, blank=True)\n    gender = models.CharField(max_length=10, choices=(('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')))\n    height = models.FloatField(null=True, blank=True)",
         "detail": "home.models",
         "documentation": {}
     },
@@ -1337,7 +1629,7 @@
         "kind": 6,
         "importPath": "home.models",
         "description": "home.models",
-        "peekOfCode": "class DoctorUser(AbstractUser):\n    phone = models.CharField(max_length=20)\n    specialization = models.CharField(max_length=100)\n    hospital = models.CharField(max_length=255)\n    city = models.CharField(max_length=100)\n    state = models.CharField(max_length=100)\n    country = models.CharField(max_length=100)\n    about = models.CharField(max_length=1000)\n    education = models.CharField(max_length=1000)\n    experience = models.CharField(max_length=1000)",
+        "peekOfCode": "class DoctorUser(AbstractUser):\n    phone = models.CharField(max_length=20)\n    specialization = models.CharField(max_length=100)\n    hospital = models.CharField(max_length=255)\n    experience = models.CharField(max_length=1000)\n    class Meta:\n        db_table = 'doctor_user'\n    groups = models.ManyToManyField(\n        Group,\n        verbose_name=_('groups'),",
         "detail": "home.models",
         "documentation": {}
     },
@@ -1373,7 +1665,7 @@
         "kind": 5,
         "importPath": "home.urls",
         "description": "home.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"\", views.index, name='home'),\n    path(\"register\", views.register, name=\"register\"),\n    path(\"doctor_register\", views.doctor_register, name=\"doctor_register\"),\n    path(\"login\", views.user_login, name=\"login\"),\n    path(\"doctor_login\", views.doctor_login, name=\"doctor_login\"),\n    path(\"profile\", views.complete_profile, name=\"profile\"),\n    path(\"dashboard\", views.user_dashboard, name=\"dashboard\"),\n    path(\"doctor_dashboard\", views.doctor_dashboard, name=\"doctor_dashboard\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name='home'),\n    path(\"register\", views.register, name=\"register\"),\n    path(\"doctor_register\", views.doctor_register, name=\"doctor_register\"),\n    path(\"login\", views.user_login, name=\"login\"),\n    path(\"doctor_login\", views.doctor_login, name=\"doctor_login\"),\n    path(\"dashboard\", views.user_dashboard, name=\"dashboard\"),\n    path(\"doctor_dashboard\", views.doctor_dashboard, name=\"doctor_dashboard\"),\n    path(\"health_prediction/\", views.health_prediction, name=\"health_prediction\"),\n    path(\"breast/\", views.breast, name=\"breast\"),",
         "detail": "home.urls",
         "documentation": {}
     },
@@ -1391,7 +1683,7 @@
         "kind": 6,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "class DoctorRegistrationForm(UserRegistrationForm):\n    phone = forms.CharField(max_length=20)\n    specialization = forms.CharField(max_length=100)\n    hospital = forms.CharField(max_length=255)\n    city = forms.CharField(max_length = 100)\n    state = forms.CharField(max_length = 100)\n    country = forms.CharField(max_length = 100)\n    about = forms.CharField(max_length = 1000)\n    education = forms.CharField(max_length = 1000)\n    experience = forms.CharField(max_length = 1000)",
+        "peekOfCode": "class DoctorRegistrationForm(UserRegistrationForm):\n    phone = forms.CharField(max_length=20)\n    specialization = forms.CharField(max_length=100)\n    hospital = forms.CharField(max_length=255)\n    experience = forms.CharField(max_length = 1000)\n    class Meta:\n        model = DoctorUser\n        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', \n                'phone', 'specialization', 'hospital', 'experience']\n        db_table = 'doctor_user'",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1409,7 +1701,7 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def doctor_register(request):\n    if request.method == 'POST':\n        form = DoctorRegistrationForm(request.POST)\n        form2 = UserRegistrationForm(request.POST)\n        try:\n            if form.is_valid():\n                form.save()\n                form2.save()\n                return redirect('doctor_login')\n        except:",
+        "peekOfCode": "def doctor_register(request):\n    if request.method == 'POST':\n        form = DoctorRegistrationForm(request.POST)\n        form2 = UserRegistrationForm(request.POST)\n        try:\n            if form.is_valid():\n                form.save()\n                form2.save()\n                return redirect('doctor_login')\n        except Exception as e:",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1418,7 +1710,7 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def user_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect('profile')\n        else:\n            messages.error(request, \"Something went wrong. Try again!\")",
+        "peekOfCode": "def user_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect('dashboard')\n        else:\n            messages.error(request, \"Something went wrong. Try again!\")",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1428,15 +1720,6 @@
         "importPath": "home.views",
         "description": "home.views",
         "peekOfCode": "def doctor_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        phone = request.POST.get('phone')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            try:\n                if DoctorUser.objects.get(username = user.username).phone == phone:\n                    login(request, user)",
-        "detail": "home.views",
-        "documentation": {}
-    },
-    {
-        "label": "complete_profile",
-        "kind": 2,
-        "importPath": "home.views",
-        "description": "home.views",
-        "peekOfCode": "def complete_profile(request):\n    if UserProfile.objects.filter(user=request.user).exists():\n        # If profile exists, redirect to the dashboard profile page\n        return redirect('dashboard')\n    if request.method == 'POST':\n        user_profile = UserProfile.objects.create(\n            user=request.user,\n            dob=request.POST['dob'],\n            gender=request.POST['gender'],\n            height=request.POST['height'],",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1747,6 +2030,15 @@
         "documentation": {}
     },
     {
+        "label": "ImageUploadForm",
+        "kind": 6,
+        "importPath": "items.forms",
+        "description": "items.forms",
+        "peekOfCode": "class ImageUploadForm(forms.Form):\n    image = forms.ImageField()",
+        "detail": "items.forms",
+        "documentation": {}
+    },
+    {
         "label": "Category",
         "kind": 6,
         "importPath": "items.models",
@@ -1805,16 +2097,16 @@
         "kind": 5,
         "importPath": "items.urls",
         "description": "items.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin\", admin.site.urls),\n    path(\"add_to_cart\", views.add_to_cart, name='add_to_cart'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"store\", views.store, name='store'),\n    path(\"cart\", views.cart, name='cart'),\n    path('<int:pk>/delete_from_cart', views.delete_from_cart, name='delete_from_cart'),\n    path('<int:pk>/update_quantity', views.update_quantity, name='update_quantity'),\n    path('order', views.order, name='order'),\n    path('orders', views.orders, name='orders'),\n    path('upload', views.upload_image, name='upload_image'),\n]",
         "detail": "items.urls",
         "documentation": {}
     },
     {
-        "label": "add_to_cart",
+        "label": "store",
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def add_to_cart(request):\n    cart, created = Cart.objects.get_or_create(user=request.user)\n    form = AddToCartForm(request.POST)\n    if request.method == 'POST':\n        if form.is_valid():\n            quantity = form.cleaned_data['quantity']\n            cart_item, created = CartItem.objects.get_or_create(cart=cart, item=form.cleaned_data['item'])\n            cart_item.quantity += quantity\n            cart_item.save()\n            return redirect('cart')",
+        "peekOfCode": "def store(request):\n    cart, created = Cart.objects.get_or_create(user=request.user)\n    form = AddToCartForm(request.POST)\n    categories = Category.objects.all()\n    query = request.GET.get('query', '')\n    category_filter = request.GET.get('category', '')\n    sort_option = request.GET.get('sort', '')\n    items = Item.objects.all()\n    if query:\n        items = items.filter(name__icontains=query)",
         "detail": "items.views",
         "documentation": {}
     },
@@ -1859,7 +2151,25 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})",
+        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})\ndef proc_txt(text):\n    text = text.split('\\n')\n    return text\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        image_file = request.FILES['image']",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "proc_txt",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def proc_txt(text):\n    text = text.split('\\n')\n    return text\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        image_file = request.FILES['image']\n        img = Image.open(image_file)\n        try:\n            img.filter(ImageFilter.SHARPEN)",
+        "detail": "items.views",
+        "documentation": {}
+    },
+    {
+        "label": "upload_image",
+        "kind": 2,
+        "importPath": "items.views",
+        "description": "items.views",
+        "peekOfCode": "def upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        image_file = request.FILES['image']\n        img = Image.open(image_file)\n        try:\n            img.filter(ImageFilter.SHARPEN)\n        except ValueError:\n            print('Got an image that failed to sharpen', image_file)\n            pass",
         "detail": "items.views",
         "documentation": {}
     },
@@ -1913,7 +2223,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"home.apps.HomeConfig\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"items\"\n]",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"home.apps.HomeConfig\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"items\", \n    \"programs\"",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2075,7 +2385,7 @@
         "kind": 5,
         "importPath": "predictHealth.urls",
         "description": "predictHealth.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"items/\", include('items.urls')),\n    path(\"\", include('home.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"items/\", include('items.urls')),\n    path(\"programs/\", include('programs.urls')),\n    path(\"\", include('home.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "predictHealth.urls",
         "documentation": {}
     },
@@ -2095,6 +2405,141 @@
         "description": "prediction.apps",
         "peekOfCode": "class PredictionConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'prediction'",
         "detail": "prediction.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "programs.migrations.0001_initial",
+        "description": "programs.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='FitnessProgram',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "programs.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessCnfig",
+        "kind": 6,
+        "importPath": "programs.app",
+        "description": "programs.app",
+        "peekOfCode": "class FitnessCnfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'fitness'",
+        "detail": "programs.app",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessProgramForm",
+        "kind": 6,
+        "importPath": "programs.forms",
+        "description": "programs.forms",
+        "peekOfCode": "class FitnessProgramForm(forms.ModelForm):\n    class Meta:\n        model = FitnessProgram\n        fields = ['title', 'description', 'difficulty', 'duration', \n                 'image', 'estimated_calories', 'equipment_needed']\n        widgets = {\n            'description': forms.Textarea(attrs={'rows': 4}),\n            'duration': forms.NumberInput(attrs={'min': 1}),\n        }\n        image = forms.ImageField(required=False)",
+        "detail": "programs.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ExerciseForm",
+        "kind": 6,
+        "importPath": "programs.forms",
+        "description": "programs.forms",
+        "peekOfCode": "class ExerciseForm(forms.ModelForm):\n    class Meta:\n        model = Exercise\n        fields = ['name', 'description', 'sets', 'reps', 'order']\n        widgets = {\n            'order': forms.HiddenInput()  \n        }\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        if not self.instance.pk:  ",
+        "detail": "programs.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ExerciseFormSet",
+        "kind": 5,
+        "importPath": "programs.forms",
+        "description": "programs.forms",
+        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    form=ExerciseForm,\n    fields=['name', 'description', 'sets', 'reps', 'order'],\n    extra=1,\n    can_delete=True\n)",
+        "detail": "programs.forms",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessProgram",
+        "kind": 6,
+        "importPath": "programs.models",
+        "description": "programs.models",
+        "peekOfCode": "class FitnessProgram(models.Model):\n    DIFFICULTY_CHOICES = [\n        ('beginner', 'Beginner'),\n        ('intermediate', 'Intermediate'),\n        ('advanced', 'Advanced'),\n    ]\n    title = models.CharField(max_length=200)\n    description = models.TextField()\n    difficulty = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES)\n    duration = models.IntegerField(help_text=\"Duration in minutes\")",
+        "detail": "programs.models",
+        "documentation": {}
+    },
+    {
+        "label": "Exercise",
+        "kind": 6,
+        "importPath": "programs.models",
+        "description": "programs.models",
+        "peekOfCode": "class Exercise(models.Model):\n    name = models.CharField(max_length=100)\n    description = models.TextField()\n    sets = models.IntegerField()\n    reps = models.IntegerField()\n    program = models.ForeignKey(FitnessProgram, related_name='exercises', on_delete=models.CASCADE)\n    order = models.IntegerField(default=0)\n    class Meta:\n        ordering = ['order']\n    def __str__(self):",
+        "detail": "programs.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "programs.urls",
+        "description": "programs.urls",
+        "peekOfCode": "urlpatterns = [\n    path('', ProgramListView.as_view(), name='program_list'),\n    path('program/<int:pk>/', ProgramDetailView.as_view(), name='program_detail'),\n    path('program/new/', ProgramCreateView.as_view(), name='program_create'),\n    path('program/<int:pk>/edit/', ProgramUpdateView.as_view(), name='program_update'),\n    path('program/<int:pk>/delete/', ProgramDeleteView.as_view(), name='program_delete'),\n]",
+        "detail": "programs.urls",
+        "documentation": {}
+    },
+    {
+        "label": "ProgramListView",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class ProgramListView(ListView):\n    model = FitnessProgram\n    template_name = 'fitness/program_list.html'\n    context_object_name = 'programs'\n    paginate_by = 9\n    def get_queryset(self):\n        queryset = FitnessProgram.objects.all().order_by('-created_at')\n        difficulty = self.request.GET.get('difficulty')\n        if difficulty:\n            queryset = queryset.filter(difficulty=difficulty)",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "ProgramDetailView",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class ProgramDetailView(DetailView):\n    model = FitnessProgram\n    template_name = 'fitness/program_detail.html'\n    context_object_name = 'program'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['similar_programs'] = FitnessProgram.objects.filter(\n            difficulty=self.object.difficulty\n        ).exclude(id=self.object.id)[:3]\n        return context",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "ProgramCreateView",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class ProgramCreateView(LoginRequiredMixin, CreateView):\n    model = FitnessProgram\n    form_class = FitnessProgramForm\n    template_name = 'fitness/program_form.html'\n    success_url = reverse_lazy('program_list')\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.POST:\n            context['exercise_formset'] = ExerciseFormSet(\n                self.request.POST,",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "ProgramUpdateView",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class ProgramUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):\n    model = FitnessProgram\n    form_class = FitnessProgramForm\n    template_name = 'fitness/program_form.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.POST:\n            context['exercise_formset'] = ExerciseFormSet(\n                self.request.POST, instance=self.object\n            )",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "ProgramDeleteView",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class ProgramDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):\n    model = FitnessProgram\n    success_url = reverse_lazy('program_list')\n    template_name = 'fitness/program_confirm_delete.html'\n    def test_func(self):\n        program = self.get_object()\n        return self.request.user == program.creator\n    def delete(self, request, *args, **kwargs):\n        messages.success(self.request, 'Program deleted successfully!')\n        return super().delete(request, *args, **kwargs)",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessProgramForm",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class FitnessProgramForm(forms.ModelForm):\n    class Meta:\n        model = FitnessProgram\n        fields = ['title', 'description', 'difficulty', 'duration', \n                 'image', 'estimated_calories', 'equipment_needed']\n        widgets = {\n            'description': forms.Textarea(attrs={'rows': 4}),\n            'duration': forms.NumberInput(attrs={'min': 1}),\n        }\nExerciseFormSet = inlineformset_factory(",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "ExerciseFormSet",
+        "kind": 5,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    fields=['name', 'description', 'sets', 'reps', 'order'],\n    extra=1,\n    can_delete=True\n)",
+        "detail": "programs.views",
         "documentation": {}
     },
     {

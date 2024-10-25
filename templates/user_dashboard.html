@@ -6,11 +6,27 @@
 <div class="container">
     {% if user_profile %}
     <div class="row bg-white my-5 mx-2 p-3 rounded">
+
         <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
             <img src="/static/profile.webp" height="80px" alt="profile" class="rounded-circle">
             <h5 class="text-center text-dark text-capitalize mb-3 my-3"><b>{{user_name}}</b></h5>
             <h6 class="text-muted"><b>Username: {{user_username}}</b></h6>
         </div>
+        <nav class="col-md-12 navbar navbar-expand-md navbar-light bg-white">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/items/orders">Orders History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/test_history">Prediction History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/appointmentHistory">Appointment History</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         <div class="col-md-12 my-2">
             <div class="card-body">
@@ -26,7 +42,7 @@
                         <p class="text-muted">{{ user_profile.dob }}</p>
                     </div>
                 </div>
-        
+
                 <h5 class="text-muted">Personal Information</h5>
                 <hr>
                 <div class="row">
@@ -49,7 +65,7 @@
                 </div>
             </div>
         </div>
-        
+
 
     </div>
     {% endif %}
