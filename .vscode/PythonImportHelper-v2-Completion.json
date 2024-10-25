@@ -685,6 +685,15 @@
         "documentation": {}
     },
     {
+        "label": "django",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django",
+        "description": "django",
+        "detail": "django",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -1139,11 +1148,28 @@
         "documentation": {}
     },
     {
+        "label": "ImageFilter",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
         "label": "TextBlob",
         "importPath": "textblob",
         "description": "textblob",
         "isExtraImport": true,
         "detail": "textblob",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
         "documentation": {}
     },
     {
@@ -2125,7 +2151,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})\ndef proc_txt(text):\n    text = text.split('\\n')\n    return text\n# View to handle image upload and text extraction\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():",
+        "peekOfCode": "def orders(request):\n    orders = Order.objects.filter(user=request.user)\n    return render(request, 'items/orders.html', {'orders': orders})\ndef proc_txt(text):\n    text = text.split('\\n')\n    return text\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        image_file = request.FILES['image']",
         "detail": "items.views",
         "documentation": {}
     },
@@ -2134,7 +2160,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def proc_txt(text):\n    text = text.split('\\n')\n    return text\n# View to handle image upload and text extraction\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        # Get the uploaded image from the form\n        image_file = request.FILES['image']\n        # Open the image using PIL",
+        "peekOfCode": "def proc_txt(text):\n    text = text.split('\\n')\n    return text\ndef upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        image_file = request.FILES['image']\n        img = Image.open(image_file)\n        try:\n            img.filter(ImageFilter.SHARPEN)",
         "detail": "items.views",
         "documentation": {}
     },
@@ -2143,7 +2169,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        # Get the uploaded image from the form\n        image_file = request.FILES['image']\n        # Open the image using PIL\n        img = Image.open(image_file)\n        # Extract text from the image using pytesseract\n        extracted_text = pytesseract.image_to_string(img)\n        # Process the extracted text",
+        "peekOfCode": "def upload_image(request):\n    form = ImageUploadForm(request.POST, request.FILES)\n    if form.is_valid():\n        image_file = request.FILES['image']\n        img = Image.open(image_file)\n        try:\n            img.filter(ImageFilter.SHARPEN)\n        except ValueError:\n            print('Got an image that failed to sharpen', image_file)\n            pass",
         "detail": "items.views",
         "documentation": {}
     },

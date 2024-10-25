@@ -1,3 +1,4 @@
+import django
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from home.models import UserProfile
@@ -7,8 +8,10 @@ from items.forms import AddToCartForm
 from django.shortcuts import render, redirect
 from .forms import ImageUploadForm
 import pytesseract
-from PIL import Image
+from PIL import Image, ImageFilter
 from textblob import TextBlob
+import cv2
+import numpy as np
 
 @login_required
 def store(request):
@@ -114,35 +117,39 @@ def proc_txt(text):
     text = text.split('\n')
     return text
 
-# View to handle image upload and text extraction
 def upload_image(request):
     form = ImageUploadForm(request.POST, request.FILES)
     if form.is_valid():
-        # Get the uploaded image from the form
         image_file = request.FILES['image']
-        
-        # Open the image using PIL
         img = Image.open(image_file)
-
-        # Extract text from the image using pytesseract
-        extracted_text = pytesseract.image_to_string(img)
-
-        # Process the extracted text
-        processed_text = proc_txt(extracted_text)
-        #/////////////////////////////////////////////////////////
+        try:
+            img.filter(ImageFilter.SHARPEN)
+        except ValueError:
+            print('Got an image that failed to sharpen', image_file)
+            pass
+        
+        image = np.array(img)
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        processed_text = pytesseract.image_to_string(gray_image)        
+        
+        processed_text  = proc_txt(processed_text )
         cart, created = Cart.objects.get_or_create(user=request.user)
-        for item_name in processed_text:
-            try:
-                    
-                item = Item.objects.get(name__iexact=item_name)
+        for processed_item   in processed_text :
+            items = Item.objects.all()
+            for product in items:
+                item_name  = product.name.lower()
+                processed_item  = processed_item .lower()
+                            
+                set1 = set(item_name)
+                set2 = set(processed_item )
+                jaccard_similarity = len(set1.intersection(set2)) / len(set1.union(set2))
+                print(item_name, ", ", processed_item, ", ", jaccard_similarity)
+                if (jaccard_similarity >= 0.6):
+                    item = Item.objects.get(name__iexact=item_name)
+                    quantity = 1
+                    cart_item, created = CartItem.objects.get_or_create(cart=cart, item=item)
+                    cart_item.quantity += quantity
+                    cart_item.save()            
 
-                quantity = 1
-                cart_item, created = CartItem.objects.get_or_create(cart=cart, item=item)
-                cart_item.quantity += quantity
-                cart_item.save()
-            except Item.DoesNotExist:
-                print(f"Item with name '{item_name}' not found.")
-        #/////////////////////////////////////////////////////////
-
-        # Return result to the template
-        return redirect('cart')
+    return redirect('cart')
