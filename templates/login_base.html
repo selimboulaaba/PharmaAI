@@ -41,32 +41,23 @@
 
 <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-md navbar-light bg-white">
-            <a class="navbar-brand font-weight-bold" href="/profile">PharmaAI</a>
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a class="navbar-brand font-weight-bold" style="color: rgb(21, 92, 61);"  href="/dashboard">PharmaAI</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="/items/add_to_cart">Store</a>
-                    </li>
-                    <li class="nav-item"></li>
-                    <a class="nav-link" href="/items/orders">Orders History</a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/items/store">Store</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/health_prediction">Test Now</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/test_history">Prediction History</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/fix_appointment">Appointment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/appointmentHistory">Appointment History</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -74,11 +65,11 @@
                         <b><a class="nav-link" style="text-transform: capitalize;" href="/items/cart">Cart</a></b>
                     </li>
                     <li class="nav-item">
-                        <b><a class="nav-link" style="text-transform: capitalize;" href="/profile">Hello
+                        <b><a class="nav-link" style="text-transform: capitalize;" href="/dashboard">Hello
                                 {{currentUser}}!</a></b>
                     </li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}" class="nav-link" style="text-decoration: none;"><b>Logout</b></a>
+                    <li><a href="/logout" class="nav-link" style="text-decoration: none;"><b>Logout</b></a>
                     </li>
                     {% endif %}
                 </ul>

@@ -4,7 +4,7 @@
 
 {%block body%}
 <div class = "container my-5" style = "display: flex; justify-content: center; flex-direction: column; align-items: center;">
-    <h1>Login</h1>
+    <h1>Client Login</h1>
     <p class="text-center text-muted"><i>Welcome back! Let's get back to think about our health!</i></p>
     <form method="post">
         {% csrf_token %}
@@ -14,5 +14,10 @@
         <br>
         <button type="submit" class = "btn btn-primary col-md-12 my-4" style="height: 40px;">Login</button>
     </form>
+    <div class="d-flex px-4 pt-2 mt-2">
+        <p class="mr-2">Don't have an Account?</p>
+        <a class="" href="/register">Register!</a>
+    </div>
+    <a class="px-4 pb-2" href="/doctor_login">Login as a Doctor!</a>
 </div>
 {%endblock body%}

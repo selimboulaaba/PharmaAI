@@ -13,3 +13,6 @@ class AddToCartForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['quantity'].widget.attrs.update({'min': 1})
+
+class ImageUploadForm(forms.Form):
+    image = forms.ImageField()

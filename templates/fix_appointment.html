@@ -30,10 +30,6 @@
                     <p class="card-text text-muted"><b>{{ doctor.specialization }}</b></p>
                     <hr>
                     <p><b>Hospital: </b>{{ doctor.hospital }}</p>
-                    <hr>
-                    <p><b>Location: </b>{{ doctor.city }}, {{ doctor.state }}, {{ doctor.country }}</p>
-                    <hr>
-                    <p><b>Experience: </b>{{ doctor.experience }}</p>
 
     
                     <button type="button" class="btn btn-info my-2 col-md-5" data-toggle="modal" data-target="#exampleModalLong{{ doctor.id }}">
@@ -100,7 +96,6 @@
                     </div>
                     <div class="modal-body">
                         <img src="/static/back.png" class="img-fluid" alt="">
-                        <p class="my-3">{{ doctor.about }}</p>
                         <br>
                         <table class="table border-white">
                             <tr>
@@ -108,20 +103,16 @@
                                 <td>{{ doctor.phone }}</td>
                             </tr>
                             <tr>
-                                <th>Education</td>
-                                <td>{{ doctor.education }}</td>
+                                <th>Specialization</td>
+                                <td>{{ doctor.specialization }}</td>
                             </tr>
                             <tr>
-                                <th>Expertise</td>
-                                <td>{{ doctor.expertise }}</td>
+                                <th>Hospital</td>
+                                <td>{{ doctor.hospital }}</td>
                             </tr>
                             <tr>
                                 <th>Experience</td>
                                 <td>{{ doctor.experience }}</td>
-                            </tr>
-                            <tr>
-                                <th>Languages Known</td>
-                                <td>{{ doctor.languages }}</td>
                             </tr>
                         </table>
                     </div>
