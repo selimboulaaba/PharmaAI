@@ -79,8 +79,11 @@ def delete_from_cart(request, pk):
 @login_required
 def update_quantity(request, pk):
     cartItem = get_object_or_404(CartItem, pk=pk)
-    new_quantity = int(request.POST.get('quantity', 1))
-    cartItem.quantity = new_quantity
+    action = request.POST.get('action')
+    if action == "increase":
+        cartItem.quantity += 1
+    elif action == "decrease" and cartItem.quantity > 1:
+        cartItem.quantity -= 1
     cartItem.save()
 
     return redirect('cart')
