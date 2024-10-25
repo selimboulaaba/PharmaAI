@@ -1,0 +1,74 @@
+{% extends 'fitness/base.html' %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-gray-800">Fitness Programs</h1>
+        <a href="{% url 'program_create' %}" 
+           class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
+            Create New Program
+        </a>
+    </div>
+
+    <div class="bg-white p-4 rounded-lg shadow">
+        <form method="get" class="flex space-x-4">
+            <select name="difficulty" class="rounded-lg border-gray-300">
+                <option value="">All Difficulties</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+            </select>
+            <select name="duration" class="rounded-lg border-gray-300">
+                <option value="">All Durations</option>
+                <option value="short">Short (< 30 mins)</option>
+                <option value="medium">Medium (30-60 mins)</option>
+                <option value="long">Long (> 60 mins)</option>
+            </select>
+            <button type="submit" class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                Apply Filters
+            </button>
+        </form>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for program in programs %}
+        <div class="program-card bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="relative">
+                {% if program.image %}
+                    <img src="{{ program.image.url }}" alt="{{ program.title }}" class="w-full h-48 object-cover">
+                {% else %}
+                    <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+                        <i class="fas fa-dumbbell text-4xl text-gray-400"></i>
+                    </div>
+                {% endif %}
+                <div class="absolute top-2 right-2">
+                    <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm">
+                        {{ program.difficulty }}
+                    </span>
+                </div>
+            </div>
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">{{ program.title }}</h2>
+                <p class="text-gray-600 mb-4">{{ program.description|truncatewords:20 }}</p>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-clock text-gray-400"></i>
+                        <span class="text-gray-600">{{ program.duration }} mins</span>
+                    </div>
+                    <a href="{% url 'program_detail' program.id %}" 
+                       class="text-indigo-600 hover:text-indigo-700 font-medium">
+                        View Details →
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-3 text-center py-12">
+            <i class="fas fa-folder-open text-4xl text-gray-400 mb-4"></i>
+            <p class="text-gray-600">No programs found. Create your first program!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -63,3 +64,4 @@ class OrderItem(models.Model):
 
     def get_total_price(self):
         return self.quantity * self.price
+    
