@@ -1,0 +1,291 @@
+{% extends 'fitness/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Program{% else %}Create Program{% endif %}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">
+            {% if form.instance.pk %}
+                Edit Program: {{ form.instance.title }}
+            {% else %}
+                Create New Fitness Program
+            {% endif %}
+        </h1>
+        <p class="text-gray-600 mt-2">Fill in the details below to {% if form.instance.pk %}update{% else %}create{% endif %} your fitness program.</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="space-y-8">
+        {% csrf_token %}
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">Program Details</h2>
+            
+            <div class="mb-6">
+                <label for="{{ form.title.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                    Program Title
+                </label>
+                {{ form.title.errors }}
+                <input type="text" 
+                       name="{{ form.title.name }}" 
+                       id="{{ form.title.id_for_label }}"
+                       value="{{ form.title.value|default:'' }}"
+                       class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                       placeholder="Enter program title">
+            </div>
+
+            <div class="mb-6">
+                <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                    Description
+                </label>
+                {{ form.description.errors }}
+                <textarea name="{{ form.description.name }}"
+                          id="{{ form.description.id_for_label }}"
+                          rows="4"
+                          class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                          placeholder="Describe your program">{{ form.description.value|default:'' }}</textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="{{ form.difficulty.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        Difficulty Level
+                    </label>
+                    {{ form.difficulty.errors }}
+                    <select name="{{ form.difficulty.name }}"
+                            id="{{ form.difficulty.id_for_label }}"
+                            class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        {% for value, label in form.difficulty.field.choices %}
+                            <option value="{{ value }}" {% if form.difficulty.value == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="{{ form.duration.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        Duration (minutes)
+                    </label>
+                    {{ form.duration.errors }}
+                    <input type="number"
+                           name="{{ form.duration.name }}"
+                           id="{{ form.duration.id_for_label }}"
+                           value="{{ form.duration.value|default:'' }}"
+                           min="1"
+                           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                           placeholder="Enter duration in minutes">
+                </div>
+
+                <div>
+                    <label for="{{ form.estimated_calories.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                        Estimated Calories Burned
+                    </label>
+                    {{ form.estimated_calories.errors }}
+                    <input type="number"
+                           name="{{ form.estimated_calories.name }}"
+                           id="{{ form.estimated_calories.id_for_label }}"
+                           value="{{ form.estimated_calories.value|default:'' }}"
+                           min="0"
+                           class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                           placeholder="Estimated calories burned">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Equipment Required</label>
+                    {{ form.equipment_needed.errors }}
+                    <div class="mt-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox"
+                                   name="{{ form.equipment_needed.name }}"
+                                   {% if form.equipment_needed.value %}checked{% endif %}
+                                   class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+                            <span class="ml-2 text-gray-700">Equipment needed for this program</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <label for="{{ form.image.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-2">
+                    Program Image
+                </label>
+                {{ form.image.errors }}
+                <div class="mt-1 flex items-center">
+                    {% if form.instance.image %}
+                        <div class="mr-4">
+                            <img src="{{ form.instance.image.url }}" alt="Current image" class="h-32 w-32 object-cover rounded">
+                        </div>
+                    {% endif %}
+                    <div class="flex flex-col items-center justify-center w-full max-w-lg px-4 py-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-indigo-500 transition-colors">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                        <div class="space-y-1 text-center">
+                            <div class="text-sm text-gray-600">
+                                <label for="{{ form.image.id_for_label }}" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="{{ form.image.id_for_label }}" 
+                                           name="{{ form.image.name }}" 
+                                           type="file"
+                                           class="sr-only"
+                                           accept="image/*">
+                                </label>
+                                <p class="pl-1">or drag and drop</p>
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-800">Exercises</h2>
+                <button type="button" 
+                        id="add-exercise"
+                        class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-200 transition">
+                    <i class="fas fa-plus mr-2"></i>Add Exercise
+                </button>
+            </div>
+
+            {{ exercise_formset.management_form }}
+            <div id="exercise-formset" class="space-y-4">
+                {{ exercise_formset.management_form }}
+                {% for exercise_form in exercise_formset %}
+                    <div class="exercise-form border rounded-lg p-4 {% if not forloop.last %}mb-4{% endif %}">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-medium text-gray-700">Exercise {{ forloop.counter }}</h3>
+                            {% if exercise_formset.can_delete %}
+                                <button type="button" 
+                                        class="delete-exercise text-red-600 hover:text-red-800">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            {% endif %}
+                        </div>
+            
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Exercise Name
+                                </label>
+                                {{ exercise_form.name }}
+                            </div>
+            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Sets
+                                    </label>
+                                    {{ exercise_form.sets }}
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                                        Reps
+                                    </label>
+                                    {{ exercise_form.reps }}
+                                </div>
+                            </div>
+            
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Description
+                                </label>
+                                {{ exercise_form.description }}
+                            </div>
+                        </div>
+            
+                        {# Important: Include the order field #}
+                        {{ exercise_form.order }}
+                        
+                        {% for hidden in exercise_form.hidden_fields %}
+                            {% if hidden.name != exercise_form.order.name %}
+                                {{ hidden }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+            <a href="{% url 'program_list' %}" 
+               class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+                Cancel
+            </a>
+            <button type="submit" 
+                    class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                {% if form.instance.pk %}Update{% else %}Create{% endif %} Program
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const exerciseFormset = document.getElementById('exercise-formset');
+    const addExerciseBtn = document.getElementById('add-exercise');
+    const totalFormsInput = document.querySelector('[name="exercise_set-TOTAL_FORMS"]');
+    
+    addExerciseBtn.addEventListener('click', function() {
+        const forms = exerciseFormset.getElementsByClassName('exercise-form');
+        const formCount = forms.length;
+        const newForm = forms[0].cloneNode(true);
+
+        // Update form index
+        newForm.innerHTML = newForm.innerHTML.replace(/-\d+-/g, `-${formCount}-`);
+        
+        // Clear input values but maintain order
+        newForm.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => {
+            const inputName = input.getAttribute('name');
+            if (inputName && inputName.includes('order')) {
+                input.value = formCount;
+            } else {
+                input.value = '';
+            }
+        });
+        
+        // Update total forms count
+        totalFormsInput.value = formCount + 1;
+        
+        // Update exercise number
+        newForm.querySelector('h3').textContent = `Exercise ${formCount + 1}`;
+        
+        exerciseFormset.appendChild(newForm);
+        updateOrderValues(); // Update all order values
+    });
+    
+    exerciseFormset.addEventListener('click', function(e) {
+        if (e.target.classList.contains('delete-exercise') || 
+            e.target.parentElement.classList.contains('delete-exercise')) {
+            e.preventDefault();
+            const form = e.target.closest('.exercise-form');
+            if (exerciseFormset.getElementsByClassName('exercise-form').length > 1) {
+                form.remove();
+                updateExerciseNumbers();
+                updateOrderValues();
+                totalFormsInput.value = exerciseFormset.getElementsByClassName('exercise-form').length;
+            }
+        }
+    });
+    
+    function updateExerciseNumbers() {
+        const forms = exerciseFormset.getElementsByClassName('exercise-form');
+        Array.from(forms).forEach((form, index) => {
+            form.querySelector('h3').textContent = `Exercise ${index + 1}`;
+        });
+    }
+    
+    function updateOrderValues() {
+        const forms = exerciseFormset.getElementsByClassName('exercise-form');
+        Array.from(forms).forEach((form, index) => {
+            const orderInputs = form.querySelectorAll('input[name*="order"]');
+            orderInputs.forEach(input => {
+                input.value = index;
+            });
+        });
+    }
+
+    updateOrderValues();
+});
+</script>
+{% endblock %}

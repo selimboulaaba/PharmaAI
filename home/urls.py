@@ -25,5 +25,5 @@ urlpatterns = [
     path('appointmentRequest', views.appointmentRequest, name='appointmentRequest'),
     path('appointmentScheduled', views.appointmentScheduled, name='appointmentScheduled'),
     path('update_status/<int:appointment_id>/', views.update_status, name='update_status'),
-    
+
 ]
