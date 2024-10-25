@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
@@ -58,24 +59,40 @@ class ProgramCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['exercise_formset'] = ExerciseFormSet(self.request.POST)
+            context['exercise_formset'] = ExerciseFormSet(
+                self.request.POST,
+                instance=self.object if hasattr(self, 'object') else None
+            )
         else:
-            context['exercise_formset'] = ExerciseFormSet()
+            context['exercise_formset'] = ExerciseFormSet(
+                instance=self.object if hasattr(self, 'object') else None
+            )
+            for i, form in enumerate(context['exercise_formset'].forms):
+                form.initial['order'] = i
         return context
 
     def form_valid(self, form):
-        form.instance.creator = self.request.user
         context = self.get_context_data()
         exercise_formset = context['exercise_formset']
         
+        form.instance.creator = self.request.user
+        
         if exercise_formset.is_valid():
-            response = super().form_valid(form)
+            print("Formset is valid")
+            self.object = form.save()
             exercise_formset.instance = self.object
+            
+            for i, exercise_form in enumerate(exercise_formset.forms):
+                if exercise_form.is_valid() and not exercise_form.cleaned_data.get('DELETE', False):
+                    exercise_form.instance.order = i
+                    print(f"Setting order {i} for exercise {exercise_form.cleaned_data.get('name')}")
+            
             exercise_formset.save()
             messages.success(self.request, 'Program created successfully!')
-            return response
+            return HttpResponseRedirect(self.get_success_url())
         else:
-            return super().form_invalid(form)
+            print("Formset errors:", exercise_formset.errors)
+            return self.form_invalid(form)
 
 class ProgramUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FitnessProgram
@@ -136,7 +153,6 @@ class FitnessProgramForm(forms.ModelForm):
             'duration': forms.NumberInput(attrs={'min': 1}),
         }
 
-# Create inline formset for exercises
 ExerciseFormSet = inlineformset_factory(
     FitnessProgram,
     Exercise,

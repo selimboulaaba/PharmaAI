@@ -150,6 +150,7 @@
 
             {{ exercise_formset.management_form }}
             <div id="exercise-formset" class="space-y-4">
+                {{ exercise_formset.management_form }}
                 {% for exercise_form in exercise_formset %}
                     <div class="exercise-form border rounded-lg p-4 {% if not forloop.last %}mb-4{% endif %}">
                         <div class="flex justify-between items-center mb-4">
@@ -161,7 +162,7 @@
                                 </button>
                             {% endif %}
                         </div>
-
+            
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -169,7 +170,7 @@
                                 </label>
                                 {{ exercise_form.name }}
                             </div>
-
+            
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -184,7 +185,7 @@
                                     {{ exercise_form.reps }}
                                 </div>
                             </div>
-
+            
                             <div class="md:col-span-2">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">
                                     Description
@@ -192,9 +193,14 @@
                                 {{ exercise_form.description }}
                             </div>
                         </div>
-
+            
+                        {# Important: Include the order field #}
+                        {{ exercise_form.order }}
+                        
                         {% for hidden in exercise_form.hidden_fields %}
-                            {{ hidden }}
+                            {% if hidden.name != exercise_form.order.name %}
+                                {{ hidden }}
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% endfor %}
@@ -224,18 +230,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const forms = exerciseFormset.getElementsByClassName('exercise-form');
         const formCount = forms.length;
         const newForm = forms[0].cloneNode(true);
+
+        // Update form index
+        newForm.innerHTML = newForm.innerHTML.replace(/-\d+-/g, `-${formCount}-`);
         
-        newForm.innerHTML = newForm.innerHTML.replace(/-0-/g, `-${formCount}-`);
-        
+        // Clear input values but maintain order
         newForm.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => {
-            input.value = '';
+            const inputName = input.getAttribute('name');
+            if (inputName && inputName.includes('order')) {
+                input.value = formCount;
+            } else {
+                input.value = '';
+            }
         });
         
+        // Update total forms count
         totalFormsInput.value = formCount + 1;
         
+        // Update exercise number
         newForm.querySelector('h3').textContent = `Exercise ${formCount + 1}`;
         
         exerciseFormset.appendChild(newForm);
+        updateOrderValues(); // Update all order values
     });
     
     exerciseFormset.addEventListener('click', function(e) {
@@ -246,12 +262,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (exerciseFormset.getElementsByClassName('exercise-form').length > 1) {
                 form.remove();
                 updateExerciseNumbers();
+                updateOrderValues();
                 totalFormsInput.value = exerciseFormset.getElementsByClassName('exercise-form').length;
             }
         }
     });
     
-    // Update exercise numbers
     function updateExerciseNumbers() {
         const forms = exerciseFormset.getElementsByClassName('exercise-form');
         Array.from(forms).forEach((form, index) => {
@@ -259,30 +275,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // File upload preview
-    const imageInput = document.querySelector('input[type="file"]');
-    if (imageInput) {
-        imageInput.addEventListener('change', function(e) {
-            if (e.target.files && e.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.querySelector('img');
-                    if (preview) {
-                        preview.src = e.target.result;
-                    } else {
-                        const newPreview = document.createElement('img');
-                        newPreview.src = e.target.result;
-                        newPreview.classList.add('h-32', 'w-32', 'object-cover', 'rounded', 'mr-4');
-                        document.querySelector('.flex.items-center').insertBefore(
-                            newPreview, 
-                            document.querySelector('.flex.flex-col')
-                        );
-                    }
-                }
-                reader.readAsDataURL(e.target.files[0]);
-            }
+    function updateOrderValues() {
+        const forms = exerciseFormset.getElementsByClassName('exercise-form');
+        Array.from(forms).forEach((form, index) => {
+            const orderInputs = form.querySelectorAll('input[name*="order"]');
+            orderInputs.forEach(input => {
+                input.value = index;
+            });
         });
     }
+
+    updateOrderValues();
 });
 </script>
 {% endblock %}
