@@ -38,3 +38,32 @@ ExerciseFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
+
+
+class PersonalInfoForm(forms.Form):
+    height = forms.IntegerField(
+        label='Height (cm)',
+        min_value=100,
+        max_value=250,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    weight = forms.IntegerField(
+        label='Weight (kg)',
+        min_value=30,
+        max_value=300,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    age = forms.IntegerField(
+        label='Age',
+        min_value=16,
+        max_value=100,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    gender = forms.ChoiceField(
+        choices=[('male', 'Male'), ('female', 'Female')],
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    blood_test = forms.ImageField(
+        label='Blood Test Result',
+        widget=forms.FileInput(attrs={'class': 'form-control'})
+    )

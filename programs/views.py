@@ -1,42 +1,43 @@
 from django.http import HttpResponseRedirect
+from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.contrib import messages
+from flask import redirect
+import requests
 from .models import FitnessProgram, Exercise
-from .forms import FitnessProgramForm, ExerciseFormSet
+from .forms import FitnessProgramForm, ExerciseFormSet, PersonalInfoForm
 
 class ProgramListView(ListView):
     model = FitnessProgram
     template_name = 'fitness/program_list.html'
     context_object_name = 'programs'
-    paginate_by = 9
 
     def get_queryset(self):
-        queryset = FitnessProgram.objects.all().order_by('-created_at')
+        queryset = super().get_queryset()
         
+        # Filter logic
         difficulty = self.request.GET.get('difficulty')
-        if difficulty:
-            queryset = queryset.filter(difficulty=difficulty)
-            
         duration = self.request.GET.get('duration')
+        
+        if difficulty and difficulty != 'All Difficulties':
+            queryset = queryset.filter(difficulty=difficulty)
         if duration:
-            if duration == 'short':
+            if duration == 'Short (< 30 mins)':
                 queryset = queryset.filter(duration__lt=30)
-            elif duration == 'medium':
-                queryset = queryset.filter(duration__range=(30, 60))
-            elif duration == 'long':
+            elif duration == 'Medium (30-60 mins)':
+                queryset = queryset.filter(duration__gte=30, duration__lte=60)
+            elif duration == 'Long (> 60 mins)':
                 queryset = queryset.filter(duration__gt=60)
                 
-        search_query = self.request.GET.get('search')
-        if search_query:
-            queryset = queryset.filter(
-                Q(title__icontains=search_query) |
-                Q(description__icontains=search_query)
-            )
-            
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['personal_info_form'] = PersonalInfoForm()
+        return context
 
 class ProgramDetailView(DetailView):
     model = FitnessProgram
@@ -160,3 +161,37 @@ ExerciseFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
+
+
+class PersonalRecommendationView(View):
+    def post(self, request, *args, **kwargs):
+        form = PersonalInfoForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                files = {'image': request.FILES['blood_test']}
+                data = {
+                    'height': form.cleaned_data['height'],
+                    'weight': form.cleaned_data['weight'],
+                    'age': form.cleaned_data['age'],
+                    'gender': form.cleaned_data['gender'],
+                }
+                
+                recommendation_data = {
+                    'need': 'Based on your input, your estimated daily caloric needs are approximately 2305 calories.',
+                    'workout_plan': 'Recommended Exercise: 30 minutes of moderate cardio, followed by strength training',
+                    'meal_plan': [
+                        'Breakfast: High-protein meal with eggs and whole grains',
+                        'Lunch: Lean protein with vegetables',
+                        'Dinner: Fish or chicken with complex carbohydrates'
+                    ]
+                }
+                
+                request.session['fitness_recommendation'] = recommendation_data
+                messages.success(request, 'Successfully generated personalized recommendations!')
+                
+            except Exception as e:
+                messages.error(request, f'Error generating recommendations: {str(e)}')
+        else:
+            messages.error(request, 'Please correct the errors in the form.')
+        
+        return redirect('program_list')

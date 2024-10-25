@@ -1,74 +1,229 @@
-{% extends 'fitness/base.html' %}
-
-{% block content %}
+{% extends 'fitness/base.html' %} {% block content %}
 <div class="space-y-6">
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-gray-800">Fitness Programs</h1>
+    <a
+      href="{% url 'program_create' %}"
+      class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+    >
+      Create New Program
+    </a>
+  </div>
+  <div class="mb-6 p-6 bg-white rounded-lg shadow">
     <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-bold text-gray-800">Fitness Programs</h1>
-        <a href="{% url 'program_create' %}" 
-           class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
-            Create New Program
-        </a>
+      <div>
+        <h2 class="text-2xl font-bold">Get Personalized Fitness Plan</h2>
+        <p class="text-gray-600">
+          Upload your blood test results for a customized program
+        </p>
+      </div>
+      <button
+        onclick="openRecommendationModal()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200"
+      >
+        Get Started
+      </button>
     </div>
+  </div>
+  <!-- {% if request.session.fitness_recommendation %}
+  <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6">
+    <h3 class="font-bold">Your Personalized Recommendation</h3>
+    <p>
+      Daily Caloric Needs: {{ request.session.fitness_recommendation.need }}
+    </p>
+    <p>
+      Recommended Exercise: {{
+      request.session.fitness_recommendation.workout_plan }}
+    </p>
+  </div>
+  {% endif %} -->
 
-    <div class="bg-white p-4 rounded-lg shadow">
-        <form method="get" class="flex space-x-4">
-            <select name="difficulty" class="rounded-lg border-gray-300">
-                <option value="">All Difficulties</option>
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-            </select>
-            <select name="duration" class="rounded-lg border-gray-300">
-                <option value="">All Durations</option>
-                <option value="short">Short (< 30 mins)</option>
-                <option value="medium">Medium (30-60 mins)</option>
-                <option value="long">Long (> 60 mins)</option>
-            </select>
-            <button type="submit" class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
-                Apply Filters
-            </button>
-        </form>
-    </div>
+  <div class="bg-white p-4 rounded-lg shadow">
+    <form method="get" class="flex space-x-4">
+      <select name="difficulty" class="rounded-lg border-gray-300">
+        <option value="">All Difficulties</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <select name="duration" class="rounded-lg border-gray-300">
+        <option value="">All Durations</option>
+        <option value="short">Short (< 30 mins)</option>
+        <option value="medium">Medium (30-60 mins)</option>
+        <option value="long">Long (> 60 mins)</option>
+      </select>
+      <button
+        type="submit"
+        class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300"
+      >
+        Apply Filters
+      </button>
+    </form>
+  </div>
+  <div
+    id="recommendationModal"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"
+  >
+    <div class="bg-white rounded-lg max-w-md mx-auto mt-20 p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Your Information</h3>
+        <button
+          onclick="closeRecommendationModal()"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
 
-    <!-- Programs Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for program in programs %}
-        <div class="program-card bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="relative">
-                {% if program.image %}
-                    <img src="{{ program.image.url }}" alt="{{ program.title }}" class="w-full h-48 object-cover">
-                {% else %}
-                    <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
-                        <i class="fas fa-dumbbell text-4xl text-gray-400"></i>
-                    </div>
-                {% endif %}
-                <div class="absolute top-2 right-2">
-                    <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm">
-                        {{ program.difficulty }}
-                    </span>
-                </div>
-            </div>
-            <div class="p-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-2">{{ program.title }}</h2>
-                <p class="text-gray-600 mb-4">{{ program.description|truncatewords:20 }}</p>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-clock text-gray-400"></i>
-                        <span class="text-gray-600">{{ program.duration }} mins</span>
-                    </div>
-                    <a href="{% url 'program_detail' program.id %}" 
-                       class="text-indigo-600 hover:text-indigo-700 font-medium">
-                        View Details →
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% empty %}
-        <div class="col-span-3 text-center py-12">
-            <i class="fas fa-folder-open text-4xl text-gray-400 mb-4"></i>
-            <p class="text-gray-600">No programs found. Create your first program!</p>
+      <form
+        method="POST"
+        action="{% url 'get_recommendation' %}"
+        enctype="multipart/form-data"
+        class="space-y-4"
+      >
+        {% csrf_token %} {% for field in personal_info_form %}
+        <div class="form-group">
+          <label class="block text-sm font-medium text-gray-700"
+            >{{ field.label }}</label
+          >
+          {{ field }} {% if field.errors %}
+          <p class="text-red-500 text-xs mt-1">{{ field.errors }}</p>
+          {% endif %}
         </div>
         {% endfor %}
+
+        <div class="flex justify-end space-x-3 mt-6">
+          <button
+            type="button"
+            onclick="closeRecommendationModal()"
+            class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Get Recommendations
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
+
+  {% if request.session.fitness_recommendation %}
+  <div class="mb-6 p-6 bg-green-50 border-l-4 border-green-500 rounded-lg">
+    <h3 class="text-lg font-bold text-green-700 mb-2">
+      Your Personalized Plan
+    </h3>
+    <div class="space-y-2">
+      <p>{{ request.session.fitness_recommendation.need }}</p>
+      <p>{{ request.session.fitness_recommendation.workout_plan }}</p>
+      {% if request.session.fitness_recommendation.meal_plan %}
+      <div class="mt-4">
+        <h4 class="font-semibold mb-2">Recommended Meal Plan:</h4>
+        <ul class="list-disc list-inside">
+          {% for meal in request.session.fitness_recommendation.meal_plan %}
+          <li>{{ meal }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for program in programs %}
+    <div class="program-card bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="relative">
+        {% if program.image %}
+        <img
+          src="{{ program.image.url }}"
+          alt="{{ program.title }}"
+          class="w-full h-48 object-cover"
+        />
+        {% else %}
+        <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+          <i class="fas fa-dumbbell text-4xl text-gray-400"></i>
+        </div>
+        {% endif %}
+        <div class="absolute top-2 right-2">
+          <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm">
+            {{ program.difficulty }}
+          </span>
+        </div>
+      </div>
+      <div class="p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">
+          {{ program.title }}
+        </h2>
+        <p class="text-gray-600 mb-4">
+          {{ program.description|truncatewords:20 }}
+        </p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-clock text-gray-400"></i>
+            <span class="text-gray-600">{{ program.duration }} mins</span>
+          </div>
+          <a
+            href="{% url 'program_detail' program.id %}"
+            class="text-indigo-600 hover:text-indigo-700 font-medium"
+          >
+            View Details →
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-span-3 text-center py-12">
+      <i class="fas fa-folder-open text-4xl text-gray-400 mb-4"></i>
+      <p class="text-gray-600">No programs found. Create your first program!</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% if request.session.fitness_recommendation %}
+  <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6">
+    <h3 class="font-bold">Your Personalized Recommendation</h3>
+    <p>
+      Daily Caloric Needs: {{ request.session.fitness_recommendation.need }}
+    </p>
+    <p>
+      Recommended Exercise: {{
+      request.session.fitness_recommendation.workout_plan }}
+    </p>
+    <!-- Add more recommendation details as needed -->
+  </div>
+  {% endif %}
+  <script>
+    function openRecommendationModal() {
+      document.getElementById("recommendationModal").classList.remove("hidden");
+    }
+
+    function closeRecommendationModal() {
+      document.getElementById("recommendationModal").classList.add("hidden");
+    }
+
+    document
+      .getElementById("recommendationModal")
+      .addEventListener("click", function (e) {
+        if (e.target === this) {
+          closeRecommendationModal();
+        }
+      });
+  </script>
 </div>
+
 {% endblock %}
