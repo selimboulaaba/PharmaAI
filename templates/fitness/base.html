@@ -27,11 +27,14 @@
                 <div class="flex items-center space-x-4">
                     <a href="{% url 'program_list' %}" class="hover:text-gray-200">Programs</a>
                     <a href="{% url 'program_create' %}" class="hover:text-gray-200">Create Program</a>
+                    <a
+                    href="{% url 'schedule_calendar' %}"
+                    class="text-white hover:bg-indigo-500 px-3 py-2 rounded-md text-sm font-medium"
+                    >Schedule My Training</a
+                  >
                     <div class="relative">
                         <button class="flex items-center space-x-1">
-                            <img src="{{ user.profile.avatar.url|default:'/static/default-avatar.png' }}" 
-                                 alt="Profile" 
-                                 class="w-8 h-8 rounded-full">
+                           
                             <span>{{ user.username }}</span>
                         </button>
                     </div>
