@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "items", 
     "programs",
     'widget_tweaks',
+    "schedule"
 
 ]
 
