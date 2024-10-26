@@ -2081,7 +2081,7 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def user_dashboard(request):\n    try:\n        user_profile = UserProfile.objects.get(user=request.user)\n    except UserProfile.DoesNotExist:\n        user_profile = None\n    return render(request, 'user_dashboard.html', {'user_name': request.user.first_name + \" \" + request.user.last_name, \n                                                'user_profile': user_profile, \n                                                'user_username': request.user.username\n                                                })\n@login_required",
+        "peekOfCode": "def user_dashboard(request):\n    try:\n        user_profile = UserProfile.objects.get(user=request.user)\n        print(\"usss\")\n        print(user_profile)\n    except UserProfile.DoesNotExist:\n        print(\"eeeer\")\n        user_profile = None\n    return render(request, 'user_dashboard.html', {'user_name': request.user.first_name + \" \" + request.user.last_name, \n                                                'user_profile': user_profile, ",
         "detail": "home.views",
         "documentation": {}
     },

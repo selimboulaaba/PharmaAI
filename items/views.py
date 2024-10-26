@@ -147,7 +147,6 @@ def upload_image(request):
                 set1 = set(item_name)
                 set2 = set(processed_item )
                 jaccard_similarity = len(set1.intersection(set2)) / len(set1.union(set2))
-                print(item_name, ", ", processed_item, ", ", jaccard_similarity)
                 if (jaccard_similarity >= 0.6):
                     item = Item.objects.get(name__iexact=item_name)
                     quantity = 1
