@@ -1,11 +1,11 @@
-{% extends "login_base.html" %}
+{% extends "fitness/base.html" %}
 
 {% block title %}PCOS{% endblock title %}
 
 {% block body %}
 
 <div class="container">
-    
+    <div class="w-100">
     {% if prediction_result %}
         <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-danger rounded box-shadow">
             <div class="lh-100 my-2">
@@ -34,15 +34,15 @@
             <div class="form-row my-2">
                 <div class="col my-2">
                     <label><b>Age</b></label><br>
-                    <p class="py-2 px-2 text-primary bg-white border rounded"><b>{{age}}</b></p>
+                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{age}}</b></p>
                 </div>
                 <div class="col my-2">
                     <label><b>Weight</b></label>
-                    <p class="py-2 px-2 text-primary bg-white border rounded"><b>{{weight}} kg</b></p>
+                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{weight}} kg</b></p>
                 </div>
                 <div class="col my-2">
                     <label><b>Height</b></label>
-                    <p class="py-2 px-2 text-primary bg-white border rounded"><b>{{height}} cm</b></p>
+                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{height}} cm</b></p>
                 </div>
             </div>
 
@@ -106,16 +106,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary col-md-12 my-5">Predict PCOS</button>
+            <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12 my-5">Predict PCOS</button>
         </form>
     </div>
-
-    <div class="text-muted text-center">
-        <h4 style="margin-top: 0;">Model trained on Kaggle Dataset</h4>
-        <p><a href="https://www.kaggle.com/datasets/sahilkoli04/pcos2023">
-            PCOS 2023 Dataset
-            </a> is a collection of data women ranging from 18-45 whether or not suffering from PCOS. </p>
-    </div>
+</div>
 
 </div>
 

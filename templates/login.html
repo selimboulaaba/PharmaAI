@@ -1,23 +1,29 @@
-{% extends "base.html" %}
+{% extends "new_base.html" %}
 
 {%block title%}Login{%endblock title%}
 
 {%block body%}
-<div class = "container my-5" style = "display: flex; justify-content: center; flex-direction: column; align-items: center;">
-    <h1>Client Login</h1>
-    <p class="text-center text-muted"><i>Welcome back! Let's get back to think about our health!</i></p>
-    <form method="post">
+<div class = "container my-5 w-100" style = "display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <h1 class="text-4xl text-indigo-600 font-semibold">Login!</h1>
+    <div class="col-md-12 mt-10">
+        <form method="post">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" class="col-md-12 my-3" style="height: 40px">
-        
-        <input type="password" name="password" placeholder="Password" class="col-md-12 my-3" style="height: 40px">
+        <div class="row">
+            <label for="username">Username:</label>
+            <input id="username" type="text" name="username" class="col-md-12 form-control" style="height: 40px">
+        </div>
+        <div class="row">
+            <label for="password">Password:</label>
+            <input id="password" type="password" name="password" class="col-md-12 form-control" style="height: 40px">
+        </div>
         <br>
-        <button type="submit" class = "btn btn-primary col-md-12 my-4" style="height: 40px;">Login</button>
+        <button type="submit" class = "btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12 my-4" style="height: 40px;">Login</button>
     </form>
+    </div>
     <div class="d-flex px-4 pt-2 mt-2">
         <p class="mr-2">Don't have an Account?</p>
-        <a class="" href="/register">Register!</a>
+        <a class="font-semibold text-indigo-600 hover:text-indigo-800" href="/register">Register!</a>
     </div>
-    <a class="px-4 pb-2" href="/doctor_login">Login as a Doctor!</a>
+    <!-- <a class="px-4 pb-2" href="/doctor_login">Login as a Doctor!</a> -->
 </div>
 {%endblock body%}

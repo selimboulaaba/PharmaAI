@@ -1,4 +1,4 @@
-{% extends "login_base.html" %}
+{% extends "fitness/base.html" %}
 
 {% block title %}Breast Cancer{% endblock title %}
 
@@ -29,35 +29,63 @@
 </style>
 
 <div class="container">
-    <h1 class="display-4 my-2 text-center">Breast Cancer Prediction</h1>
-    <hr />
+    <div class="w-100">
 
-    {% if result %}
-    <div class="result-box {% if result_type == 'positive' %}bg-danger{% else %}bg-success{% endif %}">
-        <div class="lh-100">
-            <h5>Your prediction report: <b>{{ result }} {{ emoji }}</b></h5>
-            <a href="/report" class="text-white my-2"><b>Proceed to obtain report</b></a>
+        {% if result %}
+        <div class="result-box {% if result_type == 'positive' %}bg-danger{% else %}bg-success{% endif %}">
+            <div class="lh-100">
+                <h5>Your prediction report: <b>{{ result }} {{ emoji }}</b></h5>
+                <a href="/report" class="text-white my-2"><b>Proceed to obtain report</b></a>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="jumbotron my-3 bg-light">
+            <h1 class="display-4"><b>Breast Cancer Prediction</b></h1>
+            <hr class="my-4">
+            <p class="text-weight-bolded">
+                <i>
+                    Management of breast cancer generally involves a combination of treatments tailored to the cancer’s type and stage. Common approaches include surgery to remove the tumor, radiation therapy to target and destroy cancer cells, and chemotherapy to eliminate remaining cells throughout the body. Hormone therapy may be used for cancers sensitive to estrogen or progesterone, while targeted therapies focus on specific molecules involved in cancer growth. Maintaining a healthy diet, staying physically active, and receiving emotional support are also crucial in supporting overall health and improving treatment outcomes. Early detection and regular screenings significantly enhance the chances of effective treatment.
+                </i>
+            </p>
+        </div>
+    
+        <div>
+            <form action="{% url 'breast' %}" method="post">
+                {% csrf_token %}
+
+    
+                <div class="form-row my-2">
+                    <div class="col-md-4 my-2">
+                        <label><b>Mean Radius</b></label><br>
+                        {{ form.radius }}
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label><b>Mean Texture</b></label>
+                        {{ form.texture }}
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label><b>Mean Texture</b></label>
+                        {{ form.perimeter }}
+                    </div>
+                </div>
+    
+                <div class="form-row my-2">
+                    <div class="col-md-4 my-2">
+                        <label><b>Mean Area</b></label><br>
+                        {{ form.area }}
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <label><b>Mean Smoothness</b></label>
+                        {{ form.smoothness }}
+                    </div>
+                </div>
+    
+    
+                <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12 my-5">Predict PCOS</button>
+            </form>
         </div>
     </div>
-    {% endif %}
 
-    <form action="{% url 'breast' %}" method="post">
-
-        {% csrf_token %}
-        
-      <div class="form-group">
-          {{ form }}
-      </div>
-      <div class="mt-4">
-          <button type="submit"  class="btn btn-primary col-md-12"> 
-              Submit 
-          </button>
-      </div>
-  </form>
-
-    <div class="text-muted text-center my-5">
-        <h4>Model trained on Breast Cancer Dataset</h4>
-        <p><a href="https://example.com/breast-cancer-dataset">Breast Cancer Dataset</a> is a collection used for predicting breast cancer outcomes based on various medical data.</p>
-    </div>
 </div>
 {% endblock body %}

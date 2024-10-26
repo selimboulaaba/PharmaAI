@@ -1,12 +1,13 @@
-{% extends "login_base.html" %}
+{% extends "fitness/base.html" %}
 
 {% block title %}Mental Disorder{% endblock title %}
 
 {% block body %}
 
 <div class="container">
-    
-    {% if prediction_result %}
+    <div class="w-100">
+
+        {% if prediction_result %}
         <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-danger rounded box-shadow">
             <div class="lh-100 my-2">
                 <h5 class="mb-0 text-white lh-100">Your prediction report: <b> {{ prediction_result }} </b></h5>
@@ -15,89 +16,15 @@
         </div>
     {% endif %}
 
-
-    <div class="my-3">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
-                    <div class="carousel-caption d-none d-md-block bg-dark text-light" style="padding-top: 0;">
-                        <h1 style="margin-top: 0;" class="my-4">Understand the Symptoms</h1>
-                        <p>Sadness: Persistent feeling of unhappiness or sorrow.</p>
-                        <p>Exhaustion: Extreme tiredness or fatigue.</p>
-                        <p>Euphoria: Intense feelings of happiness, excitement, or joy.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
-                    <div class="carousel-caption d-none d-md-block bg-dark text-light" style="padding-top: 0;">
-                        <h1 style="margin-top: 0;" class="my-4">Understand the Symptoms</h1>
-                        <p>Sleep disorder: Disruption in normal sleep patterns, including difficulty falling asleep or
-                            staying asleep.</p>
-                        <p>Mood swings: Rapid changes in mood from one extreme to another.</p>
-                        <p>Suicidal thoughts: Thoughts of ending one's own life or suicidal ideation.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
-                    <div class="carousel-caption d-none d-md-block bg-dark text-light" style="padding-top: 0;">
-                        <h1 style="margin-top: 0;" class="my-4">Understand the Symptoms</h1>
-                        <p>Anorexia: Loss of appetite or disinterest in eating, often resulting in significant weight
-                            loss.</p>
-                        <p>Anxiety: Feeling of worry, nervousness, or unease about future events.</p>
-                        <p>Try-explaining: Attempting to rationalize or justify one's behavior or actions.</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
-                    <div class="carousel-caption d-none d-md-block bg-dark text-light" style="padding-top: 0;">
-                        <h1 style="margin-top: 0;" class="my-4">Understand the Symptoms</h1>
-                        <p>Nervous breakdown: Severe mental or emotional collapse, often accompanied by an inability to
-                            function normally.</p>
-                        <p>Ignore & Move-on: Disregarding or dismissing something and continuing forward.</p>
-                        <p>Admitting mistakes: Acknowledging errors or faults in one's actions or behavior.</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
-                    <div class="carousel-caption d-none d-md-block bg-dark text-light" style="padding-top: 0;">
-                        <h1 style="margin-top: 0;" class="my-4">Understand the Symptoms</h1>
-                        <p>Overthinking: Excessive or obsessive rumination on thoughts or concerns.</p>
-                        <p>Aggressive response: Reacting in a hostile or violent manner to stimuli or situations.</p>
-                        <p>Optimism: Positive outlook or expectation for the future.</p>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <div class="d-block w-100 bg-dark" style="height: 300px;"></div>
-                    <div class="carousel-caption d-none d-md-block bg-dark text-light" style="padding-top: 0;">
-                        <h1 style="margin-top: 0;" class="my-4">Understand the Symptoms</h1>
-                        <p>Sexual activity: Engagement in sexual behavior or activities.</p>
-                        <p>Concentration: Ability to focus attention and mental effort on a task or activity.</p>
-                    </div>
-                </div>
-
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+    <div class="jumbotron my-3 bg-light">
+        <h1 class="display-4"><b>PCOS Prediction</b></h1>
+        <hr class="my-4">
+        <p class="text-weight-bolded">
+            <i>
+                Management of mental disorders often includes a combination of therapy, medication, and lifestyle adjustments. Psychotherapy, such as cognitive-behavioral therapy (CBT), helps individuals develop coping strategies, address negative thought patterns, and build resilience. Medications, including antidepressants or antipsychotics, may be prescribed to manage symptoms like mood swings, anxiety, or hallucinations. Additionally, lifestyle changes—such as regular exercise, a balanced diet, and sufficient sleep—can improve overall mental well-being. Support from family, friends, and support groups also plays a key role in promoting recovery and stability.            </i>
+        </p>
     </div>
+
 
     <div>
         <form action="/mental_disorder/" method="post" id="mentalDisorderForm">
@@ -191,17 +118,9 @@
 
 
 
-            <button type="submit" class="btn btn-primary col-md-12">Predict Mental Disorder</button>
+            <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12">Predict Mental Disorder</button>
         </form>
     </div>
-
-    <div class="text-muted text-center my-5">
-        <h4 style="margin-top: 0;">Model trained on Kaggle Dataset</h4>
-        <p><a href="https://www.kaggle.com/datasets/cid007/mental-disorder-classification">
-                Mental Disorder Classification Dataset
-            </a> is a collection of 120 Psychology Patients with 17 Essential Symptoms to Diagnose
-            Mania Bipolar Disorder, Depressive Bipolar Disorder, Major Depressive Disorder, and
-            Normal Individuals. </p>
     </div>
 
 </div>

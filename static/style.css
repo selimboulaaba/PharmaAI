@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: .25rem; 
+    overflow: hidden;
+}
+.card img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the card area */
+    max-height: 200px; /* Optional: limit the height of images */
+}
+.card-body {
+    flex: 1; /* Allow the card body to expand */
+    display: flex; /* Enable flexbox for card body */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Space out elements */
+}
+.container {
+    display: flex; /* Enable flexbox for the container */
+    flex-wrap: wrap; /* Wrap items to new lines as needed */
+    gap: 20px; /* Space between cards */
+}
+.btn {
+    margin-top: auto; /* Push button to the bottom of the card */
+}

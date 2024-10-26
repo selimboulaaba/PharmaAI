@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "new_base.html" %}
 
 {%block title%}HOME{%endblock title%}
 
@@ -12,42 +12,43 @@
 
 <div class="container my-4">
 
-    <main role="main">
-        <section class="jumbotron text-center my-5 bg-white">
-            <div class="container">
-                <img src="/static/pharmaai.png" class="w-75 rounded mb-5" />
+    <div class="w-100">
+        <main role="main">
+            <section class="text-center my-5">
+                <div class="container">
+                    <img src="/static/newlogo.PNG" class="w-75 mx-auto rounded mb-5" />
 
-                <h1 class="jumbotron-heading"><b>WELCOME TO <span class="text-info">PharmaAI</span></b>
-                </h1>
-            </div>
-        </section>
-    </main>
-    <hr>
+                    </h1>
+                </div>
+                <h1 class="jumbotron-heading text-5xl"><b>WELCOME TO <span class="text-indigo-600">PharmaAI</span></b>
 
-    <main role="main">
-        <section class="jumbotron text-center my-5 bg-white">
-            <div class="container row">
-                <div class="col-6">
-                    <h1 class="jumbotron-heading">Are you a Client?</h1>
-                    <p>
-                        <a class="btn btn-info px-4 py-2 my-2" href="/register">Client Registration</a>
-                        <a class="btn btn-secondary px-4 py-2 my-2" href="/login">Client Login</a>
-                    </p>
+            </section>
+        </main>
+        <hr>
     
+        <main role="main">
+            <section class="text-center my-5">
+                <div class="container grid grid-cols-12">
+                    <div class="col-span-6">
+                        <h1 class="jumbotron-heading">You have an Account?</h1>
+                        <p>
+                            <a class="btn bg-indigo-600 text-white hover:bg-indigo-800 px-4 py-2 my-2 w-75" href="/login">Login</a>
+                        </p>
+        
+                    </div>
+                    <div class="col-span-6">
+                        <h1 class="jumbotron-heading">New User?</h1>
+                        <p>
+                            <a class="btn bg-indigo-600 text-white hover:bg-indigo-800 px-4 py-2 my-2 w-75" href="/register">Register</a>
+                        </p>
+        
+                    </div>
                 </div>
-                <div class="col-6">
-                    <h1 class="jumbotron-heading">Are you a Doctor?</h1>
-                    <p>
-                        <a class="btn btn-info px-4 py-2 my-2" href="/doctor_register">Doctor Registration</a>
-                        <a class="btn btn-secondary px-4 py-2 my-2" href="/doctor_login">Doctor Login</a>
-                    </p>
-    
-                </div>
-            </div>
-        </section>
-    </main>
-    <hr>
-    
+            </section>
+        </main>
+        <hr>
+        
+    </div>
     
 </div>
 

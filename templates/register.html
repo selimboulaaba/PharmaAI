@@ -1,29 +1,26 @@
-{% extends "base.html" %}
+{% extends "new_base.html" %}
 
 {%block title%}User Registration{%endblock title%}
 
 {%block body%}
-<div class="main my-4" style='display: flex; flex-wrap: wrap; justify-content: center;'>
+<div class="main my-4 w-100" style='display: flex; flex-wrap: wrap; justify-content: center;'>
 
-    <div class="col-md-4">
-        <h1 style="text-align: center;">CLIENT'S REGISTRATION</h1>
-        <img src="/static/register.webp" style="width: 100%;" alt="Doctor">
 
-    </div>
+    <h1 class="text-4xl text-indigo-600 font-semibold">Registration!</h1>
 
-    <div class="col-md-8">
+    <div class="col-md-12 mt-10">
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <br>
-            <button type="submit" class="col-md-10 btn btn-primary">Register</button>
+            <button type="submit" class="mt-10 col-md-12 btn bg-indigo-600 text-white hover:bg-indigo-800">Register</button>
         </form>
-        <div class="w-75" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+        <div class="w-100" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
             <div class="d-flex px-4 pt-2 mt-2">
                 <p class="mr-2">Have an Account?</p>
-                <a class="" href="/login">Login!</a>
+                <a class="font-semibold text-indigo-600 hover:text-indigo-800" href="/login">Login!</a>
             </div>
-            <a class="px-4 pb-2" href="/doctor_register">Register as a Doctor!</a>
+            <!-- <a class="px-4 pb-2" href="/doctor_register">Register as a Doctor!</a> -->
         </div>
     </div>
 

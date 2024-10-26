@@ -1,65 +1,62 @@
-{% extends "login_base.html" %}
+{% extends "fitness/base.html" %}
 
 {%block title%}User Dashboard{%endblock title%}
 
 {%block body%}
 <div class="container">
     {% if user_profile %}
-    <div class="row bg-white my-5 mx-2 p-3 rounded">
+    <div class="row bg-white my-5 mx-2 p-3 rounded w-100">
 
-        <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
-            <img src="/static/profile.webp" height="80px" alt="profile" class="rounded-circle">
-            <h5 class="text-center text-dark text-capitalize mb-3 my-3"><b>{{user_name}}</b></h5>
-            <h6 class="text-muted"><b>Username: {{user_username}}</b></h6>
-        </div>
-        <nav class="col-md-12 navbar navbar-expand-md navbar-light bg-white">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                    <a class="nav-link" href="/items/orders">Orders History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/test_history">Prediction History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/appointmentHistory">Appointment History</a>
-                    </li>
-                </ul>
+        <nav class="col-md-12 text-muted mb-[50px]">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <a href="/items/orders" class="hover:text-[#6C757D]">Orders History</a>
+                        <a href="/test_history" class="hover:text-[#6C757D]">Prediction History</a>
+                        <!-- <a href="/appointmentHistory" class="hover:text-[#6C757D]">Appointment History</a> -->
+                    </div>
+                </div>
             </div>
         </nav>
 
+        <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
+            <img src="/static/profile.webp" height="80px" alt="profile" class="rounded-circle h-[80px] w-[80px]">
+            <h5 class="text-center text-indigo-600 text-2xl text-capitalize mb-3 my-3"><b>{{user_name}}</b></h5>
+            <h6 class="text-muted"><b>Username: {{user_username}}</b></h6>
+        </div>
+
         <div class="col-md-12 my-2">
             <div class="card-body">
-                <h5 class="text-muted">Professional Information</h5>
-                <hr>
+                <h5 class="text-muted text-2xl">Professional Information</h5>
+                <hr class="my-3">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <h6 class="text-info"><b>Profession</b></h6>
+                        <h6 class="text-indigo-600"><b>Profession</b></h6>
                         <p class="text-muted">{{ user_profile.profession }}</p>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <h6 class="text-info"><b>Date of Birth</b></h6>
+                        <h6 class="text-indigo-600"><b>Date of Birth</b></h6>
                         <p class="text-muted">{{ user_profile.dob }}</p>
                     </div>
                 </div>
 
-                <h5 class="text-muted">Personal Information</h5>
-                <hr>
+                <h5 class="text-muted text-2xl mt-5">Personal Information</h5>
+                <hr class="my-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <h6 class="text-info"><b>Gender</b></h6>
+                        <h6 class="text-indigo-600"><b>Gender</b></h6>
                         <p class="text-muted">{{ user_profile.gender }}</p>
                     </div>
                     <div class="col-md-3">
-                        <h6 class="text-info"><b>Height</b></h6>
+                        <h6 class="text-indigo-600"><b>Height</b></h6>
                         <p class="text-muted">{{ user_profile.height }}</p>
                     </div>
                     <div class="col-md-3">
-                        <h6 class="text-info"><b>Weight</b></h6>
+                        <h6 class="text-indigo-600"><b>Weight</b></h6>
                         <p class="text-muted">{{ user_profile.weight }}</p>
                     </div>
                     <div class="col-md-3">
-                        <h6 class="text-info"><b>BMI</b></h6>
+                        <h6 class="text-indigo-600"><b>BMI</b></h6>
                         <p class="text-muted">{{ user_profile.bmi }}</p>
                     </div>
                 </div>

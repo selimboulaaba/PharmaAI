@@ -1674,7 +1674,7 @@
         "kind": 6,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "class UserRegistrationForm(UserCreationForm):\n    email = forms.EmailField()\n    class Meta:\n        model = User\n        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        # for CSS Properties\n        self.fields['username'].widget.attrs.update({'class': 'col-md-10 form-control'})\n        self.fields['email'].widget.attrs.update({'class': 'col-md-10 form-control'})",
+        "peekOfCode": "class UserRegistrationForm(UserCreationForm):\n    email = forms.EmailField()\n    class Meta:\n        model = User\n        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        # for CSS Properties\n        self.fields['username'].widget.attrs.update({'class': 'col-md-12 form-control'})\n        self.fields['email'].widget.attrs.update({'class': 'col-md-12 form-control'})",
         "detail": "home.views",
         "documentation": {}
     },
@@ -1935,7 +1935,7 @@
         "kind": 5,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "pcos_model = joblib.load('static/models/pcos_prediction.pkl')\nclass UserRegistrationForm(UserCreationForm):\n    email = forms.EmailField()\n    class Meta:\n        model = User\n        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        # for CSS Properties\n        self.fields['username'].widget.attrs.update({'class': 'col-md-10 form-control'})",
+        "peekOfCode": "pcos_model = joblib.load('static/models/pcos_prediction.pkl')\nclass UserRegistrationForm(UserCreationForm):\n    email = forms.EmailField()\n    class Meta:\n        model = User\n        fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        # for CSS Properties\n        self.fields['username'].widget.attrs.update({'class': 'col-md-12 form-control'})",
         "detail": "home.views",
         "documentation": {}
     },
@@ -2124,7 +2124,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def delete_from_cart(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    cartItem.delete()\n    return redirect('cart')\n@login_required\ndef update_quantity(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    new_quantity = int(request.POST.get('quantity', 1))\n    cartItem.quantity = new_quantity\n    cartItem.save()",
+        "peekOfCode": "def delete_from_cart(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    cartItem.delete()\n    return redirect('cart')\n@login_required\ndef update_quantity(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    action = request.POST.get('action')\n    if action == \"increase\":\n        cartItem.quantity += 1",
         "detail": "items.views",
         "documentation": {}
     },
@@ -2133,7 +2133,7 @@
         "kind": 2,
         "importPath": "items.views",
         "description": "items.views",
-        "peekOfCode": "def update_quantity(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    new_quantity = int(request.POST.get('quantity', 1))\n    cartItem.quantity = new_quantity\n    cartItem.save()\n    return redirect('cart')\n@login_required\ndef order(request):\n    cart = get_object_or_404(Cart, user=request.user)\n    cart_items = cart.items.all()",
+        "peekOfCode": "def update_quantity(request, pk):\n    cartItem = get_object_or_404(CartItem, pk=pk)\n    action = request.POST.get('action')\n    if action == \"increase\":\n        cartItem.quantity += 1\n    elif action == \"decrease\" and cartItem.quantity > 1:\n        cartItem.quantity -= 1\n    cartItem.save()\n    return redirect('cart')\n@login_required",
         "detail": "items.views",
         "documentation": {}
     },
