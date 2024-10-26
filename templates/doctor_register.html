@@ -6,16 +6,9 @@
 <div class = "main my-4" style = 'display: flex; flex-wrap: wrap; justify-content: center;'>
 <div class = "col-md-4">
     <h1 style="text-align: center;">DOCTOR'S REGISTRATION</h1>
-    <p style="text-align: center;"><i>Welcome Doctor, to Health Prediction application!</i></p>
     
     <img src="/static/register.webp" style="width: 100%;" alt="Doctor">
-    <br><br>
-    <p><b>Benifits of Registration</b></p>
-    <ul>
-        <li>Schedule appointments with healthcare professionals.</li>
-        <li>Consult with doctors according to your specific needs.</li>
-        <li>Receive your online health report.</li>
-    </ul>
+
     
 </div>
 <div class = "col-md-8">
@@ -25,6 +18,13 @@
         <br>
         <button type="submit" class = "col-md-10 btn btn-primary">Register as Doctor</button>
     </form>
+    <div class="w-75" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+        <div class="d-flex px-4 pt-2 mt-2">
+            <p class="mr-2">Have an Account?</p>
+            <a class="" href="/doctor_login">Login!</a>
+        </div>
+        <a class="px-4 pb-2" href="/register">Register as a Client!</a>
+    </div>
 </div>
 </div>
 {%endblock body%}

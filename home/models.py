@@ -26,14 +26,23 @@ class userHistory(models.Model):
 
     def get_symptoms(self):
         return json.loads(self.symptoms)
+    
+    def __str__(self):
+        return self.test_type + " by " + self.user.username
 
 class Appointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     appointment_date = models.DateTimeField()
+    
+    def __str__(self):
+        return "Appointment by " + self.user.username
 
 class Receipt(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     receipt_file = models.FileField(upload_to='receipts/')
+    
+    def __str__(self):
+        return "Receipt by " + self.user.username
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,6 +57,9 @@ class UserProfile(models.Model):
         if self.height and self.weight:
             return round(self.weight / ((self.height / 100) ** 2), 2)
         return None
+    
+    def __str__(self):
+        return self.user.username
 
 
 class mentalDisorder(models.Model):
@@ -126,14 +138,7 @@ class DoctorUser(AbstractUser):
     phone = models.CharField(max_length=20)
     specialization = models.CharField(max_length=100)
     hospital = models.CharField(max_length=255)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    about = models.CharField(max_length=1000)
-    education = models.CharField(max_length=1000)
     experience = models.CharField(max_length=1000)
-    languages = models.CharField(max_length=1000)
-    expertise = models.CharField(max_length=1000)
 
     class Meta:
         db_table = 'doctor_user'

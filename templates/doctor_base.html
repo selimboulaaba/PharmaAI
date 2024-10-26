@@ -11,7 +11,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <title>Health | {%block title%}{%endblock title%}</title>
+    <title>PharmaAI | {%block title%}{%endblock title%}</title>
     <style>
         html{
             scroll-behavior: smooth;
@@ -45,7 +45,7 @@
             </button>
     
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mx-auto">
                     
                     <li class="nav-item">
                         <a class="nav-link" href="/appointmentRequest">Appointment Requests</a>
@@ -69,15 +69,9 @@
     
     {%block body%}{%endblock body%}
 
-    <footer class="my-5 pt-5 text-muted text-center text-small" id="contact">
-        <p class="mb-1">&copy; Copyright 2024 Shruti Shrivastava</p>
-        <p><i>This is entirely prediction, not 100% accurate. The purpose is for project work. Consult doctor if you
-                have any issue.</i></p>
-        <ul class="list-inline">
-            <li class="list-inline-item"><a href="https://github.com/theiturhs" target="_blank">GitHub</a></li>
-            <li class="list-inline-item"><a href="https://www.linkedin.com/in/shrutikshrivastava/"
-                    target="_blank">LinkedIn</a></li>
-        </ul>
+    <footer class="text-muted text-center text-small" id="contact">
+        <p class="mb-1">&copy; Copyright 2024 PharmaAI.</p>
+        <p><i>The Three Layers.</i></p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

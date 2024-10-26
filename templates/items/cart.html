@@ -1,15 +1,14 @@
-{% extends "login_base.html" %}
+{% extends "fitness/base.html" %}
 
-{%block title%}Cart{%endblock title%}
+{% block title %}Cart{% endblock title %}
 
-{%block body%}
+{% block body %}
 <section class="h-100">
     <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
-
+        <div class="row d-flex justify-content-center align-items-center h-100 w-100">
+            <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="fw-normal mb-0">Shopping Cart</h3>
+                    <h3 class="text-3xl fw-normal mb-0">Shopping Cart</h3>
                 </div>
 
                 {% for cartItem in cart_items %}
@@ -17,36 +16,52 @@
                     <div class="card-body p-4">
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="{{cartItem.item.image.url}}" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                <img src="{{ cartItem.item.image.url }}" class="img-fluid rounded-3" alt="{{ cartItem.item.name }} Image">
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">{{cartItem.item.name}}</p>
-                                <p><span class="text-muted">Category: </span>{{cartItem.item.category.name}}
-                                </p>
+                                <p class="lead fw-normal text-indigo-600 font-semibold mb-2">{{ cartItem.item.name }}</p>
+                                <p><span class="text-muted">Category: </span>{{ cartItem.item.category.name }}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <form action="{% url 'update_quantity' cartItem.id %}" method="POST">
+                                <form action="{% url 'update_quantity' cartItem.id %}" method="POST" class="d-flex">
                                     {% csrf_token %}
-                                    <div class="d-flex">
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <input id="form1" min="0" name="quantity" value={{cartItem.quantity}}
-                                            type="number" class="form-control form-control-sm" />
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
+                                    <button type="submit" class="btn btn-link px-2"  name="action" value="decrease" {% if cartItem.quantity <= 1 %} disabled {% endif %}>
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input id="form1" min="0" name="quantity" value="{{ cartItem.quantity }}" type="number" class="form-control form-control-sm" />
+                                    <button type="submit" class="btn btn-link px-2"  name="action" value="increase">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
                                 </form>
                             </div>
                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">{{cartItem.item.price}} DT</h5>
+                                <h5 class="mb-0">{{ cartItem.item.price|floatformat:2 }} DT</h5>
                             </div>
                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="{% url 'delete_from_cart' cartItem.id %}" class="text-danger"><i
-                                        class="fas fa-trash fa-lg"></i></a>
+                                    <i data-toggle="modal" data-target="#removeModal{{ cartItem.id }}" style="cursor: pointer;" class="text-danger fas fa-trash fa-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="removeModal{{ cartItem.id }}" tabindex="-1" role="dialog" aria-labelledby="removeTitle{{ cartItem.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="removeTitle{{ cartItem.id }}">
+                                    <b>Delete <span class="text-indigo-600">{{ cartItem.item.name }}</span> from Cart</b>
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{% url 'delete_from_cart' cartItem.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12">Delete</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger col-md-12" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -55,8 +70,7 @@
 
                 <div class="card mb-4">
                     <div class="card-body d-flex justify-content-between align-items-center">
-                        <h4 class="form-label mb-0">Total Price:</h4>
-                        <h4 class="text-right mb-0">{{ total_price }} DT</h4>
+                        <h4 class="text-right mb-0 inline text-xl"><p class="text-xl inline">Total Price:</p> {{ total_price|floatformat:2 }} DT</h4>
                     </div>
                 </div>
 
@@ -64,9 +78,7 @@
                     <div class="card-body">
                         <form action="order" method="POST">
                             {% csrf_token %}
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                            class="btn btn-warning btn-block btn-lg"
-                            {% if cart_items|length == 0 %} disabled {% endif %}>Proceed to Pay</button>
+                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn bg-indigo-600 text-white hover:bg-indigo-800 btn-block btn-lg" {% if cart_items|length == 0 %} disabled {% endif %}>Proceed to Pay</button>
                         </form>
                     </div>
                 </div>
@@ -75,4 +87,4 @@
         </div>
     </div>
 </section>
-{%endblock body%}
+{% endblock body %}

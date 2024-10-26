@@ -1,34 +1,29 @@
-{% extends "base.html" %}
+{% extends "new_base.html" %}
 
 {%block title%}User Registration{%endblock title%}
 
 {%block body%}
-    <div class = "main my-4" style = 'display: flex; flex-wrap: wrap; justify-content: center;'>
-        
-        <div class = "col-md-4">
-            <h1 style="text-align: center;">REGISTRATION</h1>
-            <p style="text-align: center;"><i>Welcome to Health Prediction application!</i></p>
-            
-            <img src="/static/register.webp" style="width: 100%;" alt="Doctor">
-            <br><br>
-            <p><b>Benifits of Registration</b></p>
-            <ul>
-                <li>Schedule appointments with healthcare professionals.</li>
-                <li>Consult with doctors according to your specific needs.</li>
-                <li>Receive your online health report.</li>
-            </ul>
-            
-        </div>
+<div class="main my-4 w-100" style='display: flex; flex-wrap: wrap; justify-content: center;'>
 
-        <div class = "col-md-8">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <br>
-                <button type="submit" class = "col-md-10 btn btn-primary">Register</button>
-            </form>
-        </div>
-        
 
+    <h1 class="text-4xl text-indigo-600 font-semibold">Registration!</h1>
+
+    <div class="col-md-12 mt-10">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <button type="submit" class="mt-10 col-md-12 btn bg-indigo-600 text-white hover:bg-indigo-800">Register</button>
+        </form>
+        <div class="w-100" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+            <div class="d-flex px-4 pt-2 mt-2">
+                <p class="mr-2">Have an Account?</p>
+                <a class="font-semibold text-indigo-600 hover:text-indigo-800" href="/login">Login!</a>
+            </div>
+            <!-- <a class="px-4 pb-2" href="/doctor_register">Register as a Doctor!</a> -->
+        </div>
     </div>
+
+
+</div>
 {%endblock body%}

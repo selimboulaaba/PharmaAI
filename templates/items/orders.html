@@ -1,4 +1,4 @@
-{% extends "login_base.html" %}
+{% extends "fitness/base.html" %}
 
 {%block title%}Orders{%endblock title%}
 
@@ -6,8 +6,8 @@
 
 <div class="container my-4">
 
-    <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h3 class="my-3 pb-2 mb-0">Orders History</h3>
+    <div class="my-3 p-3 bg-white rounded box-shadow w-100">
+        <h3 class="my-3 pb-2 mb-0 text-3xl p-[10px]">Orders History</h3>
         <br>
         <table class="table">
             <thead>
@@ -25,8 +25,8 @@
                     <td class="align-middle">{{ order.price }} DT</td>
                     <td class="align-middle">{{ order.created_at|date:"d/m/Y-H:i" }}</td>
                     <td class="align-middle">
-                        <button type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#showDetailModal{{ order.id }}">
+                        <button type="button" class="btn bg-indigo-600 hover:bg-indigo-800 text-white"
+                            data-toggle="modal" data-target="#showDetailModal{{ order.id }}">
                             Details
                         </button>
                     </td>
@@ -42,14 +42,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle{{ order.id }}"><b>Products</b>
+                <h5 class="modal-title text-3xl" id="exampleModalLongTitle{{ order.id }}"><b>Products</b>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h5 class="my-3">Total Price: {{ order.price }}</h5>
+                <h5 class="my-3">Total Price: {{ order.price }} DT</h5>
                 <br>
                 <table class="table border-white">
                     <tr>

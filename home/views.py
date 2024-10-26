@@ -51,37 +51,28 @@ class UserRegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for CSS Properties
-        self.fields['username'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['email'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['first_name'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['last_name'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['password1'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['password2'].widget.attrs.update({'class': 'col-md-10 form-control'})
-
-        self.fields['username'].help_text = '<span class="text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>'
-        self.fields['email'].help_text = '<span class="text-muted">Required. Inform a valid email address.</span>'
-        self.fields['password2'].help_text = '<span class="text-muted">Enter the same password as before, for verification.</span>'
-        self.fields['password1'].help_text = '<span class="text-muted"><ul class="small"><li class="text-muted">Your password can not be too similar to your other personal information.</li><li class="text-muted">Your password must contain at least 8 characters.</li><li class="text-muted">Your password can not be a commonly used password.</li><li class="text-muted">Your password can not be entirely numeric.</li></ul></span>' 
-
+        self.fields['username'].widget.attrs.update({'class': 'col-md-12 form-control'})
+        self.fields['email'].widget.attrs.update({'class': 'col-md-12 form-control'})
+        self.fields['first_name'].widget.attrs.update({'class': 'col-md-12 form-control'})
+        self.fields['last_name'].widget.attrs.update({'class': 'col-md-12 form-control'})
+        self.fields['password1'].widget.attrs.update({'class': 'col-md-12 form-control'})
+        self.fields['password2'].widget.attrs.update({'class': 'col-md-12 form-control'})
+        
+        self.fields['username'].help_text = None
+        self.fields['email'].help_text = None
+        self.fields['password1'].help_text = None
+        self.fields['password2'].help_text = None
 class DoctorRegistrationForm(UserRegistrationForm):
     
     phone = forms.CharField(max_length=20)
     specialization = forms.CharField(max_length=100)
     hospital = forms.CharField(max_length=255)
-    city = forms.CharField(max_length = 100)
-    state = forms.CharField(max_length = 100)
-    country = forms.CharField(max_length = 100)
-    about = forms.CharField(max_length = 1000)
-    education = forms.CharField(max_length = 1000)
     experience = forms.CharField(max_length = 1000)
-    languages = forms.CharField(max_length = 1000)
-    expertise = forms.CharField(max_length = 1000)
 
     class Meta:
         model = DoctorUser
         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2', 
-                'phone', 'specialization', 'hospital', 'city', 'state', 'country',
-                'about', 'education', 'experience', 'languages', 'expertise']
+                'phone', 'specialization', 'hospital', 'experience']
         db_table = 'doctor_user'
 
     DoctorUser.groups.field.related_name = 'doctor_groups'
@@ -99,19 +90,7 @@ class DoctorRegistrationForm(UserRegistrationForm):
         self.fields['phone'].widget.attrs.update({'class': 'col-md-10 form-control'})
         self.fields['specialization'].widget.attrs.update({'class': 'col-md-10 form-control'})
         self.fields['hospital'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['city'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['state'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['country'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['about'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['education'].widget.attrs.update({'class': 'col-md-10 form-control'})
         self.fields['experience'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['languages'].widget.attrs.update({'class': 'col-md-10 form-control'})
-        self.fields['expertise'].widget.attrs.update({'class': 'col-md-10 form-control'})
-
-        self.fields['username'].help_text = '<span class="text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>'
-        self.fields['email'].help_text = '<span class="text-muted">Required. Inform a valid email address.</span>'
-        self.fields['password2'].help_text = '<span class="text-muted">Enter the same password as before, for verification.</span>'
-        self.fields['password1'].help_text = '<span class="text-muted"><ul class="small"><li class="text-muted">Your password can not be too similar to your other personal information.</li><li class="text-muted">Your password must contain at least 8 characters.</li><li class="text-muted">Your password can not be a commonly used password.</li><li class="text-muted">Your password can not be entirely numeric.</li></ul></span>' 
         
 def register(request):
     if request.method == 'POST':
@@ -134,15 +113,15 @@ def doctor_register(request):
     if request.method == 'POST':
         form = DoctorRegistrationForm(request.POST)
         form2 = UserRegistrationForm(request.POST)
-        
         try:
             if form.is_valid():
                 form.save()
                 form2.save()
                 return redirect('doctor_login')
-        except:
-            form = DoctorRegistrationForm()
+        except Exception as e:
+            print("Exception occurred:", e)
             messages.error(request, "Something went wrong. Try again!")
+
     else:
         form = DoctorRegistrationForm()
     return render(request, 'doctor_register.html', {'form': form})
@@ -154,7 +133,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('profile')
+            return redirect('dashboard')
         else:
             messages.error(request, "Something went wrong. Try again!")
     return render(request, 'login.html')
@@ -176,25 +155,6 @@ def doctor_login(request):
         else:
             messages.error(request, "Something went wrong. Try again!")
     return render(request, 'doctor_login.html')
-
-
-@login_required
-def complete_profile(request):
-    if UserProfile.objects.filter(user=request.user).exists():
-        # If profile exists, redirect to the dashboard profile page
-        return redirect('dashboard')
-    
-    if request.method == 'POST':
-        user_profile = UserProfile.objects.create(
-            user=request.user,
-            dob=request.POST['dob'],
-            gender=request.POST['gender'],
-            height=request.POST['height'],
-            weight=request.POST['weight'],
-            profession=request.POST['profession']
-        )
-        return redirect('dashboard')
-    return render(request, 'profile.html', {'user_name': request.user.first_name + " " + request.user.last_name})
 
 @login_required
 def user_dashboard(request):

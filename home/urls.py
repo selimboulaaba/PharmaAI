@@ -3,13 +3,11 @@ from django.urls import path
 from home import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path("", views.index, name='home'),
     path("register", views.register, name="register"),
     path("doctor_register", views.doctor_register, name="doctor_register"),
     path("login", views.user_login, name="login"),
     path("doctor_login", views.doctor_login, name="doctor_login"),
-    path("profile", views.complete_profile, name="profile"),
     path("dashboard", views.user_dashboard, name="dashboard"),
     path("doctor_dashboard", views.doctor_dashboard, name="doctor_dashboard"),
     path("health_prediction/", views.health_prediction, name="health_prediction"),
@@ -27,5 +25,5 @@ urlpatterns = [
     path('appointmentRequest', views.appointmentRequest, name='appointmentRequest'),
     path('appointmentScheduled', views.appointmentScheduled, name='appointmentScheduled'),
     path('update_status/<int:appointment_id>/', views.update_status, name='update_status'),
-    
+
 ]
