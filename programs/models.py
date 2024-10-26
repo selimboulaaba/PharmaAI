@@ -14,7 +14,7 @@ class FitnessProgram(models.Model):
     difficulty = models.CharField(max_length=20, choices=DIFFICULTY_CHOICES)
     duration = models.IntegerField(help_text="Duration in minutes")
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='fitness_programs/', null=True, blank=True)
+    image = models.ImageField(upload_to='program_images/', null=True, blank=True)
     estimated_calories = models.IntegerField()
     equipment_needed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

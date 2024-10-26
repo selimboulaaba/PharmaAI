@@ -344,6 +344,46 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -358,6 +398,14 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -564,6 +612,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "django.contrib.auth.validators",
         "kind": 6,
         "isExtraImport": true,
@@ -645,6 +701,22 @@
         "documentation": {}
     },
     {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -718,6 +790,46 @@
         "documentation": {}
     },
     {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "views",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -727,6 +839,14 @@
     },
     {
         "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "views",
         "importPath": "django",
         "description": "django",
         "isExtraImport": true,
@@ -856,6 +976,30 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse_lazy",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "reverse_lazy",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -900,6 +1044,38 @@
     },
     {
         "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -1028,6 +1204,22 @@
     },
     {
         "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -1229,11 +1421,35 @@
         "documentation": {}
     },
     {
+        "label": "ValidationError",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponseRedirect",
         "importPath": "django.http",
         "description": "django.http",
         "isExtraImport": true,
         "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "View",
+        "importPath": "django.views",
+        "description": "django.views",
+        "isExtraImport": true,
+        "detail": "django.views",
         "documentation": {}
     },
     {
@@ -1246,6 +1462,38 @@
     },
     {
         "label": "DetailView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "CreateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteView",
+        "importPath": "django.views.generic",
+        "description": "django.views.generic",
+        "isExtraImport": true,
+        "detail": "django.views.generic",
+        "documentation": {}
+    },
+    {
+        "label": "ListView",
         "importPath": "django.views.generic",
         "description": "django.views.generic",
         "isExtraImport": true,
@@ -1293,11 +1541,116 @@
         "documentation": {}
     },
     {
+        "label": "LoginRequiredMixin",
+        "importPath": "django.contrib.auth.mixins",
+        "description": "django.contrib.auth.mixins",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.mixins",
+        "documentation": {}
+    },
+    {
         "label": "Q",
         "importPath": "django.db.models",
         "description": "django.db.models",
         "isExtraImport": true,
         "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessProgram",
+        "importPath": "programs.models",
+        "description": "programs.models",
+        "isExtraImport": true,
+        "detail": "programs.models",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessProgram",
+        "importPath": "programs.models",
+        "description": "programs.models",
+        "isExtraImport": true,
+        "detail": "programs.models",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleCalendarView",
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "isExtraImport": true,
+        "detail": "schedule.views",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleCreateView",
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "isExtraImport": true,
+        "detail": "schedule.views",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleDeleteView",
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "isExtraImport": true,
+        "detail": "schedule.views",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleUpdateView",
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "isExtraImport": true,
+        "detail": "schedule.views",
         "documentation": {}
     },
     {
@@ -2223,7 +2576,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"home.apps.HomeConfig\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"items\", \n    \"programs\"",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"home.apps.HomeConfig\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"items\", \n    \"programs\",",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2295,7 +2648,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\n# MEDIA_ROOT = BASE_DIR / 'media'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2304,7 +2657,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\n# MEDIA_ROOT = BASE_DIR / 'media'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n# Default primary key field type",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2313,7 +2666,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\n# MEDIA_ROOT = BASE_DIR / 'media'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2322,7 +2675,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.0/howto/static-files/\nSTATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\n# MEDIA_ROOT = BASE_DIR / 'media'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2331,7 +2684,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]",
+        "peekOfCode": "STATIC_URL = \"static/\"\nMEDIA_URL = 'media/'\n# MEDIA_ROOT = BASE_DIR / 'media'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2340,7 +2693,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "MEDIA_URL = 'media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]\n#LOGIN_REDIRECT_URL = '/doctor_dashboard'",
+        "peekOfCode": "MEDIA_URL = 'media/'\n# MEDIA_ROOT = BASE_DIR / 'media'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2349,7 +2702,7 @@
         "kind": 5,
         "importPath": "predictHealth.settings",
         "description": "predictHealth.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]\n#LOGIN_REDIRECT_URL = '/doctor_dashboard'\n# LOGIN_URL = '/doctor_login'",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# manually entering\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\"\n]\n#LOGIN_REDIRECT_URL = '/doctor_dashboard'\n# LOGIN_URL = '/doctor_login'",
         "detail": "predictHealth.settings",
         "documentation": {}
     },
@@ -2385,7 +2738,7 @@
         "kind": 5,
         "importPath": "predictHealth.urls",
         "description": "predictHealth.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"items/\", include('items.urls')),\n    path(\"programs/\", include('programs.urls')),\n    path(\"\", include('home.urls')),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin/\", admin.site.urls),\n    path(\"items/\", include('items.urls')),\n    path(\"programs/\", include('programs.urls')),\n    path(\"schedule/\", include('schedule.urls')),\n    path(\"\", include('home.urls')),\n] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
         "detail": "predictHealth.urls",
         "documentation": {}
     },
@@ -2417,6 +2770,33 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "programs.migrations.0002_alter_fitnessprogram_image",
+        "description": "programs.migrations.0002_alter_fitnessprogram_image",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('programs', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='fitnessprogram',\n            name='image',\n            field=models.ImageField(blank=True, null=True, upload_to='program_images/'),\n        ),",
+        "detail": "programs.migrations.0002_alter_fitnessprogram_image",
+        "documentation": {}
+    },
+    {
+        "label": "get_item",
+        "kind": 2,
+        "importPath": "programs.templatetags.custom_filters",
+        "description": "programs.templatetags.custom_filters",
+        "peekOfCode": "def get_item(dictionary, key):\n    return dictionary.get(str(key))",
+        "detail": "programs.templatetags.custom_filters",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "programs.templatetags.custom_filters",
+        "description": "programs.templatetags.custom_filters",
+        "peekOfCode": "register = template.Library()\n@register.filter\ndef get_item(dictionary, key):\n    return dictionary.get(str(key))",
+        "detail": "programs.templatetags.custom_filters",
+        "documentation": {}
+    },
+    {
         "label": "FitnessCnfig",
         "kind": 6,
         "importPath": "programs.app",
@@ -2430,7 +2810,7 @@
         "kind": 6,
         "importPath": "programs.forms",
         "description": "programs.forms",
-        "peekOfCode": "class FitnessProgramForm(forms.ModelForm):\n    class Meta:\n        model = FitnessProgram\n        fields = ['title', 'description', 'difficulty', 'duration', \n                 'image', 'estimated_calories', 'equipment_needed']\n        widgets = {\n            'description': forms.Textarea(attrs={'rows': 4}),\n            'duration': forms.NumberInput(attrs={'min': 1}),\n        }\n        image = forms.ImageField(required=False)",
+        "peekOfCode": "class FitnessProgramForm(forms.ModelForm):\n    class Meta:\n        model = FitnessProgram\n        fields = ['title', 'description', 'difficulty', 'duration', \n                 'image', 'estimated_calories', 'equipment_needed']\n        widgets = {\n            'title': forms.TextInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'description': forms.Textarea(attrs={'class': 'form-textarea rounded-lg border-gray-300 w-full', 'rows': 4}),\n            'difficulty': forms.Select(attrs={'class': 'form-select rounded-lg border-gray-300 w-full'}),\n            'duration': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),",
         "detail": "programs.forms",
         "documentation": {}
     },
@@ -2439,7 +2819,16 @@
         "kind": 6,
         "importPath": "programs.forms",
         "description": "programs.forms",
-        "peekOfCode": "class ExerciseForm(forms.ModelForm):\n    class Meta:\n        model = Exercise\n        fields = ['name', 'description', 'sets', 'reps', 'order']\n        widgets = {\n            'order': forms.HiddenInput()  \n        }\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        if not self.instance.pk:  ",
+        "peekOfCode": "class ExerciseForm(forms.ModelForm):\n    class Meta:\n        model = Exercise\n        fields = ['name', 'description', 'sets', 'reps', 'order']\n        widgets = {\n            'name': forms.TextInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'description': forms.Textarea(attrs={'class': 'form-textarea rounded-lg border-gray-300 w-full', 'rows': 3}),\n            'sets': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'reps': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'order': forms.HiddenInput(),",
+        "detail": "programs.forms",
+        "documentation": {}
+    },
+    {
+        "label": "PersonalInfoForm",
+        "kind": 6,
+        "importPath": "programs.forms",
+        "description": "programs.forms",
+        "peekOfCode": "class PersonalInfoForm(forms.Form):\n    height = forms.IntegerField(  \n        label='Height (cm)',\n        min_value=1,\n        widget=forms.NumberInput(attrs={'placeholder': 'Enter your height in cm'})\n    )\n    weight = forms.IntegerField(  \n        label='Weight (kg)',\n        min_value=1,\n        widget=forms.NumberInput(attrs={'placeholder': 'Enter your weight in kg'})",
         "detail": "programs.forms",
         "documentation": {}
     },
@@ -2448,7 +2837,7 @@
         "kind": 5,
         "importPath": "programs.forms",
         "description": "programs.forms",
-        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    form=ExerciseForm,\n    fields=['name', 'description', 'sets', 'reps', 'order'],\n    extra=1,\n    can_delete=True\n)",
+        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    fields=('name', 'description', 'sets', 'reps', 'order'),\n    extra=3,\n    can_delete=True,\n    min_num=1,  \n    validate_min=True   \n)\nclass PersonalInfoForm(forms.Form):",
         "detail": "programs.forms",
         "documentation": {}
     },
@@ -2475,7 +2864,7 @@
         "kind": 5,
         "importPath": "programs.urls",
         "description": "programs.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', ProgramListView.as_view(), name='program_list'),\n    path('program/<int:pk>/', ProgramDetailView.as_view(), name='program_detail'),\n    path('program/new/', ProgramCreateView.as_view(), name='program_create'),\n    path('program/<int:pk>/edit/', ProgramUpdateView.as_view(), name='program_update'),\n    path('program/<int:pk>/delete/', ProgramDeleteView.as_view(), name='program_delete'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', ProgramListView.as_view(), name='program_list'),\n    path('program/<int:pk>/', ProgramDetailView.as_view(), name='program_detail'),\n    path('program/new/', ProgramCreateView.as_view(), name='program_create'),\n    path('program/<int:pk>/edit/', ProgramUpdateView.as_view(), name='program_update'),\n    path('program/<int:pk>/delete/', ProgramDeleteView.as_view(), name='program_delete'),\n    path('get-recommendation/', PersonalRecommendationView.as_view(), name='get_recommendation'),\n]",
         "detail": "programs.urls",
         "documentation": {}
     },
@@ -2484,7 +2873,7 @@
         "kind": 6,
         "importPath": "programs.views",
         "description": "programs.views",
-        "peekOfCode": "class ProgramListView(ListView):\n    model = FitnessProgram\n    template_name = 'fitness/program_list.html'\n    context_object_name = 'programs'\n    paginate_by = 9\n    def get_queryset(self):\n        queryset = FitnessProgram.objects.all().order_by('-created_at')\n        difficulty = self.request.GET.get('difficulty')\n        if difficulty:\n            queryset = queryset.filter(difficulty=difficulty)",
+        "peekOfCode": "class ProgramListView(ListView):\n    model = FitnessProgram\n    template_name = 'fitness/program_list.html'\n    context_object_name = 'programs'\n    def get(self, request, *args, **kwargs):\n        if request.GET.get('clear_session') == 'true':\n            if 'fitness_recommendation' in request.session:\n                del request.session['fitness_recommendation']\n        return super().get(request, *args, **kwargs)\n    def get_queryset(self):",
         "detail": "programs.views",
         "documentation": {}
     },
@@ -2511,7 +2900,7 @@
         "kind": 6,
         "importPath": "programs.views",
         "description": "programs.views",
-        "peekOfCode": "class ProgramUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):\n    model = FitnessProgram\n    form_class = FitnessProgramForm\n    template_name = 'fitness/program_form.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.POST:\n            context['exercise_formset'] = ExerciseFormSet(\n                self.request.POST, instance=self.object\n            )",
+        "peekOfCode": "class ProgramUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):\n    model = FitnessProgram\n    form_class = FitnessProgramForm\n    template_name = 'fitness/program_form.html'\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        if self.request.POST:\n            context['exercise_formset'] = ExerciseFormSet(\n                self.request.POST,\n                self.request.FILES,",
         "detail": "programs.views",
         "documentation": {}
     },
@@ -2534,12 +2923,129 @@
         "documentation": {}
     },
     {
+        "label": "PersonalRecommendationView",
+        "kind": 6,
+        "importPath": "programs.views",
+        "description": "programs.views",
+        "peekOfCode": "class PersonalRecommendationView(View):\n    template_name = 'programs/program_list.html'\n    def get(self, request, *args, **kwargs): \n        form = PersonalInfoForm()\n        return render(request, self.template_name, {\n            'personal_info_form': form,\n            'programs': FitnessProgram.objects.all()\n        })\n    def post(self, request, *args, **kwargs):\n        form = PersonalInfoForm(request.POST, request.FILES)",
+        "detail": "programs.views",
+        "documentation": {}
+    },
+    {
         "label": "ExerciseFormSet",
         "kind": 5,
         "importPath": "programs.views",
         "description": "programs.views",
-        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    fields=['name', 'description', 'sets', 'reps', 'order'],\n    extra=1,\n    can_delete=True\n)",
+        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    fields=['name', 'description', 'sets', 'reps', 'order'],\n    extra=1,\n    can_delete=True\n)\nclass PersonalRecommendationView(View):\n    template_name = 'programs/program_list.html'\n    def get(self, request, *args, **kwargs): ",
         "detail": "programs.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "schedule.migrations.0001_initial",
+        "description": "schedule.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('programs', '0002_alter_fitnessprogram_image'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='TrainingSchedule',\n            fields=[",
+        "detail": "schedule.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "get_item",
+        "kind": 2,
+        "importPath": "schedule.templatetags.schedule_tags",
+        "description": "schedule.templatetags.schedule_tags",
+        "peekOfCode": "def get_item(dictionary, key):\n    return dictionary.get(key)\n@register.filter\ndef add_class(field, css_class):\n    return field.as_widget(attrs={\"class\": css_class})",
+        "detail": "schedule.templatetags.schedule_tags",
+        "documentation": {}
+    },
+    {
+        "label": "add_class",
+        "kind": 2,
+        "importPath": "schedule.templatetags.schedule_tags",
+        "description": "schedule.templatetags.schedule_tags",
+        "peekOfCode": "def add_class(field, css_class):\n    return field.as_widget(attrs={\"class\": css_class})",
+        "detail": "schedule.templatetags.schedule_tags",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "schedule.templatetags.schedule_tags",
+        "description": "schedule.templatetags.schedule_tags",
+        "peekOfCode": "register = template.Library()\n@register.filter\ndef get_item(dictionary, key):\n    return dictionary.get(key)\n@register.filter\ndef add_class(field, css_class):\n    return field.as_widget(attrs={\"class\": css_class})",
+        "detail": "schedule.templatetags.schedule_tags",
+        "documentation": {}
+    },
+    {
+        "label": "FitnessCnfig",
+        "kind": 6,
+        "importPath": "schedule.app",
+        "description": "schedule.app",
+        "peekOfCode": "class FitnessCnfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'schedule'",
+        "detail": "schedule.app",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingScheduleForm",
+        "kind": 6,
+        "importPath": "schedule.forms",
+        "description": "schedule.forms",
+        "peekOfCode": "class TrainingScheduleForm(forms.ModelForm):\n    class Meta:\n        model = TrainingSchedule\n        fields = ['program', 'weekday', 'start_time', 'notes']\n        widgets = {\n            'start_time': forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'class': 'form-control'}),  \n            'notes': forms.Textarea(attrs={'rows': 3, 'class': 'w-full p-2 border rounded'}),\n        }\n    def clean_start_time(self):\n        start_time_value = self.cleaned_data.get('start_time')",
+        "detail": "schedule.forms",
+        "documentation": {}
+    },
+    {
+        "label": "TrainingSchedule",
+        "kind": 6,
+        "importPath": "schedule.models",
+        "description": "schedule.models",
+        "peekOfCode": "class TrainingSchedule(models.Model):\n    WEEKDAY_CHOICES = [\n        (0, 'Monday'),\n        (1, 'Tuesday'),\n        (2, 'Wednesday'),\n        (3, 'Thursday'),\n        (4, 'Friday'),\n        (5, 'Saturday'),\n        (6, 'Sunday'),\n    ]",
+        "detail": "schedule.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "schedule.urls",
+        "description": "schedule.urls",
+        "peekOfCode": "urlpatterns = [\npath('schedule/', ScheduleCalendarView.as_view(), name='schedule_calendar'),\npath('schedule/add/', ScheduleCreateView.as_view(), name='schedule_create'),\npath('schedule/<int:pk>/update/', ScheduleUpdateView.as_view(), name='schedule_update'),\npath('schedule/<int:pk>/delete/', ScheduleDeleteView.as_view(), name='schedule_delete'),\n]",
+        "detail": "schedule.urls",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleCalendarView",
+        "kind": 6,
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "peekOfCode": "class ScheduleCalendarView(LoginRequiredMixin, ListView):\n    model = TrainingSchedule\n    template_name = 'schedule/schedule_calendar.html'\n    context_object_name = 'schedules'\n    def get_queryset(self):\n        return TrainingSchedule.objects.filter(user=self.request.user)\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        context['form'] = TrainingScheduleForm()\n        context['weekdays'] = dict(TrainingSchedule.WEEKDAY_CHOICES)",
+        "detail": "schedule.views",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleCreateView",
+        "kind": 6,
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "peekOfCode": "class ScheduleCreateView(LoginRequiredMixin, CreateView):\n    model = TrainingSchedule\n    form_class = TrainingScheduleForm\n    success_url = reverse_lazy('schedule_calendar')\n    def form_valid(self, form):\n        form.instance.user = self.request.user\n        print(f\"User being set: {form.instance.user}\")  \n        try:\n            response = super().form_valid(form)\n            messages.success(self.request, 'Training scheduled successfully!')",
+        "detail": "schedule.views",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleUpdateView",
+        "kind": 6,
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "peekOfCode": "class ScheduleUpdateView(LoginRequiredMixin, UpdateView):\n    model = TrainingSchedule\n    form_class = TrainingScheduleForm\n    success_url = reverse_lazy('schedule_calendar')\n    def get_queryset(self):\n        return TrainingSchedule.objects.filter(user=self.request.user)\nclass ScheduleDeleteView(LoginRequiredMixin, DeleteView):\n    model = TrainingSchedule\n    template_name = 'schedule/schedule_delete.html' \n    success_url = reverse_lazy('schedule_calendar')",
+        "detail": "schedule.views",
+        "documentation": {}
+    },
+    {
+        "label": "ScheduleDeleteView",
+        "kind": 6,
+        "importPath": "schedule.views",
+        "description": "schedule.views",
+        "peekOfCode": "class ScheduleDeleteView(LoginRequiredMixin, DeleteView):\n    model = TrainingSchedule\n    template_name = 'schedule/schedule_delete.html' \n    success_url = reverse_lazy('schedule_calendar')\n    def get_queryset(self):\n        return TrainingSchedule.objects.filter(user=self.request.user)\n    def delete(self, request, *args, **kwargs):\n        messages.success(request, 'Schedule deleted successfully!')\n        return super().delete(request, *args, **kwargs)",
+        "detail": "schedule.views",
         "documentation": {}
     },
     {

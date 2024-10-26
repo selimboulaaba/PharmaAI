@@ -1,74 +1,384 @@
 {% extends 'fitness/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load custom_filters %} 
 
 {% block body %}
 <div class="space-y-6">
-    <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-bold text-gray-800">Fitness Programs</h1>
-        <a href="{% url 'program_create' %}" 
-           class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition">
-            Create New Program
-        </a>
-    </div>
-
-    <div class="bg-white p-4 rounded-lg shadow">
-        <form method="get" class="flex space-x-4">
-            <select name="difficulty" class="rounded-lg border-gray-300">
-                <option value="">All Difficulties</option>
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-            </select>
-            <select name="duration" class="rounded-lg border-gray-300">
-                <option value="">All Durations</option>
-                <option value="short">Short (< 30 mins)</option>
-                <option value="medium">Medium (30-60 mins)</option>
-                <option value="long">Long (> 60 mins)</option>
-            </select>
-            <button type="submit" class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
-                Apply Filters
-            </button>
-        </form>
-    </div>
-
-    <!-- Programs Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for program in programs %}
-        <div class="program-card bg-white rounded-lg shadow-lg overflow-hidden">
-            <div class="relative">
-                {% if program.image %}
-                    <img src="{{ program.image.url }}" alt="{{ program.title }}" class="w-full h-48 object-cover">
-                {% else %}
-                    <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
-                        <i class="fas fa-dumbbell text-4xl text-gray-400"></i>
-                    </div>
-                {% endif %}
-                <div class="absolute top-2 right-2">
-                    <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm">
-                        {{ program.difficulty }}
-                    </span>
-                </div>
-            </div>
-            <div class="p-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-2">{{ program.title }}</h2>
-                <p class="text-gray-600 mb-4">{{ program.description|truncatewords:20 }}</p>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <i class="fas fa-clock text-gray-400"></i>
-                        <span class="text-gray-600">{{ program.duration }} mins</span>
-                    </div>
-                    <a href="{% url 'program_detail' program.id %}" 
-                       class="text-indigo-600 hover:text-indigo-700 font-medium">
-                        View Details →
-                    </a>
-                </div>
-            </div>
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-gray-800">Fitness Programs</h1>
+    <a
+      href="{% url 'program_create' %}"
+      class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition"
+    >
+      Create New Program
+    </a>
+  </div>
+  <div class="relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-xl">
+    <div class="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
+    <div class="relative p-8 md:p-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-4 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/20 rounded-full backdrop-blur-md">
+            <span class="text-sm font-medium text-white">Personalized Fitness</span>
+          </div>
+          
+          <h2 class="text-3xl md:text-4xl font-bold text-white">
+            Get Your Custom Fitness Plan
+          </h2>
+          
+          <p class="text-lg text-white/80 max-w-xl">
+            Upload your blood test results and receive a tailored fitness program designed specifically for your needs.
+          </p>
         </div>
-        {% empty %}
-        <div class="col-span-3 text-center py-12">
-            <i class="fas fa-folder-open text-4xl text-gray-400 mb-4"></i>
-            <p class="text-gray-600">No programs found. Create your first program!</p>
-        </div>
-        {% endfor %}
+        
+        <button
+        onclick="openRecommendationModal()" 
+          class="group relative inline-flex items-center gap-2 bg-white px-6 py-3 rounded-xl font-semibold text-blue-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition duration-200"
+        >
+          <FileText class="w-5 h-5" />
+          Get Started
+          <ChevronRight class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </button>
+      </div>
     </div>
+  </div>
+ 
+  <div class="bg-white p-4 rounded-lg shadow">
+    <form method="get" class="mb-6 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+              <label for="difficulty" class="block text-sm font-medium text-gray-700 mb-2">Difficulty Level</label>
+              <select name="difficulty" id="difficulty" 
+                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      onchange="this.form.submit()">
+                  {% for value, label in difficulty_choices %}
+                      <option value="{{ value }}" {% if value == current_difficulty %}selected{% endif %}>
+                          {{ label }}
+                      </option>
+                  {% endfor %}
+              </select>
+          </div>
+  
+          <div>
+              <label for="duration" class="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+              <select name="duration" id="duration" 
+                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      onchange="this.form.submit()">
+                  {% for value, label in duration_choices %}
+                      <option value="{{ value }}" {% if value == current_duration %}selected{% endif %}>
+                          {{ label }}
+                      </option>
+                  {% endfor %}
+              </select>
+          </div>
+      </div>
+  </form>
+  </div>
+  <div id="recommendationModal" 
+  class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-y-auto"
+  aria-labelledby="modal-title" 
+  role="dialog" 
+  aria-modal="true">
+  
+  <div class="min-h-screen px-4 text-center">
+      <div class="fixed inset-0" aria-hidden="true">
+          <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+      </div>
+
+      <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+
+      <div class="inline-block w-full max-w-xl p-6 my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+          <div class="flex justify-between items-center border-b pb-4">
+              <h3 class="text-2xl font-bold text-gray-900" id="modal-title">
+                  Your Information
+              </h3>
+              <button 
+                  onclick="closeRecommendationModal()" 
+                  class="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <span class="sr-only">Close</span>
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+              </button>
+          </div>
+
+          <div class="mt-4">
+              <form method="post" enctype="multipart/form-data" class="space-y-6" id="recommendationForm">
+                  {% csrf_token %}
+                  
+                  {% for field in personal_info_form %}
+                  <div class="form-group">
+                      <label for="{{ field.auto_id }}" 
+                             class="block text-sm font-semibold text-gray-700 mb-2">
+                          {{ field.label }}
+                      </label>
+                      
+                      {{ field|add_class:"w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" }}
+                      
+                      {% if field.errors %}
+                      <div class="mt-2">
+                          {% for error in field.errors %}
+                          <p class="text-red-600 text-sm">{{ error }}</p>
+                          {% endfor %}
+                      </div>
+                      {% endif %}
+                      
+                      {% if field.help_text %}
+                      <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
+                      {% endif %}
+                  </div>
+                  {% endfor %}
+
+                  <div class="mt-6 border-t pt-4 flex justify-end space-x-3">
+                      <button 
+                          type="button" 
+                          onclick="closeRecommendationModal()"
+                          class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                          Cancel
+                      </button>
+                      
+                      <button 
+                          type="submit" 
+                          class="px-6 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                          Get Recommendations
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
+{% if request.session.fitness_recommendation %}
+<div class="flex justify-end mb-4">
+  <a href="{% url 'program_list' %}?clear_session=true" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+      Clear Recommendations
+  </a>
+</div>
+{% endif %}
+
+<div class="max-w-4xl mx-auto px-4">
+  {% if request.session.fitness_recommendation %}
+      <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+          <h1 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-200">
+              Your Personalized Fitness Plan
+          </h1>
+          
+          <div class="mb-8">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Your Daily Requirements
+              </h2>
+              <div class="text-gray-600 leading-relaxed prose">
+                  {{ request.session.fitness_recommendation.need|linebreaks }}
+              </div>
+          </div>
+                    <div class="mb-8">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Workout Plan
+              </h2>
+              <div class="text-gray-600 leading-relaxed">
+                  {{ request.session.fitness_recommendation.workout_plan }}
+              </div>
+          </div>
+
+          {% if request.session.fitness_recommendation.diseases %}
+          <div class="mb-8">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Health Considerations based on your data
+              </h2>
+              <div class="{% if request.session.fitness_recommendation.diseases|get_item:key == 'healthy' %}bg-green-50 border-l-4 border-green-400{% elif request.session.fitness_recommendation.diseases|get_item:key == 'obesity' or request.session.fitness_recommendation.diseases|get_item:key == 'diabetic' %}bg-red-50 border-l-4 border-red-400{% else %}bg-yellow-50 border-l-4 border-yellow-400{% endif %} p-4">
+                <div class="flex">
+                    <div class="ml-3">
+                        <p class="text-sm {% if request.session.fitness_recommendation.diseases|get_item:key == 'healthy' %}text-green-700{% elif request.session.fitness_recommendation.diseases|get_item:key == 'obesity' or request.session.fitness_recommendation.diseases|get_item:key == 'diabetic' %}text-red-700{% else %}text-yellow-700{% endif %}">
+                            Your blood test result:
+                        </p>
+                        <ul class="mt-2 list-disc list-inside {% if request.session.fitness_recommendation.diseases|get_item:key == 'healthy' %}text-green-700{% elif request.session.fitness_recommendation.diseases|get_item:key == 'obesity' or request.session.fitness_recommendation.diseases|get_item:key == 'diabetic' %}text-red-700{% else %}text-yellow-700{% endif %}">
+                            {% for disease in request.session.fitness_recommendation.diseases %}
+                                <li>{{ disease|title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+          {% endif %}
+                    {% if request.session.fitness_recommendation.meal_plan %}
+          <div>
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Recommended Meal Plan
+              </h2>
+                            <div class="grid gap-4" id="mealList">
+                  {% for key, name in request.session.fitness_recommendation.meal_plan.Name.items %}
+                  <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <h3 class="font-medium text-gray-900">{{ name|title }}</h3>
+                              <p class="text-sm text-gray-600 mt-1">
+                                  Nutrient Focus: {{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key|title }}
+                              </p>
+                              {% with desc=request.session.fitness_recommendation.meal_plan.description|get_item:key %}
+                              {% if desc %}
+                              <p class="text-sm text-gray-500 mt-2">{{ desc }}</p>
+                              {% endif %}
+                              {% endwith %}
+                          </div>
+                          <span class="text-green-600 font-medium">{{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key }}</span>
+                      </div>
+                      <div class="mt-2">
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {% if request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key == 'veg' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                              {{ request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key|title }}
+                          </span>
+                          
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+                <div class="grid gap-4 hidden" id="remainingMeals">
+                  {% for key, name in request.session.fitness_recommendation.meal_plan.Name.items|slice:"6:" %}
+                  <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <h3 class="font-medium text-gray-900">{{ name|title }}</h3>
+                              <p class="text-sm text-gray-600 mt-1">
+                                  Nutrient Focus: {{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key|title }}
+                              </p>
+                              {% with desc=request.session.fitness_recommendation.meal_plan.description|get_item:key %}
+                              {% if desc %}
+                              <p class="text-sm text-gray-500 mt-2">{{ desc }}</p>
+                              {% endif %}
+                              {% endwith %}
+                          </div>
+                          <span class="text-green-600 font-medium">₹{{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key }}</span>
+                      </div>
+                      <div class="mt-2">
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {% if request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key == 'veg' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                              {{ request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key|title }}
+                          </span>
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            {{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key|title }}
+                        </span>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              
+              <button id="loadMoreBtn" 
+                      class="mt-6 w-full md:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg
+                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                             focus:ring-offset-2 transition-colors duration-200">
+                  Load More Meals
+              </button>
+          </div>
+          {% endif %}
+      </div>
+  {% endif %}
+</div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for program in programs %}
+    <div class="program-card bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="relative">
+        {% if program.image %}
+        <img
+          src="{{ program.image.url }}"
+          alt="{{ program.title }}"
+          class="w-full h-48 object-cover"
+        />
+        {% else %}
+        <div class="w-full h-48 bg-gray-300 flex items-center justify-center">
+          <i class="fas fa-dumbbell text-4xl text-gray-400"></i>
+        </div>
+        {% endif %}
+        <div class="absolute top-2 right-2">
+          <span class="bg-indigo-600 text-white px-3 py-1 rounded-full text-sm">
+            {{ program.difficulty }}
+          </span>
+        </div>
+      </div>
+      <div class="p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">
+          {{ program.title }}
+        </h2>
+        <p class="text-gray-600 mb-4">
+          {{ program.description|truncatewords:20 }}
+        </p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-clock text-gray-400"></i>
+            <span class="text-gray-600">{{ program.duration }} mins</span>
+          </div>
+          <a
+            href="{% url 'program_detail' program.id %}"
+            class="text-indigo-600 hover:text-indigo-700 font-medium"
+          >
+            View Details →
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-span-3 text-center py-12">
+      <i class="fas fa-folder-open text-4xl text-gray-400 mb-4"></i>
+      <p class="text-gray-600">No programs found. Create your first program!</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function openRecommendationModal() {
+        const modal = document.getElementById('recommendationModal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeRecommendationModal() {
+        const modal = document.getElementById('recommendationModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('recommendationModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeRecommendationModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !document.getElementById('recommendationModal').classList.contains('hidden')) {
+            closeRecommendationModal();
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('recommendationForm');
+    
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        try {
+            const response = await fetch('get-recommendation/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            closeRecommendationModal();
+            
+            window.location.reload();
+            
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was an error submitting your information. Please try again.');
+        }
+    });
+  });
+</script>
+</div>
+
 {% endblock %}
