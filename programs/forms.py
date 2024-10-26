@@ -31,11 +31,11 @@ class ExerciseForm(forms.ModelForm):
 ExerciseFormSet = inlineformset_factory(
     FitnessProgram,
     Exercise,
-    fields=['name', 'sets', 'reps'],  
+    fields=('name', 'description', 'sets', 'reps', 'order'),
     extra=3,
     can_delete=True,
     min_num=1,  
-    validate_min=True  
+    validate_min=True   
 )
 
 
