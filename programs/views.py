@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
 from django.contrib import messages
-from flask import logging, redirect
+from flask import json, logging, redirect, request
 import requests
 from .models import FitnessProgram, Exercise
 from .forms import FitnessProgramForm, ExerciseFormSet, PersonalInfoForm
@@ -15,6 +15,11 @@ class ProgramListView(ListView):
     model = FitnessProgram
     template_name = 'fitness/program_list.html'
     context_object_name = 'programs'
+    def get(self, request, *args, **kwargs):
+        if request.GET.get('clear_session') == 'true':
+            if 'fitness_recommendation' in request.session:
+                del request.session['fitness_recommendation']        
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -30,9 +35,8 @@ class ProgramListView(ListView):
                 queryset = queryset.filter(duration__gte=30, duration__lte=60)
             elif duration == 'Long (> 60 mins)':
                 queryset = queryset.filter(duration__gt=60)
-                
-        return queryset
 
+        return queryset
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['personal_info_form'] = PersonalInfoForm()
@@ -206,46 +210,65 @@ ExerciseFormSet = inlineformset_factory(
 
 class PersonalRecommendationView(View):
     template_name = 'programs/program_list.html'
-
-    def get(self, request, *args, **kwargs):
+    
+    def get(self, request, *args, **kwargs): 
         form = PersonalInfoForm()
         return render(request, self.template_name, {
             'personal_info_form': form,
-            'programs': FitnessProgram.objects.all()  
+            'programs': FitnessProgram.objects.all()
         })
-
+    
     def post(self, request, *args, **kwargs):
         form = PersonalInfoForm(request.POST, request.FILES)
         
         if form.is_valid():
             try:
                 files = {
-                    'blood_test': request.FILES['blood_test']
+                    'image': (
+                        request.FILES['blood_test'].name,
+                        request.FILES['blood_test'].read(),
+                        'image/jpeg'
+                    )
                 }
-                data = {
-                    'height': form.cleaned_data['height'],
-                    'weight': form.cleaned_data['weight'],
-                    'age': form.cleaned_data['age'],
-                    'gender': form.cleaned_data['gender'],
-                }
-
-                api_url = 'http://localhost:8001/api'
                 
-                response = requests.post(api_url, files=files, data=data)
-
+                data = {
+                    'height': int(form.cleaned_data['height']),
+                    'weight': int(form.cleaned_data['weight']),
+                    'age': int(form.cleaned_data['age']),
+                    'gender': form.cleaned_data['gender'],
+                    'diseases_info': None
+                }
+                api_url = 'http://localhost:8001/api'
+                response = requests.post(
+                    api_url,
+                    files=files,
+                    data=data,
+                    timeout=30
+                )
+                
                 if response.status_code == 200:
-                    recommendation_data = response.json()
-                    request.session['fitness_recommendation'] = recommendation_data
+                    request.session['fitness_recommendation'] = response.json()
                     messages.success(request, 'Successfully generated personalized recommendations!')
+                    return HttpResponseRedirect(reverse('program_list'))
                 else:
-                    messages.error(request, f'Error from API: {response.status_code} - {response.text}')
+                    messages.error(
+                        request,
+                        f'Error from API: {response.status_code} - {response.text}'
+                    )
+                    
+            except requests.RequestException as e:
+                messages.error(request, f'API connection error: {str(e)}')
+            except json.JSONDecodeError as e:
+                messages.error(request, f'Error processing API response: {str(e)}')
             except Exception as e:
-                messages.error(request, f'Error generating recommendations: {str(e)}')
+                messages.error(request, f'Unexpected error: {str(e)}')
         else:
             messages.error(request, 'Please correct the errors in the form.')
         
-        return redirect('program_list')
-
+        return render(request, self.template_name, {
+            'personal_info_form': form,
+            'programs': FitnessProgram.objects.all()
+        })
 
 # class PersonalRecommendationView(View):
 #     def post(self, request, *args, **kwargs):

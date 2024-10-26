@@ -1,5 +1,8 @@
 {% extends 'fitness/base.html' %} {% block content %}
 {% load widget_tweaks %}
+{% load static %}
+{% load custom_filters %} 
+
 <div class="space-y-6">
   <div class="flex justify-between items-center">
     <h1 class="text-3xl font-bold text-gray-800">Fitness Programs</h1>
@@ -26,19 +29,7 @@
       </button>
     </div>
   </div>
-  <!-- {% if request.session.fitness_recommendation %}
-  <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6">
-    <h3 class="font-bold">Your Personalized Recommendation</h3>
-    <p>
-      Daily Caloric Needs: {{ request.session.fitness_recommendation.need }}
-    </p>
-    <p>
-      Recommended Exercise: {{
-      request.session.fitness_recommendation.workout_plan }}
-    </p>
-  </div>
-  {% endif %} -->
-
+ 
   <div class="bg-white p-4 rounded-lg shadow">
     <form method="get" class="flex space-x-4">
       <select name="difficulty" class="rounded-lg border-gray-300">
@@ -90,7 +81,7 @@
           </div>
 
           <div class="mt-4">
-              <form method="post" class="space-y-6" id="recommendationForm">
+              <form method="post" enctype="multipart/form-data" class="space-y-6" id="recommendationForm">
                   {% csrf_token %}
                   
                   {% for field in personal_info_form %}
@@ -135,29 +126,130 @@
       </div>
   </div>
 </div>
+{% if request.session.fitness_recommendation %}
+<div class="flex justify-end mb-4">
+  <a href="{% url 'program_list' %}?clear_session=true" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+      Clear Recommendations
+  </a>
+</div>
+{% endif %}
 
-
+<div class="max-w-4xl mx-auto px-4 py-8">
   {% if request.session.fitness_recommendation %}
-  <div class="mb-6 p-6 bg-green-50 border-l-4 border-green-500 rounded-lg">
-    <h3 class="text-lg font-bold text-green-700 mb-2">
-      Your Personalized Plan
-    </h3>
-    <div class="space-y-2">
-      <p>{{ request.session.fitness_recommendation.need }}</p>
-      <p>{{ request.session.fitness_recommendation.workout_plan }}</p>
-      {% if request.session.fitness_recommendation.meal_plan %}
-      <div class="mt-4">
-        <h4 class="font-semibold mb-2">Recommended Meal Plan:</h4>
-        <ul class="list-disc list-inside">
-          {% for meal in request.session.fitness_recommendation.meal_plan %}
-          <li>{{ meal }}</li>
-          {% endfor %}
-        </ul>
+      <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+          <h1 class="text-3xl font-bold text-gray-900 mb-8 pb-4 border-b border-gray-200">
+              Your Personalized Fitness Plan
+          </h1>
+          
+          <div class="mb-8">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Your Daily Requirements
+              </h2>
+              <div class="text-gray-600 leading-relaxed prose">
+                  {{ request.session.fitness_recommendation.need|linebreaks }}
+              </div>
+          </div>
+                    <div class="mb-8">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Workout Plan
+              </h2>
+              <div class="text-gray-600 leading-relaxed">
+                  {{ request.session.fitness_recommendation.workout_plan }}
+              </div>
+          </div>
+
+          {% if request.session.fitness_recommendation.diseases %}
+          <div class="mb-8">
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Health Considerations based on your data
+              </h2>
+              <div class="{% if request.session.fitness_recommendation.diseases|get_item:key == 'healthy' %}bg-green-50 border-l-4 border-green-400{% elif request.session.fitness_recommendation.diseases|get_item:key == 'obesity' or request.session.fitness_recommendation.diseases|get_item:key == 'diabetic' %}bg-red-50 border-l-4 border-red-400{% else %}bg-yellow-50 border-l-4 border-yellow-400{% endif %} p-4">
+                <div class="flex">
+                    <div class="ml-3">
+                        <p class="text-sm {% if request.session.fitness_recommendation.diseases|get_item:key == 'healthy' %}text-green-700{% elif request.session.fitness_recommendation.diseases|get_item:key == 'obesity' or request.session.fitness_recommendation.diseases|get_item:key == 'diabetic' %}text-red-700{% else %}text-yellow-700{% endif %}">
+                            Your blood test result:
+                        </p>
+                        <ul class="mt-2 list-disc list-inside {% if request.session.fitness_recommendation.diseases|get_item:key == 'healthy' %}text-green-700{% elif request.session.fitness_recommendation.diseases|get_item:key == 'obesity' or request.session.fitness_recommendation.diseases|get_item:key == 'diabetic' %}text-red-700{% else %}text-yellow-700{% endif %}">
+                            {% for disease in request.session.fitness_recommendation.diseases %}
+                                <li>{{ disease|title }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </div>
+          {% endif %}
+                    {% if request.session.fitness_recommendation.meal_plan %}
+          <div>
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">
+                  Recommended Meal Plan
+              </h2>
+                            <div class="grid gap-4" id="mealList">
+                  {% for key, name in request.session.fitness_recommendation.meal_plan.Name.items %}
+                  <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <h3 class="font-medium text-gray-900">{{ name|title }}</h3>
+                              <p class="text-sm text-gray-600 mt-1">
+                                  Nutrient Focus: {{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key|title }}
+                              </p>
+                              {% with desc=request.session.fitness_recommendation.meal_plan.description|get_item:key %}
+                              {% if desc %}
+                              <p class="text-sm text-gray-500 mt-2">{{ desc }}</p>
+                              {% endif %}
+                              {% endwith %}
+                          </div>
+                          <span class="text-green-600 font-medium">{{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key }}</span>
+                      </div>
+                      <div class="mt-2">
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {% if request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key == 'veg' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                              {{ request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key|title }}
+                          </span>
+                          
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+                <div class="grid gap-4 hidden" id="remainingMeals">
+                  {% for key, name in request.session.fitness_recommendation.meal_plan.Name.items|slice:"6:" %}
+                  <div class="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
+                      <div class="flex justify-between items-start">
+                          <div>
+                              <h3 class="font-medium text-gray-900">{{ name|title }}</h3>
+                              <p class="text-sm text-gray-600 mt-1">
+                                  Nutrient Focus: {{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key|title }}
+                              </p>
+                              {% with desc=request.session.fitness_recommendation.meal_plan.description|get_item:key %}
+                              {% if desc %}
+                              <p class="text-sm text-gray-500 mt-2">{{ desc }}</p>
+                              {% endif %}
+                              {% endwith %}
+                          </div>
+                          <span class="text-green-600 font-medium">₹{{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key }}</span>
+                      </div>
+                      <div class="mt-2">
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {% if request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key == 'veg' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                              {{ request.session.fitness_recommendation.meal_plan.Veg_Non|get_item:key|title }}
+                          </span>
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            {{ request.session.fitness_recommendation.meal_plan.Nutrient|get_item:key|title }}
+                        </span>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+              
+              <button id="loadMoreBtn" 
+                      class="mt-6 w-full md:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg
+                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                             focus:ring-offset-2 transition-colors duration-200">
+                  Load More Meals
+              </button>
+          </div>
+          {% endif %}
       </div>
-      {% endif %}
-    </div>
-  </div>
   {% endif %}
+</div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for program in programs %}
@@ -208,18 +300,7 @@
     </div>
     {% endfor %}
   </div>
-  {% if request.session.fitness_recommendation %}
-  <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6">
-    <h3 class="font-bold">Your Personalized Recommendation</h3>
-    <p>
-      Daily Caloric Needs: {{ request.session.fitness_recommendation.need }}
-    </p>
-    <p>
-      Recommended Exercise: {{
-      request.session.fitness_recommendation.workout_plan }}
-    </p>
-  </div>
-  {% endif %}
+
   <script>
     function openRecommendationModal() {
         const modal = document.getElementById('recommendationModal');
@@ -244,6 +325,36 @@
             closeRecommendationModal();
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('recommendationForm');
+    
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        try {
+            const response = await fetch('get-recommendation/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            closeRecommendationModal();
+            
+            window.location.reload();
+            
+        } catch (error) {
+            console.error('Error:', error);
+            alert('There was an error submitting your information. Please try again.');
+        }
+    });
+  });
 </script>
 </div>
 

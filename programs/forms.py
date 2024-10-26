@@ -40,29 +40,33 @@ ExerciseFormSet = inlineformset_factory(
 
 
 class PersonalInfoForm(forms.Form):
-    height = forms.IntegerField(
+    height = forms.IntegerField(  
         label='Height (cm)',
-        min_value=100,
-        max_value=250,
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
+        min_value=1,
+        widget=forms.NumberInput(attrs={'placeholder': 'Enter your height in cm'})
     )
-    weight = forms.IntegerField(
+    weight = forms.IntegerField(  
         label='Weight (kg)',
-        min_value=30,
-        max_value=300,
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
+        min_value=1,
+        widget=forms.NumberInput(attrs={'placeholder': 'Enter your weight in kg'})
     )
     age = forms.IntegerField(
         label='Age',
-        min_value=16,
-        max_value=100,
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
+        min_value=1,
+        widget=forms.NumberInput(attrs={'placeholder': 'Enter your age'})
     )
     gender = forms.ChoiceField(
-        choices=[('male', 'Male'), ('female', 'Female')],
-        widget=forms.Select(attrs={'class': 'form-control'})
+        label='Gender',
+        choices=[('Male', 'Male'), ('Female', 'Female')],  
+        initial='Male'
     )
-    blood_test = forms.ImageField(
-        label='Blood Test Result',
-        widget=forms.FileInput(attrs={'class': 'form-control'})
+    blood_test = forms.FileField(
+        label='Blood Test Results',
+        required=True,
+        widget=forms.FileInput(attrs={
+            'accept': 'image/jpeg',  
+            'class': 'form-control'
+        }),
+        help_text='Please upload a JPEG image of your blood test results'
     )
+        
