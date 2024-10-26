@@ -160,7 +160,10 @@ def doctor_login(request):
 def user_dashboard(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
+        print("usss")
+        print(user_profile)
     except UserProfile.DoesNotExist:
+        print("eeeer")
         user_profile = None
 
     return render(request, 'user_dashboard.html', {'user_name': request.user.first_name + " " + request.user.last_name, 
