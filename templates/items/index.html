@@ -108,9 +108,9 @@
                             <option value="price,desc" {% if request.GET.sort == 'price,desc' %}selected{% endif %}>Price DESC</option>
                         </select>
                     </form>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                     {% for item in items %}
                     <div class="group">
                         <div class="relative bg-gray-800/30 backdrop-blur-lg rounded-2xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 border border-gray-700/50">
@@ -204,6 +204,9 @@
                     </div>
                     {% endfor %}
                 </div>
+            </div>
+        </div>
+    </div>
             </div>
         </div>
     </div>

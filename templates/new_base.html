@@ -3,8 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Fitness Program{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -12,8 +19,49 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css" />
 
     <style>
+      @keyframes glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+      }
+      .program-card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+      }
+      .nav-blur {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .gradient-border {
+        position: relative;
+        background: linear-gradient(
+          to right,
+          rgba(99, 102, 241, 0.1),
+          rgba(139, 92, 246, 0.1)
+        );
+      }
+      .gradient-border::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(to right, #6366f1, #8b5cf6);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      .gradient-border:hover::after {
+        transform: scaleX(1);
+      }
       @keyframes glow {
         0%,
         100% {
@@ -214,7 +262,6 @@
         {{ message }}
       </div>
       {% endfor %} {% endif %} {% block body %}{% endblock %}
-    </main>
 
     <style>
       @keyframes blob {
@@ -258,5 +305,6 @@
         }
       });
     </script>
-  </body>
+
 </html>
+
