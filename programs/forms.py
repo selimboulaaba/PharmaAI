@@ -31,13 +31,15 @@ class ExerciseForm(forms.ModelForm):
 ExerciseFormSet = inlineformset_factory(
     FitnessProgram,
     Exercise,
-    fields=('name', 'description', 'sets', 'reps', 'order'),
-    extra=3,
+    form=ExerciseForm,
+    extra=1,
     can_delete=True,
-    min_num=1,  
-    validate_min=True   
+    min_num=1,
+    validate_min=True,
+    max_num=10,
+    validate_max=True,
+    absolute_max=15
 )
-
 
 class PersonalInfoForm(forms.Form):
     height = forms.IntegerField(  

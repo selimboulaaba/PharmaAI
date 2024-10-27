@@ -100,23 +100,28 @@ class ProgramCreateView(LoginRequiredMixin, CreateView):
         context = self.get_context_data()
         exercise_formset = context['exercise_formset']
         
-        
-        form.instance.creator = self.request.user
-        self.object = form.save()
-        
-        if exercise_formset.is_valid():
-            exercises = exercise_formset.save(commit=False)
+        if form.is_valid() and exercise_formset.is_valid():
+            form.instance.creator = self.request.user
+            self.object = form.save()
             
-            for exercise in exercises:
-                exercise.program = self.object
-                exercise.save()
+            exercise_formset.instance = self.object
+            saved_exercises = exercise_formset.save()
             
-            messages.success(self.request, f'Program "{self.object.title}" created successfully with {len(exercises)} exercises!')
+            for deleted_object in exercise_formset.deleted_objects:
+                deleted_object.delete()
+            
+            messages.success(
+                self.request, 
+                f'Program "{self.object.title}" created successfully with {len(saved_exercises)} exercises!'
+            )
             return HttpResponseRedirect(self.get_success_url())
         else:
-            context['form'] = form  
-            context['exercise_formset'] = exercise_formset 
-            return self.render_to_response(context)
+            return self.form_invalid(form)
+    
+    def form_invalid(self, form):
+        context = self.get_context_data()
+        context['form'] = form
+        return self.render_to_response(context)
 
 # class ProgramCreateView(LoginRequiredMixin, CreateView):
 #     model = FitnessProgram
