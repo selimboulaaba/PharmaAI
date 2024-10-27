@@ -1,90 +1,184 @@
-{% extends "fitness/base.html" %}
-
+{% extends "new_base.html" %}
 {% block title %}Cart{% endblock title %}
 
 {% block body %}
-<section class="h-100">
-    <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100 w-100">
-            <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-3xl fw-normal mb-0">Shopping Cart</h3>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaAI - Cart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 60;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
 
-                {% for cartItem in cart_items %}
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img src="{{ cartItem.item.image.url }}" class="img-fluid rounded-3" alt="{{ cartItem.item.name }} Image">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal text-indigo-600 font-semibold mb-2">{{ cartItem.item.name }}</p>
-                                <p><span class="text-muted">Category: </span>{{ cartItem.item.category.name }}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <form action="{% url 'update_quantity' cartItem.id %}" method="POST" class="d-flex">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-link px-2"  name="action" value="decrease" {% if cartItem.quantity <= 1 %} disabled {% endif %}>
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input id="form1" min="0" name="quantity" value="{{ cartItem.quantity }}" type="number" class="form-control form-control-sm" />
-                                    <button type="submit" class="btn btn-link px-2"  name="action" value="increase">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">{{ cartItem.item.price|floatformat:2 }} DT</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                    <i data-toggle="modal" data-target="#removeModal{{ cartItem.id }}" style="cursor: pointer;" class="text-danger fas fa-trash fa-lg"></i>
-                            </div>
-                        </div>
-                    </div>
+        .modal.active {
+            display: block;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 28rem;
+            margin: 1rem auto;
+            z-index: 70;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-indigo-900 text-white">
+    <div class="fixed inset-0 overflow-hidden" style="z-index: 0;">
+        <div class="absolute -inset-[10px] opacity-50">
+            <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div class="absolute top-0 -right-4 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+    </div>
+
+    <div class="relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-gray-800/30 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden mb-8 border border-gray-700/50">
+                <div class="p-8">
+                    <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Shopping Cart</h1>
                 </div>
-                <div class="modal fade" id="removeModal{{ cartItem.id }}" tabindex="-1" role="dialog" aria-labelledby="removeTitle{{ cartItem.id }}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="removeTitle{{ cartItem.id }}">
-                                    <b>Delete <span class="text-indigo-600">{{ cartItem.item.name }}</span> from Cart</b>
-                                </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+            </div>
+
+            {% for cartItem in cart_items %}
+            <div class="bg-gray-800/30 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden mb-6 border border-gray-700/50 transform hover:scale-105 transition-all duration-300">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="w-full md:w-1/6">
+                            <img src="{{ cartItem.item.image.url }}" class="w-full h-32 object-cover rounded-xl" alt="{{ cartItem.item.name }} Image">
+                        </div>
+                        <div class="w-full md:w-1/4">
+                            <h3 class="text-xl font-semibold text-indigo-400">{{ cartItem.item.name }}</h3>
+                            <p class="text-gray-300">Category: {{ cartItem.item.category.name }}</p>
+                        </div>
+                        <div class="w-full md:w-1/4">
+                            <form action="{% url 'update_quantity' cartItem.id %}" method="POST" class="flex items-center justify-center gap-4">
+                                {% csrf_token %}
+                                <button type="submit" name="action" value="decrease" class="px-3 py-1 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors duration-200" {% if cartItem.quantity <= 1 %} disabled {% endif %}>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+                                    </svg>
                                 </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{% url 'delete_from_cart' cartItem.id %}" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12">Delete</button>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger col-md-12" data-dismiss="modal">Close</button>
-                            </div>
+                                <input type="number" name="quantity" value="{{ cartItem.quantity }}" class="w-20 px-3 py-2 bg-gray-700 rounded-lg text-center text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                <button type="submit" name="action" value="increase" class="px-3 py-1 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors duration-200">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="w-full md:w-1/6 text-center md:text-right">
+                            <p class="text-2xl font-bold text-indigo-400">{{ cartItem.item.price|floatformat:2 }} DT</p>
+                        </div>
+                        <div class="w-full md:w-1/12 text-center">
+                            <button onclick="openModal('removeModal{{ cartItem.id }}')" class="text-red-500 hover:text-red-400 transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+            </div>
 
-                <div class="card mb-4">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <h4 class="text-right mb-0 inline text-xl"><p class="text-xl inline">Total Price:</p> {{ total_price|floatformat:2 }} DT</h4>
+            <div id="removeModal{{ cartItem.id }}" class="modal">
+                <div class="modal-backdrop" onclick="closeModal('removeModal{{ cartItem.id }}')"></div>
+                <div class="modal-content">
+                    <div class="bg-gray-900 rounded-2xl shadow border border-gray-700">
+                        <div class="p-6 space-y-6">
+                            <h3 class="text-xl font-semibold text-white">Delete <span class="text-indigo-400">{{ cartItem.item.name }}</span> from Cart</h3>
+                            <form action="{% url 'delete_from_cart' cartItem.id %}" method="post" class="space-y-4">
+                                {% csrf_token %}
+                                <button type="submit" class="w-full px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-xl transition-all duration-300">
+                                    Delete
+                                </button>
+                            </form>
+                            <button onclick="closeModal('removeModal{{ cartItem.id }}')" class="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-xl transition-all duration-300">
+                                Cancel
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            {% endfor %}
 
-                <div class="card">
-                    <div class="card-body">
-                        <form action="order" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn bg-indigo-600 text-white hover:bg-indigo-800 btn-block btn-lg" {% if cart_items|length == 0 %} disabled {% endif %}>Proceed to Pay</button>
-                        </form>
-                    </div>
+            <div class="bg-gray-800/30 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden mb-6 border border-gray-700/50">
+                <div class="p-6 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold">Total Price:</h2>
+                    <p class="text-3xl font-bold text-indigo-400">{{ total_price|floatformat:2 }} DT</p>
                 </div>
+            </div>
 
+            <div class="bg-gray-800/30 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden border border-gray-700/50">
+                <div class="p-6">
+                    <form action="order" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl transition-all duration-300 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed" {% if cart_items|length == 0 %} disabled {% endif %}>
+                            Proceed to Pay
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</section>
+
+    <script>
+        gsap.from(".animate-blob", {
+            scale: 0.8,
+            duration: 20,
+            ease: "none",
+            repeat: -1,
+            yoyo: true,
+            stagger: {
+                each: 4,
+                from: "random",
+            },
+        });
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    closeModal(activeModal.id);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
 {% endblock body %}

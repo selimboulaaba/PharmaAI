@@ -1,98 +1,151 @@
-{% extends "fitness/base.html" %}
-
-{% block title %}Take Prediction{% endblock title %}
-
+{% extends "new_base.html" %} 
+{% block title %}Take Prediction{% endblock title %} 
 {% block body %}
 
-
-<div class="container my-5">
-    <div class="row mb-2">
-        <div class="col-md-6">
-            <div class="card mb-4 box-shadow">
-                <img src="/static/mental.png" alt="Mental Disorder Prediction">
-                <div class="card-body">
-                    <h3><strong class="d-inline-block mb-2 text-dark">Mental Disorder Prediction</strong></h3>
-                    <p class="card-text text-muted">Mental disorder Problem: A mental disorder is a clinically
-                        significant behavioral or psychological pattern that causes distress or impairment in
-                        functioning.</p>
-                    <a class="btn bg-indigo-600 text-white hover:bg-indigo-800 px-4 py-2" href="/mental_disorder">Take mental disorder
-                        prediction</a>
-                </div>
-            </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+  <div class="group">
+    <div
+      class="relative bg-gray-800/30 backdrop-blur-lg rounded-2xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 border border-gray-700/50"
+    >
+      <div
+        class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300"
+      ></div>
+      <div class="relative p-6">
+        <div class="relative">
+          <img
+            src="/static/mental.png"
+            class="w-full h-48 object-cover"
+            alt="Mental Disorder Prediction"
+          />
         </div>
-        <div class="col-md-6">
-            <div class="card mb-4 box-shadow">
-                <img src="/static/pcos.png" alt="PCOS Prediction">
-                <div class="card-body">
-                    <h3><strong class="d-inline-block mb-2 text-dark">PCOS Prediction</strong></h3>
-                    <p class="card-text text-muted">PCOS problem: PCOS (Polycystic Ovary Syndrome) is a hormonal
-                        disorder characterized by enlarged ovaries with small cysts and symptoms like irregular periods
-                        and excess androgen levels.</p>
-                    <a class="btn bg-indigo-600 text-white hover:bg-indigo-800 px-4 py-2" href="/pcos">Take PCOS prediction</a>
-                </div>
-            </div>
+        <div class="flex flex-col items-center">
+          <h3 class="mt-4">
+            <strong class="d-inline-block mb-2 text-dark"
+              >Mental Disorder Prediction</strong
+            >
+          </h3>
+          <p class="text-sm text-white-400 p-4">
+            Mental disorder Problem: A mental disorder is a clinically
+            significant behavioral or psychological pattern that causes distress
+            or impairment in functioning.
+          </p>
+          <a
+            class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300"
+            href="/mental_disorder"
+            >Take mental disorder prediction</a
+          >
         </div>
+      </div>
     </div>
-
-    <div class="row mb-2">
-        <div class="col-md-6">
-            <div class="card mb-4 box-shadow">
-                <img src="/static/obesity.png" alt="Obesity Prediction">
-                <div class="card-body">
-                    <h3><strong class="d-inline-block mb-2 text-dark">Obesity Prediction</strong></h3>
-                    <p class="card-text text-muted">Obesity Problem: Obesity is a medical condition characterized by an
-                        excessive accumulation of body fat, to the extent that it may have a negative effect on health.
-                    </p>
-                    <a class="btn bg-indigo-600 text-white hover:bg-indigo-800 px-4 py-2" href="/obesity">Take Obesity prediction</a>
-                </div>
-            </div>
+  </div>
+  
+  <div class="group">
+    <div
+      class="relative bg-gray-800/30 backdrop-blur-lg rounded-2xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 border border-gray-700/50"
+    >
+      <div
+        class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300"
+      ></div>
+      <div class="relative p-6">
+        <div class="relative">
+          <img
+            src="/static/pcos.png"
+            alt="PCOS Prediction"
+            class="w-full h-48 object-cover"
+          />
         </div>
-
-        <div class="col-md-6">
-            <div class="card mb-4 box-shadow">
-                <img src="/static/cancer.png" alt="Breast Cancer Prediction">
-                <div class="card-body">
-                    <h3><strong class="d-inline-block mb-2 text-dark">Breast Cancer Prediction</strong></h3>
-                    <p class="card-text text-muted">Breast Cancer Problem: Breast cancer is a disease in which malignant
-                        cells form in the tissues of the breast. Early detection is crucial for effective treatment.</p>
-                    <a class="btn bg-indigo-600 text-white hover:bg-indigo-800 px-4 py-2" href="/breast">Take Breast Cancer prediction</a>
-                </div>
-            </div>
+        <div class="flex flex-col items-center">
+          <h3 class="mt-4">
+            <strong class="d-inline-block mb-2 text-dark"
+              >PCOS Prediction</strong
+            >
+          </h3>
+          <p class="text-sm text-white-400 p-4">
+            PCOS problem: PCOS (Polycystic Ovary Syndrome) is a hormonal
+            disorder characterized by enlarged ovaries with small cysts and
+            symptoms like irregular periods and excess androgen levels.
+          </p>
+          <a
+            class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300"
+            href="/pcos"
+            >Take PCOS prediction</a
+          >
         </div>
+      </div>
     </div>
+  </div>
+
+  <div class="group">
+    <div
+      class="relative bg-gray-800/30 backdrop-blur-lg rounded-2xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 border border-gray-700/50"
+    >
+      <div
+        class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300"
+      ></div>
+      <div class="relative p-6">
+        <div class="relative">
+          <img
+            src="/static/obesity.png"
+            alt="Obesity Prediction"
+            class="w-full h-48 object-cover"
+          />
+        </div>
+        <div class="flex flex-col items-center">
+          <h3 class="mt-4">
+            <strong class="d-inline-block mb-2 text-dark"
+              >Obesity Prediction</strong
+            >
+          </h3>
+          <p class="text-sm text-white-400 p-4">
+            Obesity Problem: Obesity is a medical condition characterized by
+            an excessive accumulation of body fat, to the extent that it may
+            have a negative effect on health.
+          </p>
+          <a
+            class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300"
+            href="/obesity"
+            >Take Obesity prediction</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div
+      class="relative bg-gray-800/30 backdrop-blur-lg rounded-2xl overflow-hidden transform transition-all duration-300 group-hover:scale-105 border border-gray-700/50"
+    >
+      <div
+        class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300"
+      ></div>
+      <div class="relative p-6">
+        <div class="relative">
+          <img
+            src="/static/cancer.png"
+            alt="Breast Cancer Prediction"
+            class="w-full h-48 object-cover"
+          />
+        </div>
+        <div class="flex flex-col items-center">
+          <h3 class="mt-4">
+            <strong class="d-inline-block mb-2 text-dark"
+              >Breast Cancer Prediction</strong
+            >
+          </h3>
+          <p class="text-sm text-white-400 p-4">
+            Breast Cancer Problem: Breast cancer is a disease in which
+            malignant cells form in the tissues of the breast. Early detection
+            is crucial for effective treatment.
+          </p>
+          <a
+            class="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300"
+            href="/breast"
+            >Take Breast Cancer prediction</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<style>
-    .card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        border: 1px solid #e0e0e0;
-        border-radius: .25rem;
-        overflow: hidden;
-    }
 
-    .card img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        max-height: 200px;
-    }
-
-    .card-body {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    .btn {
-        margin-top: auto;
-    }
-</style>
 {% endblock body %}

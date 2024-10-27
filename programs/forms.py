@@ -21,23 +21,34 @@ class ExerciseForm(forms.ModelForm):
         model = Exercise
         fields = ['name', 'description', 'sets', 'reps', 'order']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),
-            'description': forms.Textarea(attrs={'class': 'form-textarea rounded-lg border-gray-300 w-full', 'rows': 3}),
-            'sets': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),
-            'reps': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),
+            'name': forms.TextInput(attrs={
+                'class': 'px-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900',
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'px-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900',
+                'rows': 3,
+                'style': 'color: black !important;'  
+            }),
+            'sets': forms.NumberInput(attrs={
+                'class': 'px-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900'
+            }),
+            'reps': forms.NumberInput(attrs={
+                'class': 'px-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900'
+            }),
             'order': forms.HiddenInput(),
         }
-
 ExerciseFormSet = inlineformset_factory(
     FitnessProgram,
     Exercise,
-    fields=('name', 'description', 'sets', 'reps', 'order'),
-    extra=3,
+    form=ExerciseForm,
+    extra=1,
     can_delete=True,
-    min_num=1,  
-    validate_min=True   
+    min_num=1,
+    validate_min=True,
+    max_num=10,
+    validate_max=True,
+    absolute_max=15
 )
-
 
 class PersonalInfoForm(forms.Form):
     height = forms.IntegerField(  
