@@ -1,8 +1,8 @@
-{% extends 'schedule/base.html' %}
+{% extends 'new_base.html' %}
 
 {% block title %}{% if form.instance.pk %}Update{% else %}Create{% endif %} Training Schedule{% endblock %}
 
-{% block content %}
+{% block body %}
 {% load schedule_tags %}
 
 <div class="max-w-lg mx-auto bg-white rounded-lg shadow p-6">
@@ -22,7 +22,7 @@
                     {{ field.label }}
                 </label>
                 <div class="mt-1">
-                    {{ field|add_class:"block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" }}
+                    {{ field|add_class:"block w-full rounded-md text-black border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" }}
                 </div>
                 {% if field.help_text %}
                     <p class="mt-2 text-sm text-gray-500">{{ field.help_text }}</p>
