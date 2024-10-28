@@ -1,128 +1,123 @@
-{% extends "fitness/base.html" %}
+{% extends "new_base.html" %}
 
 {% block title %}Mental Disorder{% endblock title %}
 
 {% block body %}
 
-<div class="container">
-    <div class="w-100">
+<div class="container mx-auto p-4">
+    <div class="w-full">
 
         {% if prediction_result %}
-        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-danger rounded box-shadow">
-            <div class="lh-100 my-2">
-                <h5 class="mb-0 text-white lh-100">Your prediction report: <b> {{ prediction_result }} </b></h5>
-                <a href="/report" class="text-white my-2" style="color: white;"><b>Proceed to obtain report</b></a>
+        <div class="flex items-center p-3 my-3 text-gray-100 bg-red-600 rounded shadow">
+            <div class="leading-normal my-2">
+                <h5 class="mb-0 text-white leading-tight">Your prediction report: <b>{{ prediction_result }}</b></h5>
+                <a href="/report" class="text-white my-2 underline"><b>Proceed to obtain report</b></a>
             </div>
         </div>
-    {% endif %}
+        {% endif %}
 
-    <div class="jumbotron my-3 bg-light">
-        <h1 class="display-4"><b>PCOS Prediction</b></h1>
-        <hr class="my-4">
-        <p class="text-weight-bolded">
-            <i>
-                Management of mental disorders often includes a combination of therapy, medication, and lifestyle adjustments. Psychotherapy, such as cognitive-behavioral therapy (CBT), helps individuals develop coping strategies, address negative thought patterns, and build resilience. Medications, including antidepressants or antipsychotics, may be prescribed to manage symptoms like mood swings, anxiety, or hallucinations. Additionally, lifestyle changes—such as regular exercise, a balanced diet, and sufficient sleep—can improve overall mental well-being. Support from family, friends, and support groups also plays a key role in promoting recovery and stability.            </i>
-        </p>
+        <div class="bg-gray-100 p-6 my-3 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold text-gray-800">PCOS Prediction</h1>
+            <hr class="my-4 border-gray-300">
+            <p class="font-semibold text-gray-700 italic">
+                Management of mental disorders often includes a combination of therapy, medication, and lifestyle adjustments. Psychotherapy, such as cognitive-behavioral therapy (CBT), helps individuals develop coping strategies, address negative thought patterns, and build resilience. Medications, including antidepressants or antipsychotics, may be prescribed to manage symptoms like mood swings, anxiety, or hallucinations. Additionally, lifestyle changes—such as regular exercise, a balanced diet, and sufficient sleep—can improve overall mental well-being. Support from family, friends, and support groups also plays a key role in promoting recovery and stability.
+            </p>
+        </div>
+
+        <div>
+            <form action="/mental_disorder/" method="post" id="mentalDisorderForm" class="text-gray-700">
+                {% csrf_token %}
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Sadness</label><br>
+                        {{ form.sadness }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Euphoric</label>
+                        {{ form.euphoric }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Exhausted</label>
+                        {{ form.exhausted }}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Sleep Disorder</label><br>
+                        {{ form.sleep_disorder }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Mood Swings</label>
+                        {{ form.mood_swing }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Suicidal thoughts</label>
+                        {{ form.suicidal_thoughts }}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Anorexia</label><br>
+                        {{ form.anorxia }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Authority Respect</label>
+                        {{ form.authority_respect }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Try Explanation</label>
+                        {{ form.try_explanation }}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Aggressive Response</label><br>
+                        {{ form.aggressive_response }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Ignore and Move on</label>
+                        {{ form.ignore_moveon }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Nervous Breakdown</label>
+                        {{ form.nervous_breakdown }}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Admit Mistakes</label><br>
+                        {{ form.admit_mistakes }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Overthinking</label>
+                        {{ form.overthink }}
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Sexual Activity</label>
+                        {{ form.sexual_activity }}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-5">
+                    <div class="">
+                        <label class="font-bold text-white">Concentration</label><br>
+                        {{ form.concentration }}
+                    </div>
+                    <div class="">
+                        <label class="font-bold text-white">Optimism</label>
+                        {{ form.optimisim }}
+                    </div>
+                </div>
+
+                <button type="submit" class="bg-indigo-600 text-white hover:bg-indigo-800 py-2 px-4 w-full rounded">Predict Mental Disorder</button>
+            </form>
+        </div>
     </div>
-
-
-    <div>
-        <form action="/mental_disorder/" method="post" id="mentalDisorderForm">
-            {% csrf_token %}
-
-            <div class="form-row my-5">
-                <div class="col">
-                    <label><b>Sadness</b></label><br>
-                    {{ form.sadness }}
-                </div>
-                <div class="col">
-                    <label><b>Euphoric</b></label>
-                    {{ form.euphoric }}
-                </div>
-                <div class="col">
-                    <label><b>Exhausted</b></label>
-                    {{ form.exhausted }}
-                </div>
-            </div>
-
-            <div class="form-row my-5">
-                <div class="col">
-                    <label><b>Sleep Disorder</b></label><br>
-                    {{ form.sleep_disorder }}
-                </div>
-                <div class="col">
-                    <label><b>Mood Swings</b></label>
-                    {{ form.mood_swing }}
-                </div>
-                <div class="col">
-                    <label><b>Suicidal thoughts</b></label>
-                    {{ form.suicidal_thoughts }}
-                </div>
-            </div>
-
-            <div class="form-row my-5">
-                <div class="col">
-                    <label><b>Anorexia</b></label><br>
-                    {{ form.anorxia }}
-                </div>
-                <div class="col">
-                    <label><b>Authority Respect</b></label>
-                    {{ form.authority_respect }}
-                </div>
-                <div class="col">
-                    <label><b>Try Explanation</b></label>
-                    {{ form.try_explanation }}
-                </div>
-            </div>
-
-            <div class="form-row my-5">
-                <div class="col">
-                    <label><b>Aggressive Response</b></label><br>
-                    {{ form.aggressive_response }}
-                </div>
-                <div class="col">
-                    <label><b>Ignore and Move on</b></label>
-                    {{ form.ignore_moveon }}
-                </div>
-                <div class="col">
-                    <label><b>Nervous Breakdown</b></label>
-                    {{ form.nervous_breakdown }}
-                </div>
-            </div>
-
-            <div class="form-row my-5">
-                <div class="col">
-                    <label><b>Admit Mistakes</b></label><br>
-                    {{ form.admit_mistakes }}
-                </div>
-                <div class="col">
-                    <label><b>Overthinking</b></label>
-                    {{ form.overthink }}
-                </div>
-                <div class="col">
-                    <label><b>Sexual Activity</b></label>
-                    {{ form.sexual_activity }}
-                </div>
-            </div>
-
-            <div class="form-row my-5">
-                <div class="col">
-                    <label><b>Concentration</b></label><br>
-                    {{ form.concentration }}
-                </div>
-                <div class="col">
-                    <label><b>Optimism</b></label>
-                    {{ form.optimisim }}
-                </div>
-            </div>
-
-
-
-            <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12">Predict Mental Disorder</button>
-        </form>
-    </div>
-    </div>
-
 </div>
 
 {% endblock body %}

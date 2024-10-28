@@ -36,9 +36,12 @@ class MentalDisorderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control col-md-12'})
+            field.widget.attrs.update({
+                'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            })
             if isinstance(field.widget, forms.Select):
                 field.empty_label = "Choose one"
+
 
 class pcosDisorderForm(forms.ModelForm):
     class Meta:
@@ -49,7 +52,9 @@ class pcosDisorderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control col-md-12'})
+            field.widget.attrs.update({
+                'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            })
             if isinstance(field.widget, forms.Select):
                 field.empty_label = "Choose one"
                 
@@ -62,7 +67,9 @@ class obesityDisorderForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control col-md-12'})
+            field.widget.attrs.update({
+                'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'
+            })
             if isinstance(field.widget, forms.Select):
                 field.empty_label = "Choose one"
 
@@ -71,27 +78,27 @@ class BreastCancerForm(forms.Form):
     radius = forms.FloatField(
         label='Mean Radius',
         min_value=0,
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
     )
     texture = forms.FloatField(
         label='Mean Texture',
         min_value=0,
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
     )
     perimeter = forms.FloatField(
         label='Mean Perimeter',
         min_value=0,
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
     )
     area = forms.FloatField(
         label='Mean Area',
         min_value=0,
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
     )
     smoothness = forms.FloatField(
         label='Mean Smoothness',
         min_value=0,
-        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
     )
 
 

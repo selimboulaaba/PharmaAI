@@ -1,9 +1,9 @@
-{% extends "fitness/base.html" %}
+{% extends "new_base.html" %}
 
 {% block title %}Breast Cancer{% endblock title %}
 
 {% block body %}
-<style>
+<!-- <style>
     .result-box {
         display: flex;
         align-items: center;
@@ -25,64 +25,67 @@
     }
     .form-container {
         margin-top: 2rem;
-    }
-</style>
-
-<div class="container">
-    <div class="w-100">
+    } 
+</style>-->
+<div class="container mx-auto p-4">
+    <div class="w-full">
 
         {% if result %}
-        <div class="result-box {% if result_type == 'positive' %}bg-danger{% else %}bg-success{% endif %}">
-            <div class="lh-100">
-                <h5>Your prediction report: <b>{{ result }} {{ emoji }}</b></h5>
-                <a href="/report" class="text-white my-2"><b>Proceed to obtain report</b></a>
+        <div class="flex items-center p-3 my-3 text-gray-100 bg-red-600 rounded shadow">
+            <div class="leading-normal my-2">
+                <h5 class="mb-0 text-white leading-tight">Your prediction report: <b>{{ result }} {{ emoji }}</b></h5>
+                <a href="/report" class="text-white my-2 underline"><b>Proceed to obtain report</b></a>
             </div>
         </div>
         {% endif %}
-        
-        <div class="jumbotron my-3 bg-light">
-            <h1 class="display-4"><b>Breast Cancer Prediction</b></h1>
-            <hr class="my-4">
-            <p class="text-weight-bolded">
-                <i>
-                    Management of breast cancer generally involves a combination of treatments tailored to the cancer’s type and stage. Common approaches include surgery to remove the tumor, radiation therapy to target and destroy cancer cells, and chemotherapy to eliminate remaining cells throughout the body. Hormone therapy may be used for cancers sensitive to estrogen or progesterone, while targeted therapies focus on specific molecules involved in cancer growth. Maintaining a healthy diet, staying physically active, and receiving emotional support are also crucial in supporting overall health and improving treatment outcomes. Early detection and regular screenings significantly enhance the chances of effective treatment.
-                </i>
+
+        <div class="bg-gray-100 p-6 my-3 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold text-gray-800">Breast Cancer Prediction</h1>
+            <hr class="my-4 border-gray-300">
+            <p class="font-semibold text-gray-700 italic">
+                Management of breast cancer generally involves a combination of treatments tailored to the cancer’s type
+                and stage. Common approaches include surgery to remove the tumor, radiation therapy to target and
+                destroy cancer cells, and chemotherapy to eliminate remaining cells throughout the body. Hormone therapy
+                may be used for cancers sensitive to estrogen or progesterone, while targeted therapies focus on
+                specific molecules involved in cancer growth. Maintaining a healthy diet, staying physically active, and
+                receiving emotional support are also crucial in supporting overall health and improving treatment
+                outcomes. Early detection and regular screenings significantly enhance the chances of effective
+                treatment.
             </p>
         </div>
-    
+
         <div>
-            <form action="{% url 'breast' %}" method="post">
+            <form action="{% url 'breast' %}" method="post" id="mentalDisorderForm" class="text-gray-700">
                 {% csrf_token %}
 
-    
-                <div class="form-row my-2">
-                    <div class="col-md-4 my-2">
-                        <label><b>Mean Radius</b></label><br>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Mean Radius</label><br>
                         {{ form.radius }}
                     </div>
-                    <div class="col-md-4 my-2">
-                        <label><b>Mean Texture</b></label>
+                    <div>
+                        <label class="font-bold text-white">Mean Texture</label>
                         {{ form.texture }}
                     </div>
-                    <div class="col-md-4 my-2">
-                        <label><b>Mean Texture</b></label>
+                    <div>
+                        <label class="font-bold text-white">Mean Texture</label>
                         {{ form.perimeter }}
                     </div>
                 </div>
-    
-                <div class="form-row my-2">
-                    <div class="col-md-4 my-2">
-                        <label><b>Mean Area</b></label><br>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Mean Area</label><br>
                         {{ form.area }}
                     </div>
-                    <div class="col-md-4 my-2">
-                        <label><b>Mean Smoothness</b></label>
+                    <div>
+                        <label class="font-bold text-white">Mean Smoothness</label>
                         {{ form.smoothness }}
                     </div>
                 </div>
-    
-    
-                <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12 my-5">Predict PCOS</button>
+
+                <button type="submit"
+                    class="bg-indigo-600 text-white hover:bg-indigo-800 py-2 px-4 w-full rounded">Predict PCOS</button>
             </form>
         </div>
     </div>
