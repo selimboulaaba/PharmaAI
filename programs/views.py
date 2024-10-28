@@ -26,6 +26,8 @@ class ProgramListView(ListView):
         queryset = super().get_queryset()
         difficulty = self.request.GET.get('difficulty')
         duration = self.request.GET.get('duration')
+        search = self.request.GET.get('search') 
+
         
         print(f"Received duration filter: {duration}")
         
@@ -42,6 +44,8 @@ class ProgramListView(ListView):
             elif duration == 'Long (> 60 mins)':
                 queryset = queryset.filter(duration__gt=60)
                 print("Filtering for long duration > 60 mins")
+        if search:
+            queryset = queryset.filter(title__icontains=search)
             
             print(f"Query SQL: {queryset.query}")
         
@@ -53,7 +57,8 @@ class ProgramListView(ListView):
         
         context['current_difficulty'] = self.request.GET.get('difficulty', 'All Difficulties')
         context['current_duration'] = self.request.GET.get('duration', 'All Durations')
-        
+        context['current_search'] = self.request.GET.get('search', '')  
+
         context['difficulty_choices'] = [('All Difficulties', 'All Difficulties')] + list(FitnessProgram.DIFFICULTY_CHOICES)
         context['duration_choices'] = [
             ('All Durations', 'All Durations'),
