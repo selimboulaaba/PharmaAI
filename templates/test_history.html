@@ -25,11 +25,11 @@
                     <td>{{ history_entry.test_type }}</td>
                     <td>{{ history_entry.date|date:"d/m/Y" }}</td>
                     <td class="text-green-400 font-bold">{{ history_entry.result }}</td>
-                    <td>
-                        <button onclick="showModal({{ history_entry.id }})" class="px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500">View Details</button>
-                        <form method="POST" action="{% url 'delete_history_entry' history_entry.id %}" class="d-inline" onsubmit="return confirmDelete()">
+                    <td class="text-center">
+                        <button onclick="showModal({{ history_entry.id }})" class="inline px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500">View Details</button>
+                        <form method="POST" action="{% url 'delete_history_entry' history_entry.id %}" class="inline" onsubmit="return confirmDelete()">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="px-4 py-2 bg-red-600 rounded-lg text-white hover:bg-indigo-500">Delete</button>
                         </form>
                     </td>
                 </tr>
