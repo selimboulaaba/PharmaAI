@@ -2018,7 +2018,7 @@
         "kind": 5,
         "importPath": "home.urls",
         "description": "home.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name='home'),\n    path(\"register\", views.register, name=\"register\"),\n    path(\"doctor_register\", views.doctor_register, name=\"doctor_register\"),\n    path(\"login\", views.user_login, name=\"login\"),\n    path(\"doctor_login\", views.doctor_login, name=\"doctor_login\"),\n    path(\"dashboard\", views.user_dashboard, name=\"dashboard\"),\n    path(\"doctor_dashboard\", views.doctor_dashboard, name=\"doctor_dashboard\"),\n    path(\"health_prediction/\", views.health_prediction, name=\"health_prediction\"),\n    path(\"breast/\", views.breast, name=\"breast\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.index, name='home'),\n    path(\"register\", views.register, name=\"register\"),\n    path(\"doctor_register\", views.doctor_register, name=\"doctor_register\"),\n    path(\"login\", views.user_login, name=\"login\"),\n    path(\"doctor_login\", views.doctor_login, name=\"doctor_login\"),\n    path(\"dashboard\", views.user_dashboard, name=\"dashboard\"),\n    path(\"profile\", views.complete_profile, name=\"profile\"),\n    path(\"doctor_dashboard\", views.doctor_dashboard, name=\"doctor_dashboard\"),\n    path(\"health_prediction/\", views.health_prediction, name=\"health_prediction\"),",
         "detail": "home.urls",
         "documentation": {}
     },
@@ -2063,7 +2063,16 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def user_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect('dashboard')\n        else:\n            messages.error(request, \"Something went wrong. Try again!\")",
+        "peekOfCode": "def user_login(request):\n    if request.method == 'POST':\n        username = request.POST.get('username')\n        password = request.POST.get('password')\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect('profile')\n        else:\n            messages.error(request, \"Something went wrong. Try again!\")",
+        "detail": "home.views",
+        "documentation": {}
+    },
+    {
+        "label": "complete_profile",
+        "kind": 2,
+        "importPath": "home.views",
+        "description": "home.views",
+        "peekOfCode": "def complete_profile(request):\n    if UserProfile.objects.filter(user=request.user).exists():\n        # If profile exists, redirect to the dashboard profile page\n        return redirect('dashboard')\n    if request.method == 'POST':\n        user_profile = UserProfile.objects.create(\n            user=request.user,\n            dob=request.POST['dob'],\n            gender=request.POST['gender'],\n            height=request.POST['height'],",
         "detail": "home.views",
         "documentation": {}
     },
@@ -2081,7 +2090,7 @@
         "kind": 2,
         "importPath": "home.views",
         "description": "home.views",
-        "peekOfCode": "def user_dashboard(request):\n    try:\n        user_profile = UserProfile.objects.get(user=request.user)\n        print(\"usss\")\n        print(user_profile)\n    except UserProfile.DoesNotExist:\n        print(\"eeeer\")\n        user_profile = None\n    return render(request, 'user_dashboard.html', {'user_name': request.user.first_name + \" \" + request.user.last_name, \n                                                'user_profile': user_profile, ",
+        "peekOfCode": "def user_dashboard(request):\n    try:\n        user_profile = UserProfile.objects.get(user=request.user)\n    except UserProfile.DoesNotExist:\n        user_profile = None\n    return render(request, 'user_dashboard.html', {'user_name': request.user.first_name + \" \" + request.user.last_name, \n                                                'user_profile': user_profile, \n                                                'user_username': request.user.username\n                                                })\n@login_required",
         "detail": "home.views",
         "documentation": {}
     },

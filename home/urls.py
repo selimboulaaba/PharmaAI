@@ -9,6 +9,7 @@ urlpatterns = [
     path("login", views.user_login, name="login"),
     path("doctor_login", views.doctor_login, name="doctor_login"),
     path("dashboard", views.user_dashboard, name="dashboard"),
+    path("profile", views.complete_profile, name="profile"),
     path("doctor_dashboard", views.doctor_dashboard, name="doctor_dashboard"),
     path("health_prediction/", views.health_prediction, name="health_prediction"),
     path("breast/", views.breast, name="breast"),

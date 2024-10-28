@@ -133,10 +133,28 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('profile')
         else:
             messages.error(request, "Something went wrong. Try again!")
     return render(request, 'login.html')
+
+@login_required
+def complete_profile(request):
+    if UserProfile.objects.filter(user=request.user).exists():
+        # If profile exists, redirect to the dashboard profile page
+        return redirect('dashboard')
+    
+    if request.method == 'POST':
+        user_profile = UserProfile.objects.create(
+            user=request.user,
+            dob=request.POST['dob'],
+            gender=request.POST['gender'],
+            height=request.POST['height'],
+            weight=request.POST['weight'],
+            profession=request.POST['profession']
+        )
+        return redirect('dashboard')
+    return render(request, 'profile.html', {'user_name': request.user.first_name + " " + request.user.last_name})
 
 
 def doctor_login(request):
@@ -160,10 +178,7 @@ def doctor_login(request):
 def user_dashboard(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
-        print("usss")
-        print(user_profile)
     except UserProfile.DoesNotExist:
-        print("eeeer")
         user_profile = None
 
     return render(request, 'user_dashboard.html', {'user_name': request.user.first_name + " " + request.user.last_name, 
@@ -571,3 +586,6 @@ def delete_history_entry(request, entry_id):
         entry.delete()  
         return redirect('test_history') 
     return redirect('test_history') 
+
+
+
