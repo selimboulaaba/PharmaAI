@@ -128,8 +128,8 @@
           <div class="flex justify-between h-20">
             <div class="flex items-center">
               <a
-                href="/"
-                class="group flex items-center space-x-3 hover:no-underline"
+               href="{% if user.is_authenticated %}/dashboard{% else %}/{% endif %}"
+               class="group flex items-center space-x-3 hover:no-underline"
               >
                 <div
                   class="relative w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg overflow-hidden shadow-lg group-hover:scale-105 transition-transform duration-300"
