@@ -1,15 +1,17 @@
-{% extends "fitness/base.html" %}
+{% extends "new_base.html" %}
 
 {% block title %}User History{% endblock title %}
 
 {% block body %}
 <div class="container my-4">
+    <div class="my-3 p-3 bg-gray-800/30 backdrop-blur-lg rounded-2xl shadow-xl w-full border border-gray-700/50">
+        <div class="p-4">
+            <h3 class="text-3xl font-bold text-indigo-400">Medical History</h3>
+            <p class="text-indigo-200 mt-2"><i>Review your past medical tests and view details for each result.</i></p>
+        </div>
 
-    <div class="my-3 p-3 bg-white rounded box-shadow w-100">
-        <h3 class="my-3 pb-2 mb-0 text-3xl p-[10px]">Medical History</h3>
-        
-        <table class="table">
-            <thead>
+        <table class="table mt-4 text-white w-full">
+            <thead class="bg-gray-900">
                 <tr>
                     <th scope="col">Test Taken</th>
                     <th scope="col">Date of Examination</th>
@@ -19,17 +21,34 @@
             </thead>
             <tbody>
                 {% for history_entry in user_medical_history reversed %}
-                <tr>
+                <tr class="bg-gray-800 hover:bg-gray-700 transition">
                     <td>{{ history_entry.test_type }}</td>
-                    <td>{{ history_entry.date }}</td>
-                    <td class="text-success"><b>{{ history_entry.result }}</b></td>
+                    <td>{{ history_entry.date|date:"d/m/Y" }}</td>
+                    <td class="text-green-400 font-bold">{{ history_entry.result }}</td>
                     <td>
-                        <form method="POST" action="{% url 'delete_history_entry' history_entry.id %}" onsubmit="return confirmDelete()">
+                        <button onclick="showModal({{ history_entry.id }})" class="px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500">View Details</button>
+                        <form method="POST" action="{% url 'delete_history_entry' history_entry.id %}" class="d-inline" onsubmit="return confirmDelete()">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
+
+                <div id="modal-{{ history_entry.id }}" class="fixed inset-0 hidden bg-gray-900 bg-opacity-50 overflow-y-auto h-full w-full" onclick="closeModal({{ history_entry.id }})">
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-gray-800 text-white" onclick="event.stopPropagation()">
+                        <div class="text-right">
+                            <button onclick="closeModal({{ history_entry.id }})" class="text-gray-400 hover:text-gray-200">&times;</button>
+                        </div>
+                        <h4 class="text-lg font-semibold">Test Details</h4>
+                        <p class="text-sm text-gray-400">Date: {{ history_entry.date|date:"d/m/Y" }}</p>
+                        <p class="mt-4">Test Type: <span class="text-indigo-300">{{ history_entry.test_type }}</span></p>
+                        <p class="mt-2">Result: <span class="text-green-400 font-bold">{{ history_entry.result }}</span></p>
+
+                        <div class="mt-4 text-right">
+                            <button onclick="closeModal({{ history_entry.id }})" class="px-4 py-2 bg-indigo-600 rounded-lg text-white hover:bg-indigo-500">Close</button>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
             </tbody>
         </table>
@@ -37,9 +56,14 @@
 </div>
 
 <script>
+    function showModal(entryId) {
+        document.getElementById(`modal-${entryId}`).classList.remove("hidden");
+    }
+    function closeModal(entryId) {
+        document.getElementById(`modal-${entryId}`).classList.add("hidden");
+    }
     function confirmDelete() {
-        return confirm("Are you sure you want to delete this ?");
+        return confirm("Are you sure you want to delete this entry?");
     }
 </script>
-
 {% endblock body %}
