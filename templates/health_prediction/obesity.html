@@ -1,71 +1,80 @@
-{% extends "fitness/base.html" %}
+{% extends "new_base.html" %}
 
 {% block title %}Obesity Prediction{% endblock title %}
 
 {% block body %}
 
-<div class="container">
-    <div class="w-100">
-    {% if prediction_result %}
-        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-danger rounded box-shadow">
-            <div class="lh-100 my-2">
-                <h5 class="mb-0 text-white lh-100">Your prediction report: <b> {{ prediction_result }} </b></h5>
-                <a href="/report" class="text-white my-2" style="color: white;"><b>Proceed to obtain report</b></a>
+
+<div class="container mx-auto p-4">
+    <div class="w-full">
+
+        {% if prediction_result %}
+        <div class="flex items-center p-3 my-3 text-gray-100 bg-red-600 rounded shadow">
+            <div class="leading-normal my-2">
+                <h5 class="mb-0 text-white leading-tight">Your prediction report: <b>{{ prediction_result }}</b></h5>
+                <a href="/report" class="text-white my-2 underline"><b>Proceed to obtain report</b></a>
             </div>
         </div>
-    {% endif %}
-    
-    <div class="jumbotron my-3 bg-light">
-        <h1 class="display-4"><b>Obesity Prediction</b></h1>
-        <hr class="my-4">
-        <p class="text-weight-bolded">
-            <i>
-                Prevention efforts aimed at promoting healthy eating habits, 
-                regular physical activity, and a supportive environment are 
-                essential in addressing the obesity epidemic at a population level. 
-            </i>
-        </p>
+        {% endif %}
+
+        <div class="bg-gray-100 p-6 my-3 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold text-gray-800">Obesity Prediction</h1>
+            <hr class="my-4 border-gray-300">
+            <p class="font-semibold text-gray-700 italic">
+                Prevention efforts aimed at promoting healthy eating habits,
+                regular physical activity, and a supportive environment are
+                essential in addressing the obesity epidemic at a population level.
+            </p>
+        </div>
+
+        <div>
+            <form action="/obesity/" method="post" id="mentalDisorderForm" class="text-gray-700">
+                {% csrf_token %}
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">Age</label><br>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            value={{ age }} disabled />
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Weight</label>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            value={{ user_data.weight }} disabled />
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Height</label>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            value={{ user_data.height }} disabled />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-5">
+                    <div>
+                        <label class="font-bold text-white">BMI</label><br>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            value={{ user_data.bmi }} disabled />
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Gender</label>
+                        <input
+                            class="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            value={{ user_data.gender }} disabled />
+                    </div>
+                    <div>
+                        <label class="font-bold text-white">Activity Level</label>
+                        {{ form.activityLevel }}
+                    </div>
+                </div>
+                <button type="submit" class="bg-indigo-600 text-white hover:bg-indigo-800 py-2 px-4 w-full rounded">Predict Obesity</button>
+            </form>
+        </div>
+
     </div>
-
-    <div>
-        <form action="/obesity/" method="post">
-            {% csrf_token %}
-
-            <div class="form-row my-2">
-                <div class="col my-2">
-                    <label><b>Age</b></label><br>
-                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{age}}</b></p>
-                </div>
-                <div class="col my-2">
-                    <label><b>Weight</b></label>
-                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{ user_data.weight }} kg</b></p>
-                </div>
-                <div class="col my-2">
-                    <label><b>Height</b></label>
-                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{ user_data.height }} cm</b></p>
-                </div>
-            </div>
-
-            <div class="form-row my-2">
-                <div class="col my-2">
-                    <label><b>BMI</b></label><br>
-                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{ user_data.bmi }}</b></p>
-                </div>
-                <div class="col my-2">
-                    <label><b>Gender</b></label>
-                    <p class="py-2 px-2 text-indigo-600 bg-white border rounded"><b>{{ user_data.gender }}</b></p>
-                </div>
-                <div class="col-md-4 my-2">
-                    <label><b>Activity Level</b></label><br>
-                    {{ form.activityLevel }}
-                </div>
-            </div>
-
-            <button type="submit" class="btn bg-indigo-600 text-white hover:bg-indigo-800 col-md-12 my-5">Predict Obesity</button>
-        </form>
-    </div>
-
-</div>
 
 </div>
 

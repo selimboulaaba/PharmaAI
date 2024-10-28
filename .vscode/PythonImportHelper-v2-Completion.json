@@ -1874,7 +1874,7 @@
         "kind": 6,
         "importPath": "home.forms",
         "description": "home.forms",
-        "peekOfCode": "class MentalDisorderForm(forms.ModelForm):\n    class Meta:\n        model = mentalDisorder\n        fields = '__all__'\n        exclude = ['user']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field_name, field in self.fields.items():\n            field.widget.attrs.update({'class': 'form-control col-md-12'})\n            if isinstance(field.widget, forms.Select):",
+        "peekOfCode": "class MentalDisorderForm(forms.ModelForm):\n    class Meta:\n        model = mentalDisorder\n        fields = '__all__'\n        exclude = ['user']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field_name, field in self.fields.items():\n            field.widget.attrs.update({\n                'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'",
         "detail": "home.forms",
         "documentation": {}
     },
@@ -1883,7 +1883,7 @@
         "kind": 6,
         "importPath": "home.forms",
         "description": "home.forms",
-        "peekOfCode": "class pcosDisorderForm(forms.ModelForm):\n    class Meta:\n        model = pcosDisorder\n        fields = '__all__'\n        exclude = ['user']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field_name, field in self.fields.items():\n            field.widget.attrs.update({'class': 'form-control col-md-12'})\n            if isinstance(field.widget, forms.Select):",
+        "peekOfCode": "class pcosDisorderForm(forms.ModelForm):\n    class Meta:\n        model = pcosDisorder\n        fields = '__all__'\n        exclude = ['user']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field_name, field in self.fields.items():\n            field.widget.attrs.update({\n                'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'",
         "detail": "home.forms",
         "documentation": {}
     },
@@ -1892,7 +1892,7 @@
         "kind": 6,
         "importPath": "home.forms",
         "description": "home.forms",
-        "peekOfCode": "class obesityDisorderForm(forms.ModelForm):\n    class Meta:\n        model = obesityDisorder\n        fields = '__all__'\n        exclude = ['user']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field_name, field in self.fields.items():\n            field.widget.attrs.update({'class': 'form-control col-md-12'})\n            if isinstance(field.widget, forms.Select):",
+        "peekOfCode": "class obesityDisorderForm(forms.ModelForm):\n    class Meta:\n        model = obesityDisorder\n        fields = '__all__'\n        exclude = ['user']\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        for field_name, field in self.fields.items():\n            field.widget.attrs.update({\n                'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'",
         "detail": "home.forms",
         "documentation": {}
     },
@@ -1901,7 +1901,7 @@
         "kind": 6,
         "importPath": "home.forms",
         "description": "home.forms",
-        "peekOfCode": "class BreastCancerForm(forms.Form):\n    radius = forms.FloatField(\n        label='Mean Radius',\n        min_value=0,\n        widget=forms.NumberInput(attrs={'class': 'form-control'}),\n    )\n    texture = forms.FloatField(\n        label='Mean Texture',\n        min_value=0,\n        widget=forms.NumberInput(attrs={'class': 'form-control'}),",
+        "peekOfCode": "class BreastCancerForm(forms.Form):\n    radius = forms.FloatField(\n        label='Mean Radius',\n        min_value=0,\n        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),\n    )\n    texture = forms.FloatField(\n        label='Mean Texture',\n        min_value=0,\n        widget=forms.NumberInput(attrs={'class': 'w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),",
         "detail": "home.forms",
         "documentation": {}
     },
@@ -2378,7 +2378,7 @@
         "kind": 6,
         "importPath": "items.forms",
         "description": "items.forms",
-        "peekOfCode": "class AddToCartForm(forms.ModelForm):\n    class Meta:\n        model = CartItem\n        fields = ['quantity', 'item']\n        widgets = {\n            'quantity': forms.NumberInput(attrs={'class': 'form-control col-md-12'}),\n        }\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.fields['quantity'].widget.attrs.update({'min': 1})",
+        "peekOfCode": "class AddToCartForm(forms.ModelForm):\n    class Meta:\n        model = CartItem\n        fields = ['quantity', 'item']\n        widgets = {\n            'quantity': forms.NumberInput(attrs={'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}),\n        }\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self.fields['quantity'].widget.attrs.update({'min': 1})",
         "detail": "items.forms",
         "documentation": {}
     },
@@ -2819,7 +2819,7 @@
         "kind": 6,
         "importPath": "programs.forms",
         "description": "programs.forms",
-        "peekOfCode": "class ExerciseForm(forms.ModelForm):\n    class Meta:\n        model = Exercise\n        fields = ['name', 'description', 'sets', 'reps', 'order']\n        widgets = {\n            'name': forms.TextInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'description': forms.Textarea(attrs={'class': 'form-textarea rounded-lg border-gray-300 w-full', 'rows': 3}),\n            'sets': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'reps': forms.NumberInput(attrs={'class': 'form-input rounded-lg border-gray-300 w-full'}),\n            'order': forms.HiddenInput(),",
+        "peekOfCode": "class ExerciseForm(forms.ModelForm):\n    class Meta:\n        model = Exercise\n        fields = ['name', 'description', 'sets', 'reps', 'order']\n        widgets = {\n            'name': forms.TextInput(attrs={\n                'class': 'px-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900',\n            }),\n            'description': forms.Textarea(attrs={\n                'class': 'px-4 py-2 rounded-lg border border-gray-300 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900',",
         "detail": "programs.forms",
         "documentation": {}
     },
@@ -2837,7 +2837,7 @@
         "kind": 5,
         "importPath": "programs.forms",
         "description": "programs.forms",
-        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    fields=('name', 'description', 'sets', 'reps', 'order'),\n    extra=3,\n    can_delete=True,\n    min_num=1,  \n    validate_min=True   \n)\nclass PersonalInfoForm(forms.Form):",
+        "peekOfCode": "ExerciseFormSet = inlineformset_factory(\n    FitnessProgram,\n    Exercise,\n    form=ExerciseForm,\n    extra=1,\n    can_delete=True,\n    min_num=1,\n    validate_min=True,\n    max_num=10,\n    validate_max=True,",
         "detail": "programs.forms",
         "documentation": {}
     },
